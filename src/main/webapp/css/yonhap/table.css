@@ -1,0 +1,433 @@
+@charset "utf-8";
+@font-face {
+	font-family: 'ng';
+	src: url('font/NanumGothic.eot'), url('font/NanumGothic.woff') format("woff"), url('font/NanumGothic.ttf') format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ng';
+	src: url('font/NanumGothic-Bold.eot'), url('font/NanumGothic-Bold.woff') format("woff"), url('font/NanumGothic-Bold.ttf') format("truetype");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ng';
+	src: url('font/NanumGothic-ExtraBold.eot'), url('font/NanumGothic-ExtraBold.woff') format("woff"), url('font/NanumGothic-ExtraBold.ttf') format("truetype");
+	font-weight: 800;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NanumBarunGothic';
+	src: url('font/NanumBarunGothic.eot'), url('font/NanumBarunGothic.woff') format("woff"), url('font/NanumBarunGothic.ttf') format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NanumBarunGothic';
+	src: url('font/NanumBarunGothicBold.eot'), url('font/NanumBarunGothicBold.woff') format("woff"), url('font/NanumBarunGothicBold.ttf') format("truetype");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ns';
+	src: local("Nanum Square Regular"), local("NanumSquareR"), url('font/NanumSquareR.eot?#iefix') format("embedded-opentype"), url('font/NanumSquareR.woff') format("woff2"), url('font/NanumSquareR.woff') format("woff"), url('font/NanumSquareR.ttf') format("truetype");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ns';
+	src: local("Nanum Square Bold"), local("NanumSquareB"), url('font/NanumSquareB.eot?#iefix') format("embedded-opentype"), url('font/NanumSquareB.woff') format("woff2"), url('font/NanumSquareB.woff') format("woff"), url('font/NanumSquareB.ttf') format("truetype");
+	font-weight: 600;
+	font-style: normal;
+}
+/* style reset */
+
+/*라디오박스*/
+.tbl_top {display: inline-block; position: relative;}
+.tbl_top li {padding: 3px 0;}
+.tbl_top.type2 li {float: left;}
+.tbl_top .iradio label { position: relative; top: 0; padding: 0 10px 0 5px; color: #444; font-size: 15px;}
+.iradio {display:inline-block; padding:0 0 0 18px; margin-right: 10px; background:url('/images/yonhap/icon_radio_off.png') no-repeat 0 2px; cursor: pointer;}
+.iradio.on {padding:0 0 0 18px; background:url('/images/yonhap/icon_radio_on.png') no-repeat 0 2px;}
+.iradio input.radio {width:0px; height:0px;display: inline-block; }
+.iradio label.iradio_txt {display: inline-block; line-height: 20px; }
+.iradio.type2 {height: 20px;display:inline-block; padding:0 0 0 18px; margin-right: 20px; background:url('/images/yonhap/icon_radio2_off.png') no-repeat 0 7px; }
+.iradio.type2 label { position: relative; top: 0; padding: 0 0 0 5px;}
+.iradio.type2.on {height: 20px; padding:0 0 0 18px; background:url('/images/yonhap/icon_radio2_on.png') no-repeat 0 7px;}
+
+/*체크박스*/
+.check_box input[type=checkbox] {display: none;}
+.check_box input[type=checkbox] + label {display: inline-block; cursor: pointer; position: relative; font-size: 14px; height: 18px; padding-left: 25px; margin-right: 10px; line-height: 18px; margin-bottom: 0; top: 0; color: #444;}
+.check_box input[type=checkbox] + label:before {content: ""; position: absolute; left: 0; top: 0; width: 17px; height: 17px; border: 1px solid #d5d5d5;}
+.check_box input[type=checkbox]:checked + label:before {background: url('/images/yonhap/icon_check.png') center center no-repeat;}
+
+/*비밀번호 입력*/
+.password_all {text-align: center; padding: 50px 0;}
+.password_all .password_box p {margin-bottom: 20px; color: #444; font-size: 13px;}
+.password_all .password_box .inpbox {display: inline-block; width: 200px; border: 1px solid #d2d2d2;}
+.password_all .password_box .inpbox input.txt {padding: 0 10px; font-size: 13px;}
+/*목록 상단검색*/
+.boardlist_top {padding: 30px; margin-bottom: 30px; background: #fafafa;}
+.boardlist_top .box {overflow: hidden;}
+.boardlist_top .box li {overflow: hidden; float: left;}
+.boardlist_top .box li.category {width: 240px;}
+.boardlist_top .box li.search_word {width: calc(100% - 391px);}
+.boardlist_top .box li.button {float: right; width: 151px;}
+.boardlist_top .box li.button button {margin-left: 5px;}
+.boardlist_top .box li label {float: left; margin-right: 10px; font-size: 14px; font-weight: 600; line-height: 35px;}
+.boardlist_top .box li .optionbox {overflow: hidden; float: left; width: 150px; height: 35px; border: 1px solid #cbcbc5;}
+.boardlist_top .box li .optionbox select {padding: 0 30px 0 10px; font-size: 14px; background: url('/images/yonhap/icon_arrow1.png') right 12px center no-repeat #fff;}
+.boardlist_top .box li.search_word .inpbox {overflow: hidden; float: left; width: calc(100% - 55px); height: 35px; border: 1px solid #cbcbc5;}
+.boardlist_top .box li .inpbox input {padding: 0 10px; font-size: 14px;}
+
+/*일반게시판 검색바*/
+.totalcnt {float: left; padding:10px 0; color:#000; font-size:15px; overflow: hidden;}
+.totalcnt span {color:#666;}
+.boardsch {float: right;}
+fieldset.boardschbox {margin:0 0 10px 0; overflow:hidden;}
+fieldset.boardschbox .optionbox {float:left; margin-right: 5px;width:auto; min-width: 90px; height:35px; }
+fieldset.boardschbox .optionbox select {padding:0 25px 0 10px; border:1px solid #cbcbc5; background:#fff url('/images/yonhap/icon_arrow1.png') no-repeat;background-position: top 15px right 10px;}
+fieldset.boardschbox .inp_btn {overflow: hidden; float: left;}
+fieldset.boardschbox .inpbox {position: relative; float:left; display:block; margin-right: 5px; width: 180px; height:35px; border:1px solid #cbcbc5;}
+fieldset.boardschbox .inpbox input.txt {padding: 0 10px; width:100%; height:100%; background:#fff; border:0;}
+
+/*게시판(공지사항) 리스트 타입1*/
+.boardlist {clear:both; overflow:hidden; width: 100%;}
+.boardlist table {width:100%; table-layout:fixed; border-top:2px solid #337dc6}
+.boardlist table thead th {padding:15px 10px; color: #444; font-size: 15px; text-align: center; border-bottom: 1px solid #9ba5af;}
+.boardlist table tbody tr {border-bottom:1px solid #e4e4e4; }
+.boardlist table tbody tr.notice {background: #f6f8fa;}
+.boardlist table tbody tr.notice td span {display: inline-block; padding: 5px 12px; color: #fff; font-weight: 600; border-radius: 25px; background: #06a6b8;}
+.boardlist table tbody td {padding:15px; min-height: 46px; text-align:center; line-height:15px; font-size: 15px; word-break: break-all; border-right: 1px solid #e4e4e4;}
+.boardlist table tbody tr:last-child {border-bottom:1px solid #e4e4e4;}
+.boardlist table tbody td.title {padding: 0 15px; text-align: left;}
+.boardlist table tbody td.title a {display:inline-block; overflow:hidden; max-width: calc(100% - 10px); white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis;}
+.boardlist table tbody td.title span {margin-left: 10px;}
+.boardlist table tbody td.title .btn_white, .boardlist table tbody td.title .btn_blue {padding: 2px 5px; font-size: 13px; line-height: 13px;}
+.boardlist table tbody td.title a .reply {padding-left: 13px; margin: 0 5px 0 0; font-size: 14px; background: url('/images/yonhap/icon_reply2.png') 0 2px no-repeat;}
+.boardlist table tbody td.no_list {padding: 20px 5px;}
+.boardlist table tbody td a:hover {text-decoration:underline}
+.boardlist > ul {border-top: 2px solid #337dc6;}
+.boardlist > ul > li {position: relative; overflow: hidden; border-bottom: 1px solid #e4e4e4;}
+.boardlist > ul > li > a {display: block; padding: 10px; line-height: 20px; color: #444;}
+.boardlist > ul > li > a.reply {padding: 10px 10px 10px 25px; background: url('/images/yonhap/icon_reply2.png') 10px 17px no-repeat;}
+.boardlist > ul > li .title {overflow: hidden;}
+.boardlist > ul > li .title h3 {float: left; overflow: hidden; margin-bottom: 5px; max-width: calc(100% - 55px); font-size: 14px; text-overflow: ellipsis; white-space: nowrap; line-height: 30px;}
+.boardlist > ul > li .title h3 span {color: #fff; font-weight: 600; padding: 5px 10px; margin-right: 5px; background: #06a6b8; border-radius: 20px;}
+.boardlist > ul > li .name li .btn_white, .boardlist > ul > li .name li .btn_blue {float: left; padding: 2px 5px; font-size: 10px; line-height: 10px;}
+.boardlist > ul > li .title .num {float: left; margin-left: 5px; font-size: 14px; line-height: 30px;}
+.boardlist > ul > li .title .img {float: left; margin-left: 5px; line-height: 30px;}
+.boardlist > ul > li p {overflow: hidden; font-size: 13px !important; margin: 10px 0 0; text-overflow: ellipsis; white-space: nowrap;}
+.boardlist > ul > li .name {overflow: hidden;}
+.boardlist > ul > li .name li {float: left; margin-right: 15px; font-size: 12px; line-height: 14px;}
+.boardlist > ul > li .name li:last-child {margin-right: 0;}
+.boardlist > ul > li > a.notice {background: #f6f8fa;}
+.boardlist > ul > li .btn_down {position: absolute; right: 10px; top: 50%; margin-top: -10px;}
+
+/*상세보기 일반 테이블(세로)*/
+.tablebasic {clear:both; overflow:hidden; overflow: auto;}
+.tablebasic table {width:100%; min-width: 800px; table-layout:fixed; border-top:2px solid #dcdcdc; border-bottom: 1px solid #dcdcdc;}
+.tablebasic table tr {border-bottom: 1px solid #dcdcdc;}
+.tablebasic table tbody tr:last-child {border-bottom: 0px solid #ebebeb;}
+.tablebasic table th, .td_view_label {font-weight: 600; font-size: 15px; padding:10px 20px; background:#fafafa; border-right: 1px solid #dcdcdc;}
+.tablebasic table th:last-child {border-right: 0px solid #dcdcdc;}
+.tablebasic table td {padding:10px; font-size: 15px; text-align: center; border-right: 1px solid #dcdcdc;}
+.tablebasic table td:last-child {border-right: 0px solid #dcdcdc;}
+.tablebasic table td.th {font-weight: 600;}
+.tablebasic table td.td_view_content {text-align: left;}
+
+.tablebasic table tbody.type2 th {text-align: left; border-right: 0;}
+.tablebasic table tbody.type2 td {text-align: left;}
+.tablebasic table tbody td .file{padding: 0; border: 0;}
+.tablebasic h4 {padding-left: 15px; margin: 30px 0 20px; color: #000; font-size: 18px; background: url('/images/yonhap/icon_h4.png') 0 6px no-repeat;}
+.tablebasic > ul {border-top:2px solid #dcdcdc; border-bottom: 1px solid #dcdcdc;}
+.tablebasic > ul > li {position: relative; overflow: hidden; padding: 5px 0; border-bottom: 1px solid #e4e4e4;}
+.tablebasic > ul > li:last-child {border-bottom: 0;}
+.tablebasic > ul > li .name {overflow: hidden;}
+.tablebasic > ul > li .name li {float: left; margin-right: 20px; padding: 5px 0; font-size: 15px; line-height: 18px;}
+.tablebasic > ul > li .name li span {margin-right: 5px; font-weight: 600;}
+
+/*페이징*/
+.paging {clear:both; overflow:hidden; width:100%; margin:30px 0 0 0; text-align:center; font-size:0}
+.paging span a {display:inline-block; margin: 0 9px; text-align:center; font-size:15px; line-height: 18px; vertical-align:middle}
+.paging span a:hover, .paging span a.on {color:#297ee2; font-weight: 600; border-bottom: 1px solid #297ee2;}
+.paging button {width: 28px; height: 28px; border: 1px solid #c7c7c7; text-indent:-999px; font-size:0;}
+.paging button.btn-paging-first {display:inline-block; margin-right: 5px; background:url('/images/yonhap/arrow_first.png') no-repeat 50%;}
+.paging button.btn-paging-pre {display:inline-block; margin-right: 10px; background: url('/images/yonhap/arrow_prev.png') no-repeat 50%;}
+.paging button.btn-paging-next {display:inline-block; margin-left: 10px; background: url('/images/yonhap/arrow_next.png') no-repeat 50%;}
+.paging button.btn-paging-last {display:inline-block; margin-left: 5px; background: url('/images/yonhap/arrow_last.png') no-repeat 50%;}
+
+/*게시판 글쓰기 타입1-일반글쓰기*/
+.boardwrite {clear:both; overflow:hidden; margin: 0 auto; width: 100%;}
+.boardwrite > ul {overflow: hidden;border-top: 2px solid #337dc6;}
+.boardwrite > ul > li {overflow: hidden; border-bottom: 1px solid #e4e4e4;}
+.boardwrite > ul > li > dl {position: relative; overflow: hidden;}
+.boardwrite > ul > li > dl > dt {position: absolute; left: 0; top: 0; padding: 15px 20px; float: left; width: 190px; height: 100%; color: #444; font-size: 15px; font-weight: 600; background: #f8f9fa; line-height: 15px;}
+.boardwrite > ul > li > dl > dt .color_r {margin-left: 5px;}
+.boardwrite > ul > li > dl > dd {padding: 10px 10px; float: right; width: calc(100% - 190px); font-size: 15px;}
+.boardwrite > ul > li > dl.contents > dd {padding: 10px 10px; float: none; width: 100%;}
+.boardwrite > ul > li > dl > dd .inpbox {display: inline-block; width: 100%; height: 30px; border: 1px solid #d2d2d2;}
+.boardwrite > ul > li > dl > dd .inpbox input.txt {padding: 0 10px;}
+.boardwrite > ul > li > dl > dd .inpbox input.disabled::-webkit-input-placeholder {color:#000 !important;}
+.boardwrite > ul > li > dl > dd .inpbox input.disabled:-moz-placeholder {color:#000 !important;}
+.boardwrite > ul > li > dl > dd .inpbox input.disabled::-moz-placeholder {color:#000 !important;}
+.boardwrite > ul > li > dl > dd .inpbox input.disabled:-ms-input-placeholder {color:#000 !important;}
+.boardwrite > ul > li > dl > dd .optionbox {display: inline-block; width: 200px; height: 30px; border: 1px solid #d2d2d2;}
+.boardwrite > ul > li > dl > dd .optionbox select {padding: 0 10px; background: url('/images/yonhap/icon_arrow2.png') right 10px top 12px no-repeat;}
+.boardwrite > ul > li > dl > dd .tbl_top {height: 22px;}
+.boardwrite > ul > li > dl > dd .tbl_top > li {float: left;}
+.boardwrite > ul > li > dl > dd .calenbox {position: relative; display: inline-block; width: 165px; height: 35px;}
+.boardwrite > ul > li > dl > dd .calenbox .input_type {padding: 0 10px; width: 130px; height: 30px; color: #666; border: 1px solid #d2d2d2;}
+.boardwrite > ul > li > dl > dd .calenbox .ui-datepicker-trigger {position: absolute; right: 0; top: 2px;}
+.boardwrite > ul > li > dl > dd .date_text {display: inline-block; margin: 0 5px;}
+.boardwrite > ul > li > dl > dd .certification_box {display: inline-block; margin-left: 10px;}
+.boardwrite > ul > li > dl > dd .certification_box .inpbox {width: 150px;}
+.boardwrite > ul > li > dl > dd.tel .inpbox, .boardwrite > ul > li > dl > dd.tel .optionbox {width: 80px;}
+.boardwrite > ul > li > dl > dd.email .inpbox, .boardwrite > ul > li > dl > dd.email .optionbox {width: 160px;}
+.boardwrite > ul > li > dl > dd .text {margin: 0 5px;}
+.boardwrite > ul > li .file_list {overflow: hidden;}
+.boardwrite > ul > li .file_list li {color: #555; font-size: 14px; margin: 5px 0;}
+.boardwrite > ul > li .file_list li .delete {margin-left: 5px; width: 14px; height: 14px; background: url('/images/yonhap/icon_delete.png') center center no-repeat;}
+.boardwrite > ul > li textarea {padding: 10px; width: 100%; height: 200px; border: 1px solid #e0e0e0;}
+.attachment-file {overflow:hidden; position:relative; width:calc(100% - 80px); padding:0 0 0 0;}
+.attachment-file span {display:inline-block}
+.attachment-file span.iptxt {display:inline-block; position:relative; width:calc(100% - 75px);}
+.attachment-file span.iptxt input.txt {width:100%; height:30px; padding: 0 10px; margin:0; border:1px solid #d2d2d2;}
+.attachment-file span.ipfile {width: 70px; position: absolute; right: 0; display:inline-block; }
+.attachment-file span.ipfile em {position: absolute; left: 0; top: 0; color: #fff; display:inline-block; width:70px; height:30px;text-align:center; background:#6b6e7b; line-height:30px; font-size: 12px; cursor:pointer; font-family: 'Dotum'; font-style: normal; border-radius: 3px;}
+.attachment-file span.ipfile input.file {position:relative; z-index:2; width:70px; height:30px; padding:0; border:1px solid #a9a9a9; cursor:pointer; opacity:0; filter:alpha(opacity=0); }
+.attachment-file-edit {clear:both; overflow:hidden; margin-top:9px}
+.attachment-file-edit:first-child {margin-top:0}
+.attachment-file-edit .attachment-file {float:left}
+.attachment-file-edit > button {float:left; margin:0 0 0 5px}
+.attachment-file-edit button.plus {width: 30px; height: 30px; border: 1px solid #7b736b; border-radius: 3px; background: url('/images/yonhap/icon_plus.png') center center no-repeat;}
+.attachment-file-edit button.minus {width: 30px; height: 30px; border: 1px solid #7b736b; border-radius: 3px; background: url('/images/yonhap/icon_minus.png') center center no-repeat;}
+/*일반게시판 상세*/
+.board_detail { border-top: 2px solid #337dc6;}
+.board_detail > li {display: block; position: relative; width: 100%; overflow: hidden; }
+.board_detail > li .title_box {overflow: hidden; padding:10px 20px; border-bottom: 1px solid #9ba5af;}
+.board_detail > li .title_box h3 {color: #444; font-size: 17px;}
+.board_detail > li .title_box.type2 {position: relative; overflow: hidden; padding:10px; border-bottom: 1px solid #9ba5af;}
+.board_detail > li .title_box.type2 .division {width: 110px; float: left; text-align: center; font-size: 17px; color: #297ee2; font-weight: 600;}
+.board_detail > li .title_box.type2 h3 {float: left; width: calc(100% - 110px);}
+.board_detail li > .name, .board_detail li > .file, .board_detail li > .link {padding: 15px 20px; border-bottom: 1px solid #e4e4e4;}
+.board_detail li .name li {display: inline-block; font-size: 15px; margin-right: 40px;}
+.board_detail li .name li span {color: #444; font-weight: 600; margin-right: 15px;}
+.board_detail li .file li {display: block;}
+.board_detail li .file li a {padding: 3px 25px 3px 0; color: #666; font-size: 15px; line-height: 22px; background: url('/images/yonhap/icon_down.png') right 4px no-repeat;}
+.board_detail .content {padding: 20px; line-height: 20px; border-bottom: 1px solid #e4e4e4;}
+.board_detail .content img {display: block; max-width: 100%;}
+
+.board_detail.answer {margin-top: 20px;}
+.board_detail.answer > li .title_box h3 {color: #2a88d1;}
+
+/*댓글*/
+.total_reply {display: block; margin: 40px 0 10px; color: #2a2d41; font-weight: 600; font-size: 14px; }
+.total_reply span {color: #a9a9a9;}
+.comment {border-top: 1px solid #6b727b; border-bottom: 1px solid #6b727b;}
+/*댓글입력*/
+.comment .comment_write {padding: 20px 0;}
+.comment .comment_write .grade_box {margin-bottom: 5px;}
+.comment .comment_write .grade_box .inpbox {display: inline-block; width: 200px; height: 35px; border: 1px solid #d2d2d2;}
+.comment .comment_write .grade_box .inpbox input.txt {padding: 0 10px;}
+.comment .byte {color: #333; font-size: 12px; font-family: 'Dotum';}
+.comment .textarea_type {color: #666; margin: 0 0 6px; font-size: 14px; width: 100%; height: 50px; padding: 10px; font-family: 'ng'; border: 1px solid #dcdcdc;}
+
+/*댓글목록*/
+.comment .comment_list {border-top: 1px solid #d7d7d7;}
+.comment .comment_list .line {padding: 20px 0; border-bottom: 1px dotted #d7d7d7;}
+.comment .comment_list .line:last-child {border-bottom: 0;}
+.comment .comment_list .reply_box {padding: 0 20px;}
+.comment .comment_list .reply_box .name_box {overflow: hidden; margin-bottom: 10px; }
+.comment .comment_list .reply_box .name_box .name {float: left; color: #333; font-size: 14px; font-weight: 600;}
+.comment .comment_list .reply_box .name_box .date {float: left; color: #b5b5b5; font-size: 13px;}
+.comment .comment_list .reply_box .name_box .date span {margin: 0 5px;}
+.comment .comment_list .reply_box .button {overflow: hidden; float: left; margin-left: 10px;}
+.comment .comment_list .reply_box .button li {float: left;}
+.comment .comment_list .reply_box .button li a {color: #535353; font-size: 11px; font-family: 'Dotum';}
+.comment .comment_list .reply_box .button span {margin: 0 5px; font-size: 9px;}
+
+.comment .comment_list .reply_box .text {color: #333; display: block; font-size: 13px; width: 100%; line-height: 24px;}
+.comment .comment_list .reply_reply {margin-top: 20px; width: 100%; background: #f1f1f1;}
+.comment .comment_list .reply_reply .reply_box {padding: 20px 20px 15px 50px; background: url('/images/yonhap/icon_reply.png') 40px 20px no-repeat; border-bottom: 1px solid #fff;}
+.comment .comment_list .reply_reply .reply_box:last-child {border-bottom: 0;}
+.comment .comment_list .reply_reply .reply_box .name_box {padding-left: 10px; line-height: 22px;}
+.comment .comment_list .reply_box .write .inpbox {float: left; width: calc(100% - 145px); margin-right: 10px; height: 25px;}
+.comment .comment_list .reply_box .write .inpbox input.txt {padding: 0 10px; height: 100%; border: 1px solid #dcdcdc;}
+.comment .comment_list .reply_box .byte {width: calc(100% - 145px); text-align: right;}
+.comment .comment_list .reply_reply .reply_box .name_box {margin-bottom: 5px;}
+.comment .comment_list .reply_reply .reply_box .name_box .inpbox {display: inline-block; width: 200px; height: 25px; border: 1px solid #d2d2d2;}
+.comment .comment_list .reply_reply .reply_box .name_box .inpbox input.txt {padding: 0 10px;}
+
+
+/*썸네일게시판*/
+.thumbnaillist {width:100%; border-top:2px solid #6b727b; border-bottom: 1px solid #252525; overflow: hidden;}
+.thumbnaillist > li {position: relative; padding: 15px 10px; border-bottom:1px solid #e5e5e5; clear: both;overflow: hidden;}
+.thumbnaillist > li:last-child {border-bottom:0px solid #e4e4e4;}
+.thumbnaillist > li.on, .thumbnaillist > li:hover {background: #f9fbfe;}
+.thumbnaillist li .thumbnaillist_img {float: left;overflow: hidden; display: table; width: 200px; height: 130px; border:1px solid #dcdcdc;}
+.thumbnaillist li .thumbnaillist_img .d_cell {width: 100%; height: 130px;}
+.thumbnaillist li .thumbnaillist_img img {width: auto; height: auto; max-width: 100%; max-height: 100%; }
+.thumbnaillist li .thumbnaillist_txt {float: left; overflow: hidden;display: block;width: calc(100% - 200px);padding-left: 10px;}
+.thumbnaillist li .thumbnaillist_txt .category {}
+.thumbnaillist li .thumbnaillist_txt .category li {color: #2d2d2d; font-size: 14px; font-weight: 600;}
+.thumbnaillist li .thumbnaillist_txt .category li span {}
+.thumbnaillist li .thumbnaillist_txt h4 {overflow: hidden; font-size: 15px; color: #2d2d2d;}
+.thumbnaillist li .thumbnaillist_txt h4 span {float: left;}
+.thumbnaillist li .thumbnaillist_txt h4 span.title {width: calc(100% - 50px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.thumbnaillist li .thumbnaillist_txt p {margin-bottom: 10px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.thumbnaillist li .thumbnaillist_txt .name {line-height: 18px;}
+.thumbnaillist li .thumbnaillist_txt .name li {display: inline-block; color: #787878; font-size: 13px; font-weight: 600;}
+.thumbnaillist li .thumbnaillist_txt .name li span {margin-right: 3px;}
+.thumbnaillist li .btn_down {position: absolute; right: 20px; bottom: 20px;}
+
+/*갤러리형 게시판*/
+.gallaylist {width:100%; overflow: hidden; display: block; border-top:2px solid #565656; border-bottom: 2px solid #565656;}
+.gallaylist .gallaylist_box {display:flex;display:-webkit-flex;flex-wrap:wrap;-webkit-flex-wrap:wrap;}
+.gallaylist .gallaylist_box li {overflow: hidden; position: relative; float: left; margin: 20px 0; width: 33.33%; text-align: center;}
+.gallaylist .gallaylist_box li .list {overflow: hidden; display: inline-block; width: 255px; height: 345px; border: 1px solid #eee; border-bottom-color: #7b736b; border-top-color: #6b727b; border-top-width: 3px;}
+.gallaylist .gallaylist_box li .list .gallaylist_img {display: inline-table; padding: 10px; width: 255px;height: 185px;overflow: hidden; background: #eee;}
+.gallaylist .gallaylist_box li .list .gallaylist_img img {width: auto; max-width:100%; max-height:100%; height: auto;}
+.gallaylist .gallaylist_box li .list .gallaylist_text {position: relative; padding: 15px 10px; text-align: left;}
+.gallaylist .gallaylist_box li .list .gallaylist_text .category {position: relative;}
+.gallaylist .gallaylist_box li .list .gallaylist_text .category .name {overflow: hidden; display: block; padding-right: 30px; color: #297ee2; font-size: 14px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap;}
+.gallaylist .gallaylist_box li .list .gallaylist_text .category .count {position: absolute; right: 0; top: 0; color: #787878; font-size: 13px; font-family: 'Dotum';}
+.gallaylist .gallaylist_box li .list .gallaylist_text h4 {display: block; overflow: hidden; margin: 10px 0; font-size: 14px; color: #2d2d2d; line-height: 20px; max-height: 40px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;}
+.gallaylist .gallaylist_box li .date {font-size: 13px;color: #787878; font-family: 'Dotum';}
+.gallaylist .gallaylist_box li .hits {position: absolute; right: 0; bottom: 0; font-size: 13px;color: #909090;}
+.gallaylist .gallaylist_box li button.file {color: #333; margin-top: 5px;}
+.gallaylist .gallaylist_box li .gallay_tit li {width: 100%; float: none; color: #333; line-height: 20px; text-align: left;}
+.gallaylist .gallaylist_box li .btn_down {position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); margin-left: -106px;}
+
+/*게시판 E*/
+
+@media screen and (max-width:1017px) {
+	
+
+	/*검색바 type2*/
+	.totalcnt {float: none;}
+	.boardsch {float: none; display: block;}
+	.boardsch.type2 {overflow: hidden; float: inherit; padding: 20px 20px 0; background: #fafafa;}
+	
+	/*갤러리형 게시판*/
+	.gallaylist .gallaylist_box > li {float: left;width: 33.33%;}
+	.boardlist table tbody td {padding: 10px 5px !important;}
+	.boardlist table tbody td.title a {max-width: 100%;}
+	
+}
+@media screen and (min-width:320px) and (max-width:784px){
+	
+	/*라디오박스*/
+	.tbl_top.type1 .iradio label { top: 2px;padding: 0 10px 0 5px;}
+	.iradio label {top: 2px; padding: 0 10px 0 5px;}
+	
+	/*목록 상단검색*/
+	.boardlist_top {padding: 10px;}
+	.boardlist_top .box li {float: none; margin-bottom: 10px;}
+	.boardlist_top .box li:last-child {margin-bottom: 0;}
+	.boardlist_top .box li.category {width: 100%;}
+	.boardlist_top .box li.search_word {width: 100%;}
+	.boardlist_top .box li.button {float: none; width: 100%; text-align: center;}
+	.boardlist_top .box li.button button {margin: 0 2px;}
+	.boardlist_top .box li label {display: none; }
+	.boardlist_top .box li .optionbox {float: none; width: 100%;}
+	.boardlist_top .box li.search_word .inpbox {width: 100%;}
+	
+	/*일반게시판 검색바*/
+	.totalcnt {float: none;}
+	.boardsch {float: none;}
+	fieldset.boardschbox .optionbox {float:none; display: block; margin-bottom: 10px; margin-right: 0;width:100%; height: 35px;}
+	fieldset.boardschbox .inp_btn {float: none;}
+	fieldset.boardschbox .inpbox {width: calc(100% - 73px);}
+
+	/*게시판(공지사항) 리스트 타입1*/
+	.boardlist table thead th {padding:10px 2px;}
+	.boardlist table tbody td.notice span {padding: 6px 3px;font-size: 13px;}
+	
+	/*일반게시판 상세*/
+	.board_detail > li .title_box {padding:10px;}
+	.board_detail > li .title_box.type2 .division {width: 100%; float: none; text-align: left;}
+	.board_detail > li .title_box.type2 h3 {float: none; width: 100%;}
+	.board_detail li > .name, .board_detail li > .file, .board_detail li > .link {padding: 10px;}
+	.board_detail .content {padding: 10px;}
+
+	/*게시판(공지사항) 리스트 타입2*/
+	.boardlist.type2 table thead th {color: #303030; padding:10px 2px;}
+	.boardlist.type2 table tbody td {padding:10px 2px; overflow: hidden;}
+	.boardlist.type2 table tbody td.notice span {padding: 6px 3px;font-size: 13px;}
+	.boardlist.type2 table tbody td.thumb img {width: 100%; max-height: 35px;}
+	
+	/*게시판 글쓰기 타입1-일반글쓰기*/
+	.boardwrite > ul > li > dl {display: table; width: 100%;}
+	.boardwrite > ul > li > dl > dt {padding: 5px 10px; display: table-cell; width: 100px; vertical-align: middle; line-height: 20px;}
+	.boardwrite > ul > li > dl > dd {display: table-cell; width: calc(100% - 100px);}
+	.boardwrite > ul > li > dl > dd .optionbox {width: 100%;}
+	.boardwrite > ul > li > dl > dd .calenbox {width: 100%; margin-top: 5px;}
+	.boardwrite > ul > li > dl > dd .calenbox .input_type {width: calc(100% - 30px);}
+	.boardwrite > ul > li > dl > dd.email .inpbox {margin-bottom: 5px;}
+	.boardwrite > ul > li > dl > dd.email .inpbox, .boardwrite > ul > li > dl > dd.email .optionbox {width: calc(100% - 30px);}
+	
+	.li_le li {width: 50%;}
+	
+	/*썸네일게시판*/
+	.thumbnaillist li .thumbnaillist_img {float: none;}
+	.thumbnaillist li .thumbnaillist_txt {float: none; width: 100%;padding-left: 0; margin-top: 10px;}
+	
+	/*갤러리형 게시판*/
+	.gallaylist .gallaylist_box > li {float: left;width: 50%;}
+	/*게시판 E*/
+	
+}
+@media screen and (min-width:320px) and (max-width:640px){
+	.tablebasic table th, .td_view_label {padding:10px;}
+	.tablebasic table td {padding:10px;}
+	
+	.password_all {padding: 20px 0;}
+	/*댓글입력*/
+	.comment .comment_write .grade_box .inpbox {width: calc(50% - 2.5px);}
+
+	/*댓글목록*/
+	.comment .comment_list .line {padding: 10px 0;}
+	.comment .comment_list .reply_box {position: relative; padding: 0 10px;}
+	.comment .comment_list .reply_box .name_box .date span {margin: 0 5px;}
+	.comment .comment_list .reply_box .button {width: 100%; float: none; margin-left: 0;}
+	.comment .comment_list .reply_reply {margin-top: 10px;}
+	.comment .comment_list .reply_reply .reply_box {padding: 10px 10px 10px 20px; background: url('/images/yonhap/icon_reply.png') 10px 10px no-repeat;}
+	.comment .comment_list .reply_box .write {text-align: center;}
+	.comment .comment_list .reply_box .write .inpbox {float: none; width: 100%; margin-right: 0; margin-bottom: 30px;}
+	.comment .comment_list .reply_reply .reply_box .byte {bottom: 40px;}
+	.comment .comment_list .reply_box .byte {position: absolute; left: 0; bottom: 30px; padding: 0 10px; width: 100%; text-align: right;}
+	.comment .comment_list .reply_reply .reply_box .name_box .inpbox {width: calc(50% - 2.5px);}
+
+	/*갤러리형 게시판*/
+	.gallaylist .gallaylist_box > li {float: none;width: 100%;}
+}
+@media screen and (min-width:320px) and (max-width:480px){
+	
+	/*게시판 S*/
+	.tabletop_txt {position: relative; padding: 0; color: #001296; line-height: 20px;}
+	.tabletop_txt button {position: relative; width: 100%; right: 0; top: 0; transform: translateY(0); margin-top: 10px;}
+	.mobile_only .boardlist table tbody td ul > li {display: block; margin-right: 0;}
+	
+	.attachment-file {width:100%;}
+	.attachment-file span.iptxt {width:calc(100% - 75px);}
+	.attachment-file span.ipfile {width: 70px;}
+	.attachment-file span.ipfile em {width:70px;}
+	.attachment-file-edit > button {margin:5px 0 0 0}
+	.attachment-file-edit button.minus {margin-left: 5px;}
+	
+	.calendar table tbody tr td span.day {top: 5px; right: 5px; }
+	.calendar table tbody tr td a {width: 100%; height: 100%; font-size: 0; text-indent: -9999px;}
+	.calendar table tbody tr td a > span {display: block; position: absolute; top: 10px; left: 5px; width: 5px; height: 5px; background: #005aab; border-radius: 10px;}
+	.calendar table tbody tr td .bg_w > div {display: block; position: absolute; top: 10px; left: 5px; width: 5px; height: 5px; font-size: 0; text-indent: -9999px; background: #dc0f19; border-radius: 10px;}
+	.calendar table tbody tr td .time li {padding: 5px;}
+	
+	.boardwrite > ul > li > dl > dd.tel .inpbox {margin-top: 5px;}
+	.boardwrite > ul > li > dl > dd.tel .optionbox select {padding: 0 5px; background: url('/images/yonhap/icon_arrow2.png') right 5px top 12px no-repeat}
+	.boardwrite > ul > li > dl > dd.tel .inpbox, .boardwrite > ul > li > dl > dd.tel .optionbox {width: 50px;}
+	.boardwrite > ul > li > dl > dd .text {margin: 0;}
+	
+	.paging button {width: 25px; height: 25px;}
+	/*게시판 E*/
+}

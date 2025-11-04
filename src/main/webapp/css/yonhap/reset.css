@@ -1,0 +1,307 @@
+@charset "utf-8";
+@import url("font.css");
+
+/* Default Layout */
+#wrap {width:100%; min-width:1080px; height: 100%;}
+
+/*메뉴*/
+.toparea {position: relative;}
+.toparea .topmenu {overflow: hidden; width: 100%; height: 40px; border-bottom: 1px solid #ececec;}
+.toparea .topmenu .top_box {width: 1080px; margin: 0 auto; overflow: hidden;}
+.toparea .topmenu .top_box .top_right {position: relative; float: right; padding-right: 35px;}
+.toparea .topmenu .top_box .top_right .zooming_box {float: left; overflow: hidden; margin-top: 6px;}
+.toparea .top_right .zooming_box li {float: left;}
+.toparea .top_right .zooming_box li button {width: 30px; height: 28px; background-repeat: no-repeat; background-position: center center; border: 1px solid #d2d2d2;}
+.toparea .top_right .zooming_box li button.plus {margin-right: 5px; background-image: url('/images/yonhap/icon_plus.png');}
+.toparea .top_right .zooming_box li button.minus {background-image: url('/images/yonhap/icon_minus.png');}
+.toparea .top_right form {float: left;}
+.toparea .top_right .search_box {position: relative; float: left; overflow: hidden; margin-left: 25px; margin-top: 6px; width: 200px; height: 28px; border: 1px solid #d2d2d2;}
+.toparea .top_right .search_box input.txt {height: 28px; padding: 0 10px; background: #f6f6f6;}
+.toparea .top_right .search_box .search {position: absolute; right: 0; top: 0; width: 28px; height: 28px; background: url('/images/yonhap/icon_search.png') center center no-repeat; }
+.toparea .top_right > button  {float: left; margin-left: 10px;}
+.toparea .top_right .member {float: left; margin-left: 10px; height: 33px; background: #777777; border-radius: 38px; background-repeat: no-repeat; background-position: center center;}
+.toparea .top_right .member {margin : 3px 20px 20px 0; padding: 0 10px 0 35px; color: #fff; font-size: 14px; font-weight: 600; background-position: left 10px center; background-image: url('/images/cooperative/icon_my.png');}
+.toparea .top_right .member_info_box {float: left;}
+.toparea .top_right .member_info_box .member {padding: 0 20px; min-width: 100px; max-width: 115px; height: 38px; text-align: left; color: #fff; background-image: url('/images/cooperative/arrow_down.png'); background-position: right 10px center;}
+.toparea .top_right .member_info_box .member span {overflow: hidden; float: left; display: inline-block; max-width: 60px; text-overflow: ellipsis; white-space: nowrap;}
+.toparea .top_right .member_info_box.on .member {background-image: url('/images/cooperative/arrow_up.png');}
+.toparea .top_right .member_info_box .box {display: none; z-index: 800; position: absolute; top: 35px;; right: 10px; width: 150px; padding-top: 6px; background: url('/images/cooperative/icon_arrow3.png') center top no-repeat;}
+.toparea .top_right .member_info_box.on .box {display: block;}
+.toparea .top_right .member_info_box .box ul {background: #fff; box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.07);}
+.toparea .top_right .member_info_box .box ul li {padding: 0 10px; color: #555; font-size: 13px;}
+.toparea .top_right .member_info_box .box ul li.bg {background: #f5f5f5;}
+.toparea .top_right .member_info_box .box ul li:nth-child(1) {padding-top: 10px;}
+.toparea .top_right .member_info_box .box ul li:nth-child(2) {padding-bottom: 10px;}
+.toparea .top_right .member_info_box .box ul li:nth-child(3) {padding-top: 10px;}
+.toparea .top_right .member_info_box .box ul li:last-child {padding-bottom: 10px;}
+.toparea .top_right .member_info_box .box ul li span {display: inline-block; margin-right: 5px; font-weight: 600; line-height: 20px;}
+.toparea .top_right .member_info_box .box ul li a {display: block; color: #555; font-size: 13px;}
+.toparea .top_right .cooperative {margin: 0 25px; padding-right: 10px; font-size: 13px; line-height: 40px; background: url('/images/yonhap/icon_link.png') right center no-repeat;}
+.toparea .top_right .sitemap {position: absolute; z-index: 950; top: 0; right: 0; width: 40px; height: 40px; background: url('/images/yonhap/icon_menu.png') center center no-repeat #003b9a;}
+.toparea .top_right .sitemap.on {position: fixed; left: 50%; transform: translateX(-50%); margin-left: 520px; background-image: url('/images/yonhap/icon_close.png');}
+.toparea .sitemap_box {display: none; z-index: 900; position: fixed; left: 0; top: 0; width: 100%; background: #fff;}
+.toparea .sitemap_box .list {width: 1080px; margin: 60px auto 50px; display:flex;display:-webkit-flex;flex-wrap:wrap;-webkit-flex-wrap:wrap;}
+.toparea .sitemap_box .list > li {float: left; width: 25%;}
+.toparea .sitemap_box .list > li h3 {display: inline-block; padding-bottom: 10px; color: #333; font-size: 20px; border-bottom: 2px solid #9d9d9d;}
+.toparea .sitemap_box .list > li > ul {display: block; margin-top: 10px;}
+.toparea .sitemap_box .list > li > ul > li a {display: block; color: #666; font-size: 16px; line-height: 28px;}
+.toparea .sitemap_box .list > li > ul > li a:hover {color: #0272f7; font-weight: 600;}
+.toparea .sitemap_box .list > li > ul > li .smenu {}
+.toparea .sitemap_box .list > li > ul > li .smenu li {}
+.toparea .sitemap_box .list > li > ul > li .smenu li a {position: relative; display: block; padding-left: 10px; font-size: 14px; line-height: 24px;}
+.toparea .sitemap_box .list > li > ul > li .smenu li a:after {content: ''; position: absolute; z-index: 10; left: 3px; top: 11px; width: 2px; height: 2px; background: #9d9d9d;}
+.toparea .sitemap_box .list > li > ul > li .smenu li a:hover:after {background: #0272f7;}
+.toparea .sitemap_back {display: none; z-index: 800; position: fixed; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7);}
+.toparea .gnb {position: relative; z-index: 150; width: 1080px; height: 80px; margin: 0 auto; }
+.toparea .gnb h1 {display: table;}
+.toparea .gnb h1 a {display: table-cell; height: 80px; vertical-align: middle;}
+.toparea .gnb > ul {position: absolute; right: 0; top: 0;}
+.toparea .gnb > ul > li {position: relative; float: left; width: 150px;}
+.toparea .gnb > ul > li.topmenu_1 {float: left;}
+.toparea .gnb > ul > li > a {display: block; color: #333; font-weight: 600; font-size: 20px; line-height: 80px; text-align: center;}
+.toparea .gnb > ul > li:hover > a {color: #0272f7;}
+.toparea .gnb > ul > li > ul {display: none; position: absolute; z-index: 700; left: -10px; top: 78px; overflow: hidden; padding: 15px 20px; width: calc(100% + 20px); background: #f7f8f9; border-top: 2px solid #4293f3;}
+.toparea .gnb > ul > li > ul > li a {line-height: 26px;}
+.toparea .gnb > ul > li > ul > li a:hover {color: #0272f7; font-weight: 600;}
+.toparea .mobile-category {display:none}
+
+.mobild_menu {position: relative; z-index: 999;}
+.mobild_menu .top_menu {overflow: hidden; height: 70px;}
+.mobild_menu .top_menu h2 {margin: 15px 0 0 15px}
+.mobild_menu .top_menu h2 img {width: 62px;}
+.mobild_menu .top_menu > button {position: absolute;top: 27px; left: 15px; width: 18px; height: 18px; background: url('/images/yonhap/icon_close_m.png') 0 0 no-repeat; background-size: 100%;}
+.mobild_menu .log_box {overflow: hidden; text-align: center; padding-bottom: 5px; border-bottom: 1px solid #085798;}
+.mobild_menu .log_box a {display: inline-block; padding: 0 15px 0 32px; height: 40px; color: #fff; text-align: center; line-height: 40px; background-size: 17px; background-repeat: no-repeat; background-position: 5px center;}
+.mobild_menu .log_box a.login {background-image: url('/images/yonhap/icon_login.png');}
+.mobild_menu .log_box a.logout {background-image: url('/images/yonhap/icon_logout.png');}
+.mobild_menu .log_box a.member {background-image: url('/images/yonhap/icon_member.png');}
+/*.mobild_menu .log_box a:first-child {border-right: 1px solid #fff;}*/
+.toparea .mobile-category > div.mobild_menu::-webkit-scrollbar {display:none;}
+.toparea .mobile-category > div.mobild_menu:-moz-scrollbar {display:none;}
+.toparea .mobile-category > div.mobild_menu::-moz-scrollbar {display:none;}
+.toparea .mobile-category > div.mobild_menu button {margin:0 0 0 10px; font-size: 0; text-indent: -9999px;}
+.toparea .mobile-category > div.mobild_menu .mobild_log {float: right; padding-left: 12px; min-height: 50px !important;}
+.toparea .mobile-category > div.mobild_menu .mobild_log li {float: left; margin-right: 22px;}
+.toparea .mobile-category > div.mobild_menu .mobild_log li a {color: #fff; line-height: 50px;}
+#MobileTopMenu h3 + div { height: 0px; padding: 0px; overflow: hidden; background: #000; display: block!important; -webkit-transform: translateZ(0); -webkit-transition: all 0.3s ease;-moz-transition: all 0.3s ease;-o-transition: all 0.3s ease;-ms-transition:all 0.3s ease;transition: all 0.3s ease;}
+#MobileTopMenu .content { padding: 10px;}
+#MobileTopMenu h3.open + div { height: auto !important; background: #aaffff;}
+
+.mobile_gnb {height: auto; min-height: auto !important;}
+.mobile_gnb > li {display: block; margin: 0; border-bottom: 1px solid #085798;}
+.mobile_gnb > li > a {position: relative; display: block; padding: 0 30px; height: 50px; line-height: 50px; font-size: 20px; font-weight: 600; color: #fff;}
+.mobile_gnb > li.active > a {color: #ffec66;}
+.mobile_gnb > li > a > span{position: absolute; right: 20px; top: 18px; width: 15px; height: 15px; font-size: 0; text-indent: -999px; background-image: url('/images/yonhap/icon_menu_down.png'); background-position: 0 0; background-size: 100%; background-repeat: no-repeat;}
+.mobile_gnb > li.active > a > span{background-image: url('/images/yonhap/icon_menu_up.png');}
+.mobile_gnb ul.smenu {display: none; padding: 25px 0; overflow: hidden; background-color: #fff;}
+.mobile_gnb ul.smenu > li > a {position: relative; display: block; padding-left: 30px; line-height: 40px; font-size: 15px; color: #555; font-weight: 600;}
+.mobile_gnb ul.smenu > li.active > a {color: #2585f7;}
+.mobile_gnb ul.smenu > li > a > span {font-size: 0; text-indent: -999px;}
+.mobile_gnb ul.smenu > li .ssmenu {display: none; padding: 20px 0; overflow: hidden; background-color: #d5e2ef;}
+.mobile_gnb ul.smenu > li .ssmenu > li > a {position: relative; display: block; padding-left: 50px; line-height: 35px; font-size: 14px; color: #333;}
+.mobile_gnb ul.smenu > li .ssmenu > li > a:after {content: ''; position: absolute; left: 40px; top: 16px; width: 4px; height: 1px; background: #333;}
+
+.midarea {border-top: 1px solid #dbdbdb;}
+.midarea .main_img {position: relative; margin: 0 auto; width: 1080px; height: 310px; text-align: center;}
+.midarea .main_img .slick-pause {z-index: 12; position: absolute; bottom: 120px; left: calc(50% + 65px); transform: translateX(-50%); width: 10px; height: 15px; background-position: 0 0; background-repeat: no-repeat; background-image: url('/images/yonhap/icon_pause.png');}
+.midarea .main_img.pause .slick-pause {background-image: url('/images/yonhap/icon_play.png');}
+.midarea .main_img .main_slide li a {position: relative; display: block; overflow: hidden; width: 100%; height: 310px;}
+.midarea .main_img .main_slide li a img {position: absolute; top: 0; left: 50%; transform: translateX(-50%);}
+.midarea .main_img .slick-dots {position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);}
+.midarea .main_img .slick-dots li {float: left; padding: 0 6px;}
+.midarea .main_img .slick-dots li button {width: 14px; height: 14px; font-size: 0; text-indent: -999px; border-radius: 14px; background: #fff; opacity: 0.7; }
+.midarea .main_img .slick-dots li.slick-active button {opacity: 1;}
+.midarea .maincontents {position: relative; width: 1080px; margin: 0 auto;}
+.midarea .maincontents * {-webkit-transition: all 0.3s ease;-moz-transition: all 0.3s ease;-o-transition: all 0.3s ease;-ms-transition:all 0.3s ease;transition: all 0.3s ease;}
+.midarea .maincontents .section1 .box {overflow: hidden; padding: 40px;}
+.midarea .maincontents .section1 .box li {float: left; overflow: hidden; display: block; width: 190px; height: 190px; margin: 0 30px; text-align: center; border-radius: 190px; background-position: center center; background-repeat: no-repeat;}
+.midarea .maincontents .section1 .box li.type1 {background-image: url('/images/yonhap/main_contents01.jpg');}
+.midarea .maincontents .section1 .box li.type2 {background-image: url('/images/yonhap/main_contents02.jpg');}
+.midarea .maincontents .section1 .box li.type3 {background-image: url('/images/yonhap/main_contents03.jpg');}
+.midarea .maincontents .section1 .box li.type4 {background-image: url('/images/yonhap/main_contents04.jpg');}
+.midarea .maincontents .section1 .box li a {position: relative; display: block; width: 100%; height: 100%; background-color: rgba(18, 104, 205, 0.5);}
+.midarea .maincontents .section1 .box li a:hover {background-color: rgba(18, 104, 205, 1);}
+.midarea .maincontents .section1 .box li a img {position: relative; top: 40px;}
+.midarea .maincontents .section1 .box li a .d_table {position: absolute; top: 105px; left: 0; width: 100%; height: 70px;}
+.midarea .maincontents .section1 .box li a .d_table .d_cell {color: #fff; font-size: 18px; line-height: 22px; font-weight: 600;}
+.midarea .maincontents .section2 {overflow: hidden;}
+.midarea .maincontents .section2 .notice_tab {position: relative; float: left; width: calc(100% - 450px);}
+.midarea .maincontents .section2 .notice_tab .more {position: absolute; z-index: 11; right: 0; top: 8px; color: #898989; font-size: 14px; padding-right: 15px; background: url('/images/yonhap/icon_more.png') right 2px center no-repeat;}
+.midarea .maincontents .section2 .notice_tab .tab_box {height: 180px;}
+.midarea .maincontents .section2 .notice_tab .tab_box:after {content: ''; z-index: 1; position: absolute; top: 36px; left: 0; width: 100%; height: 1px; background: #b3b3b3;}
+.midarea .maincontents .section2 .notice_tab .tab_box > li {float: left;}
+.midarea .maincontents .section2 .notice_tab .tab_box > li > a {position: relative; z-index: 3; padding: 10px 20px; color: #000; font-size: 20px; font-weight: 600;}
+.midarea .maincontents .section2 .notice_tab .tab_box > li.active > a {color: #1881fc; border-bottom: 3px solid #1881fc;}
+.midarea .maincontents .section2 .notice_tab .tab_box li .tab-pane {display: none; position: absolute; top: 50px; left: 0; width: 100%;}
+.midarea .maincontents .section2 .notice_tab .tab_box li.active .tab-pane.active {display: block;}
+.midarea .maincontents .section2 .notice_tab .tab_box li .notice_list {}
+.midarea .maincontents .section2 .notice_tab .tab_box li .notice_list li {overflow: hidden;}
+.midarea .maincontents .section2 .notice_tab .tab_box li .notice_list li a {overflow: hidden; float: left; width: calc(100% - 90px); text-overflow: ellipsis; white-space: nowrap;}
+.midarea .maincontents .section2 .notice_tab .tab_box li .notice_list li a:hover {color: #1881fc;}
+.midarea .maincontents .section2 .notice_tab .tab_box li .notice_list li .date {float: right; width: 90px; color: #777; font-size: 14px; text-align: right;}
+.midarea .maincontents .section2 .banner_box {float: right; width: 450px; padding-left: 40px;}
+.midarea .maincontents .section2 .banner_box h3 {margin: 0 0 10px 10px; color: #000; font-size: 20px;}
+.midarea .maincontents .section2 .banner_box ul {overflow: hidden; }
+.midarea .maincontents .section2 .banner_box ul li {float: left; display: table; width: 195px; margin-left: 10px; margin-bottom: 10px;}
+.midarea .maincontents .section2 .banner_box ul li:nth-child(n+5) {margin-bottom: 0;}
+.midarea .maincontents .section2 .banner_box ul li a {width: 100%; height: 40px; border: 1px solid #e0e0e0;}
+.midarea .maincontents .section2 .banner_box ul li a img {width: auto; height: auto; max-width: 180px; max-height: 35px;}
+
+.bottomarea {margin-top: 60px; background: #f8f9fb; border-top: 1px solid #d7d7d7;}
+.bottomarea .bottom_box {position: relative; width: 1160px; margin: 0 auto; padding: 30px 0;}
+.bottomarea .bottom_box .logo_box {position: absolute; right: 0; top: 30px;}
+.bottomarea .bottom_box .pri_box {overflow: hidden;}
+.bottomarea .bottom_box .pri_box li {float: left;}
+.bottomarea .bottom_box .pri_box li a {color: #444; font-size: 15px;}
+.bottomarea .bottom_box .pri_box li a.privacy {color: #1268cd;}
+.bottomarea .bottom_box .pri_box li .line {padding: 0 10px; color: #444; font-size: 15px;}
+.bottomarea .bottom_box address {display: block;}
+.bottomarea .bottom_box address p {color: #72808e; font-size: 14px; line-height: 24px;}
+.bottomarea .bottom_box address p span {color: #f56301;}
+.bottomarea .bottom_box address .copy {font-size: 13px;}
+
+.mobileoff {display: block !important;}
+.mobileon {display: none !important;}
+.mobileoff_in {display: inline-block !important;}
+.mobileon_in {display: none !important;}
+.web_only {display: block !important;}
+.mobile_only {display: none !important;}
+
+/*팝업*/
+.popup {overflow: hidden; overflow-y: auto; z-index: 1100; position: absolute; left: 50%; top: 50%; transform: translateX(-50%); border: 1px solid #acacac; background: #fff;}
+.popup.board {margin-top: -290px; width: 670px; height: 580px;}
+.popup.password {margin-top: -120px; width: 400px; height: 240px;}
+.popup.type2 {margin-top: -160px; width: 500px; height: 320px;}
+.popup .popup_title {position: relative; padding: 30px; background: url('/images/yonhap/bg_popup.png') 0 0 #246cba;}
+.popup .popup_title .close {position: absolute; right: 20px; top: 30px; width: 22px; height: 22px; background: url('/images/yonhap/icon_close2.png') center center no-repeat;}
+.popup .popup_title h3 {color: #fff; font-size: 22px;}
+.popup .popup_inner {position: relative; padding: 30px 20px;}
+.modal {display: none;}
+.modal .popup .popup_title h3 {color: #fff; font-size: 22px;}
+.modal .popup .popup_inner {padding: 30px 20px;}
+.modal .popup .popup_inner .boardwrite > ul > li > dl > dt {font-size: 13px; line-height: 15px;}
+.modal .popup .popup_inner .boardwrite > ul > li > dl > dd {padding: 5px 10px; font-size: 13px;}
+.modal .popup .popup_inner .boardwrite > ul > li > dl > dd .inpbox input.txt {font-size: 13px;}
+.modal .popup .popup_inner .boardwrite > ul > li > dl > dd .optionbox select {font-size: 13px;}
+.modal .popup .popup_inner .password_box {margin: 10px 0 30px; text-align: center;}
+.modal .popup .popup_inner .password_box p {margin-bottom: 20px; color: #444; font-size: 13px;}
+.modal .popup .popup_inner .password_box .inpbox {display: inline-block; width: 200px; border: 1px solid #d2d2d2;}
+.modal .popup .popup_inner .password_box .inpbox input.txt {padding: 0 10px; font-size: 13px;}
+.modal .popup .popup_inner .tablebasic {overflow-y: inherit;}
+.modal .popup .popup_inner .tablebasic table {min-width: 100%;}
+.modal .popup .popup_inner .tablebasic table th {padding: 10px;}
+
+/*메인팝입*/
+.popup.main {transform: translateX(0);} 
+/*.popup.main .popup_inner {padding: 20px;}*/ 
+.popup.main .bottom {width: 100%; height: 50px; border-top: 1px solid #ccc;}
+.popup.main .bottom .pop_check {float: left;}
+.popup.main .bottom .pop_check input[type=checkbox] {display: none;}
+.popup.main .bottom .pop_check input[type=checkbox] + label {display: inline-block; cursor: pointer; position: relative; font-size: 13px; padding-left: 25px; line-height: 16px; margin: 17px 0 0 15px;}
+.popup.main .bottom .pop_check input[type=checkbox] + label:before {content: ""; position: absolute; left: 0; top: -1px; width: 16px; height: 16px; background: #fff; border: 1px solid #ccc;}
+.popup.main .bottom .pop_check input[type=checkbox]:checked + label:before {background: url('/images/yonhap/icon_check.png') center center no-repeat #fff;}
+.popup.main .bottom button {float: right; margin: 10px 15px 0 0; width: 70px; height: 30px; color: #fff; font-size: 13px; background: #717171;}
+
+/*에러페이지*/
+.error {overflow: hidden; width: 100%; height: auto; margin-top: -125px; position: absolute; top: 50%; background: #f8f8f9; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6;}
+.error .error_box {width: 640px; margin: 0 auto; padding: 50px;}
+.error .error_box h3 {color: #333; padding-bottom: 20px; font-size: 18px;}
+.error .error_box .text {color: #515151; line-height: 25px;}
+.error .error_box button {padding: 5px 15px; color: #fff; font-size: 13px;}
+
+@media screen and (min-width:320px) and (max-width:1017px){
+	.mobileoff {display: none !important;}
+	.mobileon {display: block !important;}
+	.mobileon_in {display: inline-block !important;}
+	.web_only {display: none !important;}
+	.mobile_only {display: block !important; width:100%;}
+	
+	body#main {overflow-x:visible;}
+	#wrap {width:100%; min-width:100%; overflow-x:visible;}
+	
+	.toparea {height: 60px;}
+	.toparea .topmenu {width: auto; height: auto; border-bottom: 0;}
+	.toparea .topmenu .top_box {width: auto;}
+	.toparea .topmenu .top_box .top_right {position: absolute; z-index: 200; float: inherit; padding-right: 0; right: 15px; top: 13px;}
+	.toparea .topmenu .top_box .top_right .zooming_box {display: none;}
+	.toparea .top_right > button.search_m {float: inherit; width: 32px; height: 32px; background: url('/images/yonhap/icon_search_m.png') center center no-repeat; background-size: 18px; border-radius: 32px; border: 1px solid #1446a2;}
+	.toparea .top_right > button.search_m.on {background: url('/images/yonhap/icon_search_c.png') center center no-repeat; background-size: 18px;}
+	.toparea .top_right .search_box {display: none; position: fixed; z-index: 20; left: 0; top: 60px; width: 100%; height: auto; margin: 0; padding: 30px; border: 0; background: #1268cd; border-radius: 0;}
+	.toparea .top_right .search_box input.txt {padding: 0; height: 28px; color: #fff; border-bottom: 1px solid #fff; background: #1268cd;}
+	.toparea .top_right .search_box .search {right: 30px; top: 30px; width: 19px; height: 19px; background: url('/images/yonhap/icon_search2.png') center center no-repeat; background-size: 100%; }
+	.toparea .top_right > button {display: none;}
+	.toparea .gnb {width: 100%; height: 60px; padding: 0 50px; margin: 0 auto; text-align: center;}
+	.toparea .gnb h1 {width: 100%;}
+	.toparea .gnb h1 a {height: 60px;}
+	.toparea .gnb h1 a img {max-width: 200px;}
+
+	/*메뉴*/
+	.toparea .mobile-category {z-index: 999; display:block; position:absolute; top:0; width: 100% !important;}
+	.toparea.mobileOpen .mobile-category {position:fixed; height: 100%; background: rgba(0, 0, 0, 0.5);}
+	.toparea .mobile-category .btn-category-holder {position:absolute; top:23px; left: 15px; z-index:101; width:20px; height:14px; background: url('/images/yonhap/icon_menu_m.png') center center no-repeat; background-size: 100%; font-size:0; text-indent:-99999px;}
+	.toparea .mobile-category > div.mobild_menu {display: none; top:0;width:100%; background:#0b70c4; overflow-y: scroll;-ms-overflow-style: none;}
+	.toparea.mobileOpen .mobile-category > div.mobild_menu {display: block;}	
+	.toparea .top_log {width: 100%; top: 10px; right: inherit;}
+	.toparea .top_log ul {display: none;}
+	.toparea .top_log .total_search {position: relative; z-index: 50; left: 10px; width:40px; height:40px; background: url('/images/yonhap/icon_search.png') center center no-repeat; border-radius: 30px; background-size: 60%; border: 1px solid #2a88d1;}
+	.toparea .top_log form {position: absolute; left: 0; right: inherit; top: 58px; padding: 0 10px; width: 100%; background: #2a88d0;}
+	.toparea .top_log form > div {position: relative; width: 100%; height: 35px;}
+	.toparea .top_log form > div input {padding: 0 30px 0 10px; width: 100%; height: 100%; border: 1px solid #d2d2d2; border-radius: 35px;}
+	.toparea .top_log form > div button {position: absolute; right: 10px; top: 7px; width: 17px; height: 18px; background: url('/images/yonhap/icon_search3.png') 0 0 no-repeat;}
+	
+	.midarea {border-top: 0;}
+	.midarea .main_img {overflow: hidden; width: 100%; height: 260px;}
+	.midarea .main_img .main_slide li a {height: 260px;}
+	.midarea .main_img .main_slide li a img {height: 260px;}
+	.midarea .maincontents {width: 100%;}
+	.midarea .maincontents .section1 .box {padding: 20px; text-align: center;}
+	.midarea .maincontents .section1 .box li {float: none; display: inline-block; margin: 10px;}
+	.midarea .maincontents .section2 .notice_tab {float: none; width: 100%; padding: 0 10px;}
+	.midarea .maincontents .section2 .notice_tab .more {position: absolute; right: inherit; left: 50%; transform: translateX(-50%); top: inherit; bottom: 40px; padding: 0 30px 0 12px; color: #777; font-size: 12px; line-height: 20px; background: url('/images/yonhap/icon_more_m.png') right 8px center no-repeat; background-size: 13px; border: 1px solid #c2c2c2;}
+	.midarea .maincontents .section2 .notice_tab .tab_box {height: 260px;}
+	.midarea .maincontents .section2 .banner_box {float: none; width: 100%; padding: 0 10px;}
+	.midarea .maincontents .section2 .banner_box h3 {margin: 0 0 10px 0;}
+	.midarea .maincontents .section2 .banner_box ul {text-align: center;}
+	.midarea .maincontents .section2 .banner_box ul li {float: none; display: inline-table; width: 195px; margin-left: 0; margin-right: 10px;}
+	
+	.bottomarea {margin-top: 30px;}
+	.bottomarea .bottom_box {width: 100%; padding: 20px; text-align: center;}
+	.bottomarea .bottom_box .logo_box {position: relative; right: inherit; top: 0; padding: 20px 0;}
+	.bottomarea .bottom_box .logo_box img {width: 252px;}
+	.bottomarea .bottom_box .pri_box {display: inline-block;}
+	.bottomarea .bottom_box address {display: block;}
+	.bottomarea .bottom_box address p {padding: 0 20px; color: #72808e; font-size: 14px; line-height: 24px; word-break: keep-all;}
+	.bottomarea .bottom_box address p span {display: block;}
+	.bottomarea .bottom_box address .copy {padding: 0; margin-top: 10px; font-size: 13px; line-height: 16px;}
+	
+	.mobileoff {display: none;}
+	.mobileon {display: block;}
+	.mobileoff_in {display: none;}
+	.mobileon_in {display: inline-block;}
+	.web_only {display: block;}
+	
+}
+@media screen and (min-width:320px) and (max-width:784px){
+	
+	.modal .popup.board {top:20px; margin-top: 0; width: 90%; height: auto; max-height: 90%;}
+	.modal .popup.board2 {top:20px; margin-top: 0; width: 90%; height: auto; max-height: 90%;}
+	.modal .popup .popup_title {padding: 10px;}
+	.modal .popup .popup_title h3 {font-size: 18px;}
+	.modal .popup .popup_inner {padding: 10px;}
+	.modal .popup .popup_inner .password_box {margin: 30px 0;}
+	
+	/*에러페이지*/
+	.error {overflow: hidden; width: 100%; height: auto; margin-top: -65px; position: absolute; top: 50%; background: #f8f8f9; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6;}
+	.error .error_box {width: 100%; margin: 0 auto; padding: 30px 20px;}
+	.error .error_box h3 {color: #333; padding-bottom: 20px; font-size: 18px;}
+	.error .error_box .text {color: #515151; line-height: 25px;}
+	.error .error_box button {padding: 5px 15px; color: #fff; font-size: 13px;}
+}
+@media screen and (min-width:320px) and (max-width:640px){
+	/*에러페이지*/
+	.error {width: 100%; height: auto; margin: -150px auto 0; padding: 0 10px; position: absolute; left: 0; top: 50%; transform: translateX(0);}
+}
+@media screen and (min-width:320px) and (max-width:480px){
+	.midarea .maincontents .section2 .banner_box ul li {width: 100%; margin-bottom: 5px !important;}
+	.modal .popup.password {width: 90%;}
+}

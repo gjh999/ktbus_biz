@@ -1,0 +1,18 @@
+/*!
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ *//*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+.dropdown,.dropup{position:relative;}
+.dropdown-toggle:focus{outline:0}
+.dropdown-menu{position:absolute;top:45px;z-index:1000;display:none;min-width:100%;font-size:14px; text-align:left;background-color:#fff;-webkit-background-clip:padding-box;background-clip:padding-box; border-left: 1px solid #d8d8d8; border-right: 1px solid #d8d8d8;}
+/*.dropdown-menu.type2{width:200px;}*/
+.dropdown-menu>li{width: 100%; border-bottom: 1px solid #d8d8d8;}
+.dropdown-menu>li>a{display:block;padding:10px; }
+.dropdown-menu>li>a:focus,.dropdown-menu>li>a:hover{color:#fff; background: #be9765}
+.dropdown-menu>.disabled>a,.dropdown-menu>.disabled>a:focus,.dropdown-menu>.disabled>a:hover{color:#ed6d01}
+.dropdown-menu>.disabled>a:focus,.dropdown-menu>.disabled>a:hover{text-decoration:none;cursor:not-allowed;background-color:transparent;background-image:none;filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)}
+.open>.dropdown-menu{display:block}
+.open>a{outline:0} 
+.dropdown-menu-right{right:0; left:auto}
+/*# sourceMappingURL=bootstrap.min.css.map */

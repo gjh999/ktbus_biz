@@ -1,0 +1,306 @@
+@charset "utf-8";
+@font-face {
+	font-family: 'ng';
+	src: url('font/NanumGothic.eot'), url('font/NanumGothic.woff') format("woff"), url('font/NanumGothic.ttf') format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ng';
+	src: url('font/NanumGothic-Bold.eot'), url('font/NanumGothic-Bold.woff') format("woff"), url('font/NanumGothic-Bold.ttf') format("truetype");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ng';
+	src: url('font/NanumGothic-ExtraBold.eot'), url('font/NanumGothic-ExtraBold.woff') format("woff"), url('font/NanumGothic-ExtraBold.ttf') format("truetype");
+	font-weight: 800;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NanumBarunGothic';
+	src: url('font/NanumBarunGothic.eot'), url('font/NanumBarunGothic.woff') format("woff"), url('font/NanumBarunGothic.ttf') format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NanumBarunGothic';
+	src: url('font/NanumBarunGothicBold.eot'), url('font/NanumBarunGothicBold.woff') format("woff"), url('font/NanumBarunGothicBold.ttf') format("truetype");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ns';
+	src: local("Nanum Square Regular"), local("NanumSquareR"), url('font/NanumSquareR.eot?#iefix') format("embedded-opentype"), url('font/NanumSquareR.woff') format("woff2"), url('font/NanumSquareR.woff') format("woff"), url('font/NanumSquareR.ttf') format("truetype");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ns';
+	src: local("Nanum Square Bold"), local("NanumSquareB"), url('font/NanumSquareB.eot?#iefix') format("embedded-opentype"), url('font/NanumSquareB.woff') format("woff2"), url('font/NanumSquareB.woff') format("woff"), url('font/NanumSquareB.ttf') format("truetype");
+	font-weight: 600;
+	font-style: normal;
+}
+/* style reset */
+
+body {width:100%; overflow-x:hidden; padding: 0 !important; color: #666; font-size: 16px; font-family: 'ng'; line-height: 26px;}
+
+.transparents-layer {display: none;}
+
+.btn {padding: 0 10px; min-width: 80px; height: 45px; font-size: 15px; font-weight: 600; }
+.btn2 {width: 68px; height: 35px; font-size: 15px;}
+.btn3 {width: 65px; height: 25px; font-size: 13px; font-weight: 600;}
+.btn4 {width:45px; height:45px; border: 1px solid #2f76c2; background-position: center center; background-repeat: no-repeat; font-size: 0; text-indent: -999px;}
+
+.btn_blue {color: #fff; background: #2f76c2;}
+.btn_gray {color: #fff; background: #717171;}
+.btn_white {color: #2f76c2; border: 1px solid #2f76c2;}
+.btn_prev {background-image: url('/images/yonhap/arrow_prev2.png');}
+.btn_next {background-image: url('/images/yonhap/arrow_next2.png');}
+.btn_down {width: 20px; height: 16px; background: url('/images/yonhap/icon_down.png') center center no-repeat;}
+
+.f_w {font-weight: 600 !important;}
+.f_w400 {font-weight: 400 !important;}
+.p_r {position: relative !important;}
+
+.d_block {display: block;}
+.d_inblock {display: inline-block;}
+.d_none {display: none;}
+.d_table {display: table;}
+.d_cell {display: table-cell; text-align: center; vertical-align: middle}
+
+.color_r {}
+.bg_blue {}
+
+
+.padding0 {padding: 0 !important;}
+.margin0 {margin: 0 !important;}
+.mt50 {margin-top:50px !important}
+.mt40 {margin-top:40px !important}
+.mt30 {margin-top:30px !important}
+.mt20 {margin-top:20px !important}
+.mt10 {margin-top:10px !important}
+.mt5 {margin-top:5px !important}
+.mb2 {margin-bottom:2px !important}
+.mb5 {margin-bottom:5px !important}
+.mb10 {margin-bottom:10px !important}
+.mb15 {margin-bottom:15px !important}
+.mb20 {margin-bottom:20px !important}
+.mb25 {margin-bottom:25px !important}
+.mb30 {margin-bottom:30px !important}
+.mb35 {margin-bottom:35px !important}
+.mb40 {margin-bottom:40px !important}
+.mb50 {margin-bottom:50px !important}
+.mb55 {margin-bottom:55px !important}
+.mb60 {margin-bottom:60px !important}
+.mr5 {margin-right:5px !important}
+.mr10 {margin-right:10px !important}
+.mr15 {margin-right:15px !important}
+.mr20 {margin-right:20px !important}
+.mr25 {margin-right:25px !important}
+.ml5 {margin-left:5px !important}
+.ml10 {margin-left:10px !important}
+.ml20 {margin-left:20px !important}
+.pl10 {padding-left:10px !important}
+.pl15 {padding-left:15px !important}
+.pl20 {padding-left:20px !important}
+.pl30 {padding-left:30px !important}
+.pt10 {padding-top:10px !important}
+.pt15 {padding-top:15px !important}
+.pt20 {padding-top:20px !important}
+.pt30 {padding-top:30px !important}
+.pt33 {padding-top:33px !important}
+.pt40 {padding-top:40px !important}
+.pb10 {padding-bottom:10px !important}
+.pb40 {padding-bottom:40px !important}
+.w100 {width: 100px !important}
+.w200 {width: 200px !important}
+.w300 {width: 300px !important}
+.w_25 {width: 25% !important}
+.w_30 {width: 30% !important}
+.w_35 {width: 35% !important}
+.w_100 {width: 100% !important}
+
+.al {text-align: left !important;}
+.ac {text-align: center!important;}
+.ar {text-align: right!important;}
+
+.cl_bo {clear: both !important;}
+.f_l {float: left !important;}
+.f_r {float: right !important;}
+.over_h {overflow: hidden !important;}
+.wb_keep {word-break: keep-all !important;}
+
+dl.skipnavi {position:relative;z-index: 500;}
+dl.skipnavi dt {display:none}
+dl.skipnavi dd a {position:absolute; left:0; top:-50px; font-size:0}
+dl.skipnavi dd a:active, dl.skipnavi dd a:focus {display:block; left:0; top:0; z-index:51; width:400px; height:30px; padding-top:9px; text-align:center; background:#333; line-height:14px; text-decoration:none; color:#fff; font-size:12px; font-weight:bold}
+
+/*서브*/
+
+.sub_contents {overflow: hidden; width: 1080px; margin: 0 auto;}
+.sub_contents .nav_box {margin-bottom: 40px; padding-top: 75px; width: 100%; height: 230px; text-align: center; background-position: center top; background-repeat: no-repeat;}
+.sub_contents .nav_box.sub1 {background-image: url('/images/yonhap/sub_img01.jpg');}
+.sub_contents .nav_box.sub2 {background-image: url('/images/yonhap/sub_img02.jpg');}
+.sub_contents .nav_box.sub3 {background-image: url('/images/yonhap/sub_img03.jpg');}
+.sub_contents .nav_box.sub4 {background-image: url('/images/yonhap/sub_img04.jpg');}
+.sub_contents .nav_box.sub5 {background-image: url('/images/yonhap/sub_img05.jpg');}
+.sub_contents .nav_box.sub6 {background-image: url('/images/yonhap/sub_img06.jpg');}
+.sub_contents .nav_box.sub7 {background-image: url('/images/yonhap/sub_img07.jpg');}
+.sub_contents .nav_box h2 {margin-bottom: 25px; color: #fff; font-size: 42px;}
+.sub_contents .nav_box .nav {}
+.sub_contents .nav_box .nav a {padding-right: 15px; margin-right: 5px; background: url('/images/yonhap/nav_arrow.png') right center no-repeat;}
+.sub_contents .nav_box .nav a img {position: relative; top: -3px;}
+.sub_contents .nav_box .nav a, .sub_contents .nav_box .nav span {color: #fff; font-size: 14px; line-height: 28px;}
+.lnb_box {float: left; width: 200px;}
+.lnb_box h2 {color: #fff; font-size: 24px; background: #0043a5; line-height: 80px; text-align: center;}
+.lnb_box > .lnb_menu {background: #f2f5f7;}
+.lnb_box > .lnb_menu > li {overflow: hidden; border-bottom: 1px solid #cdd3e4;}
+.lnb_box > .lnb_menu > li > a {display: block; padding: 10px 20px; color: #666; font-size: 16px;}
+.lnb_box > .lnb_menu > li.on > a, .lnb_box > .lnb_menu > li:hover > a {color: #297ee2; font-weight: 600;}
+.contentsarea {overflow: hidden; min-height: 500px; width: calc(100% - 200px); padding: 0 0 0 50px; }
+.contents_title {display: block; margin-bottom: 40px;}
+.contents_title h2 {color: #000; font-size: 34px; line-height:34px; outline: none;}
+/*서브공통*/
+
+
+h3.h3 {margin-bottom: 20px; color: #000; font-size: 20px;}
+h4.h4 {margin-bottom: 10px; padding-left: 15px; color: #000; font-size: 18px; background: url('/images/yonhap/icon_h4.png') 0 7px no-repeat;}
+h5.h5 {margin-bottom: 10px; padding-left: 10px; color: #000; font-size: 15px; background: url('/images/yonhap/icon_h5.png') 0 9px no-repeat;}
+.list_type > li {position: relative; padding-left: 10px;}
+.list_type > li:after {content: ''; position: absolute; left: 0; top: 9px; width: 4px; height: 4px; background: #d2d7dd; }
+.list_type2 > li {position: relative; padding-left: 10px;}
+.list_type2 > li:after {content: ''; position: absolute; left: 0; top: 11px; width: 4px; height: 2px; background: #d2d7dd; }
+.list_type li dl {display: table; width: 100%;}
+.list_type li dl dt {font-weight: 600;}
+.list_type li dl dt, .list_type li dl dd {display: table-cell;}
+.box_type {}
+.text_type {}
+
+/*인사말*/
+.greeting_box {overflow: hidden;}
+.greeting_box > img {float: left; width: 180px;}
+.greeting_box .text_contents {float: left; width: calc(100% - 180px); padding-left: 30px;}
+.greeting_box .text_contents h3 {margin-bottom: 15px; color: #237de6; font-size: 26px;}
+.greeting_box .text_contents h4 {margin-bottom: 30px; color: #2b67ad; font-size: 18px;}
+.greeting_box .text_contents p {margin-bottom: 20px; line-height: 24px; word-break: keep-all;}
+.greeting_box .text_contents .sign {overflow: hidden; margin-top: 70px; text-align: right;}
+.greeting_box .text_contents .sign .d_table {float: left; width: calc(100% - 85px); height: 36px; padding-right: 15px;}
+.greeting_box .text_contents .sign .d_table .d_cell {font-size: 18px; font-weight: 600; text-align: right;}
+.greeting_box .text_contents .sign img {float: left; width: 85px;}
+
+/*연혁*/
+.history_box li {padding: 15px 0; border-bottom: 1px dashed #cbcbcb;}
+.history_box li dl {overflow: hidden; display: table; table-layout: fixed; width: 100%;}
+.history_box li dl dt {display: table-cell; position: relative; font-weight: 600; vertical-align: top;}
+.history_box li dl dt.year {width: 65px; color: #555; font-size: 20px;}
+.history_box li dl dt.month {width: 55px; text-align: center;}
+.history_box li dl dt.year:after {content: ''; position: absolute; top: 5px; right: 0; width: 1px; height: 16px; background: #e0e0e0;}
+.history_box li dl dt.year.none:after {display: none;}
+.history_box li dl dd {display: table-cell; vertical-align: top;}
+.history_box li dl dd .month {display: inline-block; width: 35px; font-weight: 600;}
+.history_box li dl dd p {display: inline-block; text-indent: -36px; padding-left: 36px;}
+
+/*조직안내*/
+.org_box {position: relative; margin: 0 auto 30px; width: 690px; text-align: center; background: url('/images/yonhap/ling_org.png') center 0 no-repeat; background-size: 1px 450px;}
+.org_box:after {content: ''; position: absolute; top: 130px; left: calc(50% - 11px); width: 17px; height: 17px; background: #fff; border: 3px solid #a5b5c2; border-radius: 17px;}
+.org_box .box {margin: 0 auto; width: 215px; height: 60px; line-height: 50px; color: #555; font-size: 18px; background: #fff;}
+.org_box .box.bg1 {color: #fff; background: #3078d7; line-height: 60px;}
+.org_box .box.bg2 {border: 5px solid #01b5c5;}
+.org_box .box.bg3 {border: 5px solid #3682db;}
+.org_box .box.bg4 {margin-top: 30px;border: 5px solid #3a6eb6;}
+.org_box .box.bg5 {margin-top: 30px; border: 5px solid #a5b5c2;}
+.org_box .line1 {overflow: hidden; margin: 50px 0; background: url('/images/yonhap/ling_org.png') center center no-repeat; background-size: 600px 1px;}
+.org_box .line1 .left {float: left;}
+.org_box .line1 .right {float: right;}
+
+.map_box {width: 100%; height: 400px; text-align: center;}
+.map_box .root_daum_roughmap {max-width: 100%; display: inline-block;}
+
+/*통합검색*/
+.totalsearch_box {overflow: hidden;}
+.totalsearch_box .box_type {margin-bottom: 30px;}
+.totalsearch_box .box_type .inpbox {position: relative; overflow: hidden; margin: 0 auto; width: 600px; height: 45px;}
+.totalsearch_box .box_type .inpbox input {width: 100%; height: 45px; padding: 0 115px 0 15px; color: #666; font-size: 16px; line-height: 45px; border: 2px solid #767676;}
+.totalsearch_box .box_type .inpbox button {position: absolute; right: 0; top: 0; width: 100px; height: 43px; color: #fff; font-size: 18px; background: #767676;}
+.totalsearch_box .search_list h3 {margin-bottom: 20px; font-size: 20px;}
+.totalsearch_box .search_list .list {margin-bottom: 20px; border-top: 2px solid #337dc6;}
+.totalsearch_box .search_list .list h4 {color: #888; font-size: 16px; line-height: 45px; border-bottom: 1px solid #cbcbcb;}
+.totalsearch_box .search_list .list > ul > li {overflow: hidden; border-bottom: 1px solid #e4e4e4;}
+.totalsearch_box .search_list .list > ul > li > a {display: block; padding: 20px 0;}
+.totalsearch_box .search_list .list > ul > li > a h5 {color: #2474de; font-size: 18px; font-weight: 400; }
+.totalsearch_box .search_list .list > ul > li > a h5 .f_w {font-weight: 800 !important; }
+.totalsearch_box .search_list .list > ul > li > a p {overflow: hidden; margin: 10px 0; height: auto; max-height: 48px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: 16px; line-height: 24px; white-space: inherit;}
+.totalsearch_box .search_list .list > ul > li > a > ul li {display: inline-block;}
+
+/*탭메뉴*/
+.tab_box {position: relative; width: 100%; display: block; overflow: hidden; background: url('/images/yonhap/line_tab.png') 0 56px repeat-x;}
+.tab_box .tab_list {position: relative; display: block; overflow: hidden; margin: 0 auto;}
+.tab_box .tab_list > li {display: block;}
+.tab_box .tab_list > li > a {position: absolute; padding: 15px 25px; top: -2px; font-size: 22px; font-weight: 600;}
+.tab_box .tab_list > li.active > a, .tab_box .tab_list > li > a:hover {color: #2a88d1; border-bottom: 3px solid #2a88d1;}
+.tab_box .tab_list > li .tab-content {margin-top: 57px;}
+.tab_box .tab_list > li .tab-content.type2 {margin-top: 87px;}
+.tab_box .tab_list > li .tab-content .tab-pane {display: none;}
+.tab_box .tab_list > li.active .tab-content .tab-pane {display: block;}
+
+
+@media screen and (max-width:1017px) {
+	
+	.sub_contents {width: 100%;}
+	.sub_contents .nav_box {padding-top: 60px; height: 180px;}
+	.lnb_box {display: none;}
+	.contentsarea {width: 100%; padding: 0 10px;}
+	.contents_title {display: none;}
+	
+}
+@media screen and (min-width:320px) and (max-width:784px){
+	.btn {min-width: 50px; height: 30px;}
+	.btn4 {width:30px; height:30px; background-size: 10px;}
+	
+	.sub_contents .nav_box {padding-top: 40px; height: 130px;}
+	.sub_contents .nav_box h2 {margin-bottom: 10px; font-size: 26px;}
+	.sub_contents .nav_box .nav a {padding-right: 13px; margin-right: 2px;}
+	.sub_contents .nav_box .nav a, .sub_contents .nav_box .nav span {font-size: 13px;}
+	/*인사말*/
+	.greeting_box > img {display: none;}
+	.greeting_box .text_contents {float: none; width: 100%; padding-left: 0;}
+	.greeting_box .text_contents h3 {margin-bottom: 10px; font-size: 22px;}
+	.greeting_box .text_contents h4 {margin-bottom: 20px; font-size: 17px;}
+	.greeting_box .text_contents p {font-size: 14px;}
+	.greeting_box .text_contents .sign .d_table {padding-right: 10px;}
+	.greeting_box .text_contents .sign .d_table .d_cell {font-size: 14px; line-height: 16px;}
+	
+	/*조직안내*/
+	.org_box {width: 100%; background-size: 1px 310px;}
+	.org_box:after {display: none;}
+	.org_box .box {width: 130px; height: 50px; line-height: 44px; font-size: 16px;}
+	.org_box .box.bg1 {line-height: 50px;}
+	.org_box .box.bg2 {border: 3px solid #01b5c5;}
+	.org_box .box.bg3 {border: 3px solid #3682db;}
+	.org_box .box.bg4 {margin-top: 15px;border: 3px solid #3a6eb6;}
+	.org_box .box.bg5 {margin-top: 15px; border: 3px solid #a5b5c2;}
+	.org_box .line1 {margin: 30px 0; background-size: 100% 1px;}
+	
+	/*통합검색*/
+	.totalsearch_box .box_type {margin-bottom: 25px;}
+	.totalsearch_box .box_type .inpbox {width: 100%; height: auto;}
+	.totalsearch_box .box_type .inpbox input {padding: 0 15px; margin-bottom: 10px;}
+	.totalsearch_box .box_type .inpbox button {position: relative; right: inherit; width: 100%;}
+	.totalsearch_box .search_list h3 {font-size: 15px;}
+	.totalsearch_box .search_list .list {margin-bottom: 10px;}
+	.totalsearch_box .search_list .list h4 {font-size: 14px; line-height: 40px;}
+	.totalsearch_box .search_list .list > ul > li > a {display: block; padding: 20px 0;}
+	.totalsearch_box .search_list .list > ul > li > a h5 {font-size: 14px;}
+	.totalsearch_box .search_list .list > ul > li > a p {font-size: 14px;}
+	.totalsearch_box .search_list .list > ul > li > a > ul li {font-size: 10px;}
+}
+@media screen and (min-width:320px) and (max-width:640px){
+	
+}
+@media screen and (min-width:320px) and (max-width:480px){
+	
+}
+@media screen and (min-width:320px) and (max-width:360px){
+	
+}

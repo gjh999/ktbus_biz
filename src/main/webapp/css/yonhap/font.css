@@ -1,0 +1,42 @@
+@font-face {
+	font-family: 'ng';
+	src: url('font/NanumGothic.eot'), url('font/NanumGothic.woff') format("woff"), url('font/NanumGothic.ttf') format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ng';
+	src: url('font/NanumGothic-Bold.eot'), url('font/NanumGothic-Bold.woff') format("woff"), url('font/NanumGothic-Bold.ttf') format("truetype");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ng';
+	src: url('font/NanumGothic-ExtraBold.eot'), url('font/NanumGothic-ExtraBold.woff') format("woff"), url('font/NanumGothic-ExtraBold.ttf') format("truetype");
+	font-weight: 800;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NanumBarunGothic';
+	src: url('font/NanumBarunGothic.eot'), url('font/NanumBarunGothic.woff') format("woff"), url('font/NanumBarunGothic.ttf') format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NanumBarunGothic';
+	src: url('font/NanumBarunGothicBold.eot'), url('font/NanumBarunGothicBold.woff') format("woff"), url('font/NanumBarunGothicBold.ttf') format("truetype");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ns';
+	src: local("Nanum Square Regular"), local("NanumSquareR"), url('font/NanumSquareR.eot?#iefix') format("embedded-opentype"), url('font/NanumSquareR.woff') format("woff2"), url('font/NanumSquareR.woff') format("woff"), url('font/NanumSquareR.ttf') format("truetype");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ns';
+	src: local("Nanum Square Bold"), local("NanumSquareB"), url('font/NanumSquareB.eot?#iefix') format("embedded-opentype"), url('font/NanumSquareB.woff') format("woff2"), url('font/NanumSquareB.woff') format("woff"), url('font/NanumSquareB.ttf') format("truetype");
+	font-weight: 600;
+	font-style: normal;
+}

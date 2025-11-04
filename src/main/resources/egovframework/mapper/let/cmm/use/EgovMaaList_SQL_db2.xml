@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="maaDAO">
+
+	<select id="mm3600jList" parameterType="java.util.Map" resultType="Map">
+	SELECT 
+    '('||B.CBSIDO||'-'||DIGITS(B.CBSEQN)||') '||TRIM(B.CBCNM1) AS CBCODN
+    ,ROW_NUMBER() OVER(PARTITION BY '') AS SEQN
+    ,A.MBYEAR||'-'||A.MBBUNH AS MBBUNH --계약번호1
+    ,CASE WHEN TRIM(C.MKCHNO)!='' THEN TRIM(C.MKCHNO) ELSE TRIM(C.MKCDAE) END AS MKCHNO--차량번호
+    ,A.MBBCNT AS MBBCNT --분납
+    ,REPLACE(CHAR(DATE(
+         DATE(TIMESTAMP_FORMAT(A.MBBNYMD,'YYYY-MM-DD'))
+         ),ISO),'-','/') AS MBBNYMD --납입일자
+    ,A.MBBKUM AS MBBKUM --분할분담금(원)
+    ,A.JIBUN AS JIBUN --지로번호
+    ,A.MBBSYR||'-'||A.MBBSNO AS MBBSNO --통지번호 
+    ,A.NAPBUN AS NAPBUN   --전자납부번호
+    ,REPLACE(CHAR(DATE(
+         DATE(TIMESTAMP_FORMAT(A.JNAPYMD,'YYYY-MM-DD'))
+         ),ISO),'-','/') AS JNAPYMD --전자납부마감일1
+    ,'' AS SNDDATE --snddate
+    ,COALESCE(G1.BANK,'') AS BANK1
+    ,COALESCE(G2.BANK,'') AS BANK2
+    ,COALESCE(G3.BANK,'') AS BANK3
+    ,COALESCE(G4.BANK,'') AS BANK4
+    ,COALESCE(G5.BANK,'') AS BANK5
+    ,COALESCE(G6.BANK,'') AS BANK6
+    ,'' AS MBBMM --snddate
+    ,CASE WHEN A.MBBKUM=D.MBBKUM THEN '' ELSE '금액변동' END AS MBBKUMCHK
+    ,CASE WHEN A.MBBKUM=D.MBBKUM THEN 0 ELSE D.MBBKUM END AS MBBKUMM
+    -- OUTPUT 관련 추가 컬럼들
+    ,SUBSTR('${OUTPUT}',15,8) AS SNDDATE_OUTPUT --전송일자 (OUTPUT에서 추출)
+    ,SUBSTR('${OUTPUT}',15,4) AS SNDDATEY --전송년도 (OUTPUT에서 추출)
+    ,SUBSTR('${OUTPUT}',19,2) AS SNDDATEM --전송월 (OUTPUT에서 추출)
+    ,SUBSTR('${OUTPUT}',21,2) AS SNDDATED --전송일 (OUTPUT에서 추출)
+    ,SUBSTR('${OUTPUT}',13,2) AS MBBMM_OUTPUT --납입월 (OUTPUT에서 추출)
+    ,SUBSTR('${OUTPUT}',1,6) AS JOCODE_OUTPUT --조합코드 (OUTPUT에서 추출)
+    ,SUBSTR('${OUTPUT}',7,6) AS FYM_OUTPUT --납입년월 (OUTPUT에서 추출)
+   FROM MAADBF.MM3600 D, STDDBF.COD100 B, MAADBF.MM3500 C, MAADBF.MM3600J1 A
+     LEFT OUTER JOIN(
+       SELECT
+           ROW_NUMBER() OVER(PARTITION BY '') AS SEQ
+           ,VCODE
+           ,SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4) AS CBCOD
+           ,SUBSTR(VCODE,9,2) AS JCOD
+           ,TRIM(B.CASIDO) AS JCODN
+           , TRIM(B.CASIDO)||'  '||CASE WHEN CACODE='01' THEN SUBSTR(B.CATEL1,1,2)||'-'||SUBSTR(B.CATEL1,3,3)||'-'||SUBSTR(B.CATEL1,6,4)||'      '
+                                                        ELSE SUBSTR(B.CATEL1,1,3)||'-'||SUBSTR(B.CATEL1,4,4)||'-'||SUBSTR(B.CATEL1,7,4)||'   '
+                                  END
+           ||' '||TRIM(A.VBKCDN)||' '||SUBSTR(A.VBKNO,1,4)||'-'||SUBSTR(A.VBKNO,5,4)||'-'||TRIM(SUBSTR(A.VBKNO,9,10)) AS BANK
+           ,CASE WHEN SUBSTR(VCODE,9,2)=CBFLD1 THEN 1 ELSE 0 END AS SORT
+       FROM MAADBF.VTBANK A , NEWSTD.COD020 B, STDDBF.COD100 C
+       WHERE
+             VGUBN='1'
+         AND SUBSTR(VCODE,9,2)=B.CACODE
+         AND SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4)=C.CBSIDO||DIGITS(C.CBSEQN)
+         AND SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4)=#{JOCODE}
+       ORDER BY  CASE WHEN SUBSTR(VCODE,9,2)=CBFLD1 THEN 1 ELSE 9 END, SUBSTR(VCODE,9,2)
+     ) G1 ON A.CBCOD=G1.CBCOD AND G1.SEQ=1
+     LEFT OUTER JOIN(
+       SELECT
+           ROW_NUMBER() OVER(PARTITION BY '') AS SEQ
+           ,VCODE
+           ,SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4) AS CBCOD
+           ,SUBSTR(VCODE,9,2) AS JCOD
+           ,TRIM(B.CASIDO) AS JCODN
+           , TRIM(B.CASIDO)||'  '||CASE WHEN CACODE='01' THEN SUBSTR(B.CATEL1,1,2)||'-'||SUBSTR(B.CATEL1,3,3)||'-'||SUBSTR(B.CATEL1,6,4)||'      '
+                                                        ELSE SUBSTR(B.CATEL1,1,3)||'-'||SUBSTR(B.CATEL1,4,4)||'-'||SUBSTR(B.CATEL1,7,4)||'   '
+                                  END
+           ||' '||TRIM(A.VBKCDN)||' '||SUBSTR(A.VBKNO,1,4)||'-'||SUBSTR(A.VBKNO,5,4)||'-'||TRIM(SUBSTR(A.VBKNO,9,10)) AS BANK
+           ,CASE WHEN SUBSTR(VCODE,9,2)=CBFLD1 THEN 1 ELSE 0 END AS SORT
+       FROM MAADBF.VTBANK A , NEWSTD.COD020 B, STDDBF.COD100 C
+       WHERE
+             VGUBN='1'
+         AND SUBSTR(VCODE,9,2)=B.CACODE
+         AND SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4)=C.CBSIDO||DIGITS(C.CBSEQN)
+         AND SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4)=#{JOCODE}
+       ORDER BY  CASE WHEN SUBSTR(VCODE,9,2)=CBFLD1 THEN 1 ELSE 9 END, SUBSTR(VCODE,9,2)
+     ) G2 ON A.CBCOD=G2.CBCOD AND G2.SEQ=2
+     LEFT OUTER JOIN(
+       SELECT
+           ROW_NUMBER() OVER(PARTITION BY '') AS SEQ
+           ,VCODE
+           ,SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4) AS CBCOD
+           ,SUBSTR(VCODE,9,2) AS JCOD
+           ,TRIM(B.CASIDO) AS JCODN
+           , TRIM(B.CASIDO)||'  '||CASE WHEN CACODE='01' THEN SUBSTR(B.CATEL1,1,2)||'-'||SUBSTR(B.CATEL1,3,3)||'-'||SUBSTR(B.CATEL1,6,4)||'      '
+                                                        ELSE SUBSTR(B.CATEL1,1,3)||'-'||SUBSTR(B.CATEL1,4,4)||'-'||SUBSTR(B.CATEL1,7,4)||'   '
+                                  END
+           ||' '||TRIM(A.VBKCDN)||' '||SUBSTR(A.VBKNO,1,4)||'-'||SUBSTR(A.VBKNO,5,4)||'-'||TRIM(SUBSTR(A.VBKNO,9,10)) AS BANK
+           ,CASE WHEN SUBSTR(VCODE,9,2)=CBFLD1 THEN 1 ELSE 0 END AS SORT
+       FROM MAADBF.VTBANK A , NEWSTD.COD020 B, STDDBF.COD100 C
+       WHERE
+             VGUBN='1'
+         AND SUBSTR(VCODE,9,2)=B.CACODE
+         AND SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4)=C.CBSIDO||DIGITS(C.CBSEQN)
+         AND SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4)=#{JOCODE}
+       ORDER BY  CASE WHEN SUBSTR(VCODE,9,2)=CBFLD1 THEN 1 ELSE 9 END, SUBSTR(VCODE,9,2)
+     ) G3 ON A.CBCOD=G3.CBCOD AND G3.SEQ=3
+     LEFT OUTER JOIN(
+       SELECT
+           ROW_NUMBER() OVER(PARTITION BY '') AS SEQ
+           ,VCODE
+           ,SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4) AS CBCOD
+           ,SUBSTR(VCODE,9,2) AS JCOD
+           ,TRIM(B.CASIDO) AS JCODN
+           , TRIM(B.CASIDO)||'  '||CASE WHEN CACODE='01' THEN SUBSTR(B.CATEL1,1,2)||'-'||SUBSTR(B.CATEL1,3,3)||'-'||SUBSTR(B.CATEL1,6,4)||'      '
+                                                        ELSE SUBSTR(B.CATEL1,1,3)||'-'||SUBSTR(B.CATEL1,4,4)||'-'||SUBSTR(B.CATEL1,7,4)||'   '
+                                  END
+           ||' '||TRIM(A.VBKCDN)||' '||SUBSTR(A.VBKNO,1,4)||'-'||SUBSTR(A.VBKNO,5,4)||'-'||TRIM(SUBSTR(A.VBKNO,9,10)) AS BANK
+           ,CASE WHEN SUBSTR(VCODE,9,2)=CBFLD1 THEN 1 ELSE 0 END AS SORT
+       FROM MAADBF.VTBANK A , NEWSTD.COD020 B, STDDBF.COD100 C
+       WHERE
+             VGUBN='1'
+         AND SUBSTR(VCODE,9,2)=B.CACODE
+         AND SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4)=C.CBSIDO||DIGITS(C.CBSEQN)
+         AND SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4)=#{JOCODE}
+       ORDER BY  CASE WHEN SUBSTR(VCODE,9,2)=CBFLD1 THEN 1 ELSE 9 END, SUBSTR(VCODE,9,2)
+     ) G4 ON A.CBCOD=G4.CBCOD AND G4.SEQ=4
+     LEFT OUTER JOIN(
+       SELECT
+           ROW_NUMBER() OVER(PARTITION BY '') AS SEQ
+           ,VCODE
+           ,SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4) AS CBCOD
+           ,SUBSTR(VCODE,9,2) AS JCOD
+           ,TRIM(B.CASIDO) AS JCODN
+            , TRIM(B.CASIDO)||'  '||CASE WHEN CACODE='01' THEN SUBSTR(B.CATEL1,1,2)||'-'||SUBSTR(B.CATEL1,3,3)||'-'||SUBSTR(B.CATEL1,6,4)||'      '
+                                                        ELSE SUBSTR(B.CATEL1,1,3)||'-'||SUBSTR(B.CATEL1,4,4)||'-'||SUBSTR(B.CATEL1,7,4)||'   '
+                                  END
+           ||' '||TRIM(A.VBKCDN)||' '||SUBSTR(A.VBKNO,1,4)||'-'||SUBSTR(A.VBKNO,5,4)||'-'||TRIM(SUBSTR(A.VBKNO,9,10)) AS BANK
+         
+           ,CASE WHEN SUBSTR(VCODE,9,2)=CBFLD1 THEN 1 ELSE 0 END AS SORT
+       FROM MAADBF.VTBANK A , NEWSTD.COD020 B, STDDBF.COD100 C
+       WHERE
+             VGUBN='1'
+         AND SUBSTR(VCODE,9,2)=B.CACODE
+         AND SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4)=C.CBSIDO||DIGITS(C.CBSEQN)
+         AND SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4)=#{JOCODE}
+       ORDER BY  CASE WHEN SUBSTR(VCODE,9,2)=CBFLD1 THEN 1 ELSE 9 END, SUBSTR(VCODE,9,2)
+     ) G5 ON A.CBCOD=G5.CBCOD AND G5.SEQ=5
+     LEFT OUTER JOIN(
+       SELECT
+           ROW_NUMBER() OVER(PARTITION BY '') AS SEQ
+           ,VCODE
+           ,SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4) AS CBCOD
+           ,SUBSTR(VCODE,9,2) AS JCOD
+           ,TRIM(B.CASIDO) AS JCODN
+           , TRIM(B.CASIDO)||' '||CASE WHEN CACODE='01' THEN SUBSTR(B.CATEL1,1,2)||'-'||SUBSTR(B.CATEL1,3,3)||'-'||SUBSTR(B.CATEL1,6,4)||'      '
+                                                        ELSE SUBSTR(B.CATEL1,1,3)||'-'||SUBSTR(B.CATEL1,4,4)||'-'||SUBSTR(B.CATEL1,7,4)||'   '
+                                  END
+           ||' '||TRIM(A.VBKCDN)||' '||SUBSTR(A.VBKNO,1,4)||'-'||SUBSTR(A.VBKNO,5,4)||'-'||TRIM(SUBSTR(A.VBKNO,9,10)) AS BANK
+           ,CASE WHEN SUBSTR(VCODE,9,2)=CBFLD1 THEN 1 ELSE 0 END AS SORT
+       FROM MAADBF.VTBANK A , NEWSTD.COD020 B, STDDBF.COD100 C
+       WHERE
+             VGUBN='1'
+         AND SUBSTR(VCODE,9,2)=B.CACODE
+         AND SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4)=C.CBSIDO||DIGITS(C.CBSEQN)
+         AND SUBSTR(VCODE,1,2)||SUBSTR(VCODE,4,4)=#{JOCODE}
+       ORDER BY  CASE WHEN SUBSTR(VCODE,9,2)=CBFLD1 THEN 1 ELSE 9 END, SUBSTR(VCODE,9,2)
+     ) G6 ON A.CBCOD=G6.CBCOD AND G6.SEQ=6
+
+  WHERE
+        A.CBCOD=B.CBSIDO||DIGITS(B.CBSEQN)
+    AND A.MBYEAR=DIGITS(C.MKYEAR) AND A.MBBUNH=DIGITS(C.MKBUNH)
+    AND A.MBYEAR=D.MBYEAR AND A.MBBUNH=D.MBBUNH AND A.MBBCNT=D.MBBCNT
+    AND A.CBCOD=#{JOCODE}
+    AND A.MBBNYM=#{FYM}
+    
+  ORDER BY A.CBCOD, A.MBBNYMD
+	</select>
+	
+	<select id="selectJibuInfo" parameterType="String" resultType="Map">
+	SELECT CBFLD1
+			, TRIM(B.CASIDO) AS CASIDO
+			, CBSIDO
+			, CBSEQN
+			, CBCNM1
+			, CBCNM2
+			, CBCHK3
+			, CBSAU1 || '-' || CBSAU2 || '-' || TRIM(DAMO.SCP_DECB64('SCPKALL',CBSAU3)) AS CBSAU
+	 FROM STDDBF.COD100 A
+	 INNER JOIN NEWSTD.COD020 B
+	  ON A.CBFLD1 = B.CACODE	 
+	WHERE CBSIDO || DIGITS(CBSEQN) = #{jocode}
+	</select>
+	
+	  <select id="mrr5110List" parameterType="java.util.Map" resultType="Map">
+        SELECT
+            TRIM(B.CASIDO) AS MBJCOD <!--관리지부-->
+            , TRIM(A.MBCBSD)||DIGITS(A.MBCBSQ) AS CBCOD <!--조합원코드-->
+            , TRIM(CBCNM1) AS CBCNM1 <!--조합원명-->
+            , DIGITS(D.MKYEAR)||'-'||DIGITS(D.MKBUNH) AS MBBUNH <!--계약번호-->
+            , CASE WHEN TRIM(D.MKCHNO)='' THEN TRIM(D.MKCDAE) ELSE TRIM(D.MKCHNO) END AS MKCHNO <!--차량변호-->
+            , DIGITS(MKFYY2)||'-'||DIGITS(MKFMM2)||'-'||DIGITS(MKFDD2)||'~'|| DIGITS(MBBNYY)||'-'||DIGITS(MBBNMM)||'-'||DIGITS(MBBNDD) AS YOUHOILJA <!--유효기간(대인시작년-분납일자)-->
+            , DIGITS(MBBCNT) AS MBBCNT <!--회차-->
+            , DIGITS(MBBNYY)||DIGITS(MBBNMM)||DIGITS(MBBNDD) AS MBBNYMD <!--납입일자-->
+            , CASE WHEN D.MKMF11 ='9' THEN 0  ELSE A.MBBKUM+A.MBAKUM END AS BUNKUM<!--납입금액(분납금액+추가금액)-->
+            , CASE WHEN D.MKMF11 ='9' THEN '해지'
+                 WHEN D.MKMF11='8' THEN '실효해지'
+                 WHEN COALESCE(G1.CHK,'ERR')='OK' THEN '수납'
+                 WHEN COALESCE(G1.CHK,'ERR')!='OK' THEN '미납'
+            ELSE '' END AS BIGO
+            ,REPLACE(CHAR(
+               DATE(DIGITS(A.MBBNYY)||'-'||DIGITS(A.MBBNMM)||'-'||DIGITS(A.MBBNDD))+30 DAYS
+             ,ISO),'-','-')  AS ENDYMD,  <!--실효예정일자-->
+             REPLACE(CHAR(
+             DATE(DIGITS(A.MBBNYY)||'-'||DIGITS(A.MBBNMM)||'-'||DIGITS(A.MBBNDD))+30 DAYS
+             ,ISO),'-','-')  AS LASTYMD <!-- 최종납부일 -->
+            <!--,GREATEST(0, DAYS(CURRENT DATE) - DAYS(DATE(DIGITS(A.MBBNYY)||'-'||DIGITS(A.MBBNMM)||'-'||DIGITS(A.MBBNDD)))) AS ILSU-->  <!--경과일수-->
+            ,DAYS(CURRENT DATE) - DAYS(DATE(DIGITS(A.MBBNYY)||'-'||DIGITS(A.MBBNMM)||'-'||DIGITS(A.MBBNDD))) AS ILSU  <!--경과일수-->
+            FROM MAADBF.MM3600 A
+            LEFT OUTER JOIN
+               ( SELECT MDYYER, MDYBUN, MDBCNT, MDITKM,
+                  CASE WHEN MDITKM<![CDATA[<>]]>0 THEN 'OK' ELSE ''
+                  END AS CHK
+                 FROM MAADBF.MM3700 WHERE MDSTAT!='4'
+                )G1 ON MBYEAR=G1.MDYYER AND MBBUNH=G1.MDYBUN AND MBBCNT=G1.MDBCNT
+            , NEWSTD.COD020 B
+            , STDDBF.COD100 C
+            , MAADBF.MM3500 D
+            WHERE
+               MKJJCD=CACODE AND A.MBCBSD=C.CBSIDO AND A.MBCBSQ=C.CBSEQN
+               AND MBYEAR = MKYEAR AND MBBUNH=MKBUNH AND
+               DIGITS(MBBNYY)||DIGITS(MBBNMM)||DIGITS(MBBNDD) <![CDATA[>=]]> #{FYMD} AND
+			   DIGITS(MBBNYY)||DIGITS(MBBNMM)||DIGITS(MBBNDD) <![CDATA[<=]]> #{TYMD}
+         <if test="CBSD != 999999"><!--조합원코드-->
+                 AND  D.MKCBSD||DIGITS(D.MKCBSQ)= #{JOCODE} <!--관리지부-->
+            </if>
+            <choose>
+                <when test="GUBN == 1"><!--수납-->
+                    AND COALESCE(G1.CHK,'ERR')='OK' AND D.MKMF11 ='1'
+                </when>
+                <when test="GUBN == 2"><!--미납-->
+                     AND (COALESCE(G1.CHK,'ERR')='ERR' AND MKMF11='1')
+                </when>
+                <otherwise></otherwise>
+            </choose>
+            ORDER BY MBBNYY,MBBNMM,MBBNDD , MBJCOD, A.MBCBSD, A.MBCBSQ, MKYEAR, MKBUNH
+    </select>
+    
+    	<select id="mrr5410List" parameterType="java.util.Map" resultType="Map">
+		SELECT
+		DIGITS(A.MKYEAR)||'-'||DIGITS(A.MKBUNH) AS MKBUN  <!-- 계약번호 -->
+		, MKCBSD||'-'||DIGITS(MKCBSQ) AS CBCOD <!-- 조합원코드 -->
+		, TRIM(A.MKNAME) AS MKNAME <!-- 조합원명 -->
+		, CASE WHEN TRIM(A.MKCHNO)!='' THEN TRIM(A.MKCHNO) ELSE TRIM(A.MKCDAE)
+		END AS MKCHNO  <!-- 차량번호 -->
+		, DIGITS(MKTYY1)||DIGITS(MKTMM1)||DIGITS(MKTDD1) AS MKTYMD1  <!-- 만기일자 -->
+		, A.MKSHTR AS MKSHTR <!--전계약적용율 -->
+		, COALESCE(G1.HBGUNS,'') AS HBGUNS <!-- 사고건수 -->
+		, COALESCE(G1.HBJUMS,'') AS HBJUMS <!-- 사고점수 -->
+
+		, CASE WHEN COALESCE(G2.SPBYMD,'') !='' THEN COALESCE(G2.MKSHHR,0)
+		ELSE COALESCE(G1.HBNHHR,'') END AS HBNHHR <!-- 표준요율 -->
+		, CASE WHEN COALESCE(G2.SPBYMD,'') !='' THEN COALESCE(G2.MKSHBR,0)
+		ELSE COALESCE(G1.HBNHBR,'') END AS HBNHBR <!-- 범위요율 -->
+		, CASE WHEN COALESCE(G2.SPBYMD,'') !='' THEN COALESCE(G2.MKSPHR,0)
+		ELSE COALESCE(G1.HBNHSR,'') END AS HBNHSR <!-- 특별요율 -->
+		, CASE WHEN COALESCE(G2.SPBYMD,'') !='' THEN COALESCE(G2.MKSHTR,0)
+		ELSE COALESCE(G1.HBNHTR,'') END AS HBNHTR <!-- 적용율계 -->
+		, CASE WHEN COALESCE(G2.SPBYMD,'') !='' THEN '갱신완료' ELSE '' END AS
+		CHK1
+		, COALESCE(G2.SPBYMD,'') AS SPBYMD <!-- 영수일자 -->
+		, A.MKJJCD AS MKJJCD
+		, TRIM(B.CASIDO) AS MKJJCDN <!-- 관리지부 -->
+		FROM
+		NEWSTD.COD020 B
+		,MAADBF.MM3500 A
+		LEFT OUTER JOIN(
+		SELECT
+		HBYEAR,
+		HBBUNH
+		,DIGITS(HBFYMD) AS HBFYMD <!-- 평가기간 -->
+		,DIGITS(HBTYMD) AS HBTYMD <!-- 평가기간 -->
+		,HBGUNS AS HBGUNS <!-- 사고건수 -->
+		,HBJUMS AS HBJUMS <!-- 사고점수 -->
+		,HBNHHR AS HBNHHR <!-- 표준요율 -->
+		,HBNHBR AS HBNHBR <!-- 범위요율 -->
+		,HBNHSR AS HBNHSR <!-- 특별요율 -->
+		,HBNHTR AS HBNHTR <!-- 적용율계 -->
+
+		FROM MAADBF.HM1200
+		) G1 ON A.MKYEAR=G1.HBYEAR AND A.MKBUNH=G1.HBBUNH
+		LEFT OUTER JOIN(
+		SELECT
+		MKOYER, MKOBUN, DIGITS(SPBYMD) AS SPBYMD
+		,MKSHHR
+		,MKSHBR
+		,MKSPHR
+		,MKSHTR
+		FROM MAADBF.MM3500 A, MAADBF.SP1100 B
+		WHERE
+		A.MKYEAR=B.SPYEAR AND A.MKBUNH=B.SPBUNH
+		AND
+		DIGITS(MKFYY1)||DIGITS(MKFMM1)||DIGITS(MKFDD1) !=
+		DIGITS(MKTYY1)||DIGITS(MKTMM1)||DIGITS(MKTDD1)
+
+		) G2 ON
+		A.MKYEAR=G2.MKOYER AND A.MKBUNH=G2.MKOBUN
+		WHERE
+		A.MKJJCD=B.CACODE
+		AND
+		MKCBSD||DIGITS(MKCBSQ)=#{JOCODE}
+		AND
+		DIGITS(MKFYY1)||DIGITS(MKFMM1)||DIGITS(MKFDD1) !=
+		DIGITS(MKTYY1)||DIGITS(MKTMM1)||DIGITS(MKTDD1)
+		AND
+		DIGITS(MKTYY1)||DIGITS(MKTMM1)||DIGITS(MKTDD1) <![CDATA[>=]]>
+		#{FYM}
+		AND DIGITS(MKTYY1)||DIGITS(MKTMM1)||DIGITS(MKTDD1) <![CDATA[<=]]>
+		#{TYM}
+
+		ORDER BY MKTYY1 DESC, MKTMM1 DESC, MKTDD1 DESC
+	</select>
+	
+</mapper>
