@@ -48,7 +48,7 @@ function fn_egov_modal_remove() {
 <div class="header">
     <div class="inner">
         <div class="left_col">
-            <h1 class="logo"><a href="<c:url value='/'/>mss/tot/tot01.do"><img src="${pageContext.request.contextPath}/images/logo4.png" alt="전국전세버스운송사업조합연합회"></a></h1>
+            <h1 class="logo"><a href="<c:url value='/'/>cmm/main/mainPage.do"><img src="${pageContext.request.contextPath}/images/logo4.png" alt="전국전세버스운송사업조합연합회"></a></h1>
 				
             <%-- <a class="go" href="#LINK" onclick="fn_egov_modal_create(); return false;"><img src="${pageContext.request.contextPath}/images/ico_question.png" alt="메뉴구성 설명"></a> --%>
         </div>
