@@ -17,7 +17,7 @@ body {min-width: 1400px;}
 .header .top_menu .d {color: #888;}
 .header .top_menu .btn {margin-left: 6px;}
 
-.gnb {margin-top: 44px;}
+.gnb {margin-top: 45px;}
 .gnb ul::after {content: ""; display: block; clear: both;}
 .gnb ul li {float: left;}
 .gnb ul li + li {margin-left: 90px;}
