@@ -107,6 +107,34 @@ public class VehController {
 
 	}
 	
+	@RequestMapping({ "/mss/veh/vehicleApproval.do" })
+	public String getVehicleApproval(HttpServletRequest request, ModelMap model) throws Exception {
+		request.getSession().setAttribute("baseMenuNo", "7000000");
+
+		Map<Object, Object> searchData = new HashMap<>();
+		
+		LoginVO user = EgovUserDetailsHelper.isAuthenticated().booleanValue()
+				? (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser()
+				: null;
+		if (EgovUserDetailsHelper.isAuthenticated().booleanValue() && user != null) {
+			
+			   String orgnztId = user.getOrgnztId();
+		        if ("ORGNZT_0000000000000".equals(orgnztId)) {
+		            orgnztId = "010006";
+		        }
+			
+			searchData.put("groupNm", user.getGroupNm());
+			searchData.put("bizNo", user.getId()/*.substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
+					+ user.getId().substring(5, 10)*/);
+			searchData.put("companyName", user.getOrgnztNm());
+			searchData.put("johapcode",orgnztId);
+			searchData.put("groupId", user.getGroupId());
+		}
+		model.addAttribute("searchData", searchData);
+		return "veh/vehicleApproval";
+
+	}
+	
 	@RequestMapping({ "/mss/veh/vehicleGraph.do" })
 	public String getVehicleGraph(HttpServletRequest request, ModelMap model) throws Exception {
 		request.getSession().setAttribute("baseMenuNo", "7000000");

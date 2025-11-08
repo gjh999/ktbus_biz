@@ -52,7 +52,7 @@
 		concurrentMaxSessons="1"
 		concurrentExpiredUrl="/uat/uia/actionMain.do"
 
-		defaultTargetUrl="/mss/tot/tot01.do"
+		defaultTargetUrl="/cmm/main/mainPage.do"
 
     />
 

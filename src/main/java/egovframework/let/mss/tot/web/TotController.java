@@ -33,7 +33,7 @@ public class TotController {
 
 	@RequestMapping({ "/mss/tot/tot01.do" })
 	public String getTot01Page(HttpServletRequest request, ModelMap model) throws Exception {
-		request.getSession().setAttribute("baseMenuNo", "2010000");
+		request.getSession().setAttribute("baseMenuNo", "2000000");
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated.booleanValue())
 			return "uat/uia/EgovLoginUsr";
@@ -56,6 +56,7 @@ public class TotController {
 
 	@RequestMapping({ "/mss/tot/tot02.do" })
 	public String getTot02Page(HttpServletRequest request, ModelMap model) throws Exception {
+		request.getSession().setAttribute("baseMenuNo", "2000000");
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated.booleanValue())
 			return "uat/uia/EgovLoginUsr";
@@ -67,7 +68,8 @@ public class TotController {
 				: null;
 		if (EgovUserDetailsHelper.isAuthenticated().booleanValue() && user != null) {
 			searchData.put("groupNm", user.getGroupNm());
-			searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
+			if (!"ORGNZT_0000000000000".equals(user.getOrgnztId()))
+				searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
 					+ user.getId().substring(5, 10));
 			searchData.put("companyName", user.getOrgnztNm());
 			searchData.put("johapcode", user.getOrgnztId());
@@ -79,6 +81,7 @@ public class TotController {
 
 	@RequestMapping({ "/mss/tot/tot03.do" })
 	public String getTot03Page(HttpServletRequest request, ModelMap model) throws Exception {
+		request.getSession().setAttribute("baseMenuNo", "2000000");
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated.booleanValue())
 			return "uat/uia/EgovLoginUsr";
@@ -88,7 +91,8 @@ public class TotController {
 				: null;
 		if (EgovUserDetailsHelper.isAuthenticated().booleanValue() && user != null) {
 			searchData.put("groupNm", user.getGroupNm());
-			searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
+			if (!"ORGNZT_0000000000000".equals(user.getOrgnztId()))
+				searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
 					+ user.getId().substring(5, 10));
 			searchData.put("companyName", user.getOrgnztNm());
 			searchData.put("johapcode", user.getOrgnztId());
@@ -99,6 +103,7 @@ public class TotController {
 
 	@RequestMapping({ "/mss/tot/tot04.do" })
 	public String getTot04Page(HttpServletRequest request, ModelMap model) throws Exception {
+		request.getSession().setAttribute("baseMenuNo", "2000000");
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated.booleanValue())
 			return "uat/uia/EgovLoginUsr";
@@ -108,7 +113,8 @@ public class TotController {
 				: null;
 		if (EgovUserDetailsHelper.isAuthenticated().booleanValue() && user != null) {
 			searchData.put("groupNm", user.getGroupNm());
-			searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
+			if (!"ORGNZT_0000000000000".equals(user.getOrgnztId()))
+				searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
 					+ user.getId().substring(5, 10));
 			searchData.put("companyName", user.getOrgnztNm());
 			searchData.put("johapcode", user.getOrgnztId());
@@ -119,6 +125,7 @@ public class TotController {
 
 	@RequestMapping({ "/mss/tot/tot05.do" })
 	public String getTot05Page(HttpServletRequest request, ModelMap model) throws Exception {
+		request.getSession().setAttribute("baseMenuNo", "2000000");
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated.booleanValue())
 			return "uat/uia/EgovLoginUsr";
@@ -129,7 +136,8 @@ public class TotController {
 		
 		if (EgovUserDetailsHelper.isAuthenticated().booleanValue() && user != null) {
 			searchData.put("groupNm", user.getGroupNm());
-			searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
+			if (!"ORGNZT_0000000000000".equals(user.getOrgnztId()))
+				searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
 					+ user.getId().substring(5, 10));
 			searchData.put("companyName", user.getOrgnztNm());
 			searchData.put("johapcode", user.getOrgnztId());
@@ -140,6 +148,7 @@ public class TotController {
 
 	@RequestMapping({ "/mss/tot/tot06.do" })
 	public String getTot06Page(HttpServletRequest request, ModelMap model) throws Exception {
+		request.getSession().setAttribute("baseMenuNo", "2000000");
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated.booleanValue())
 			return "uat/uia/EgovLoginUsr";
@@ -149,7 +158,8 @@ public class TotController {
 				: null;
 		if (EgovUserDetailsHelper.isAuthenticated().booleanValue() && user != null) {
 			searchData.put("groupNm", user.getGroupNm());
-			searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
+			if (!"ORGNZT_0000000000000".equals(user.getOrgnztId()))
+				searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
 					+ user.getId().substring(5, 10));
 			searchData.put("companyName", user.getOrgnztNm());
 			searchData.put("johapcode", user.getOrgnztId());
@@ -163,6 +173,7 @@ public class TotController {
 
 	@RequestMapping({ "/mss/tot/tot07.do" })
 	public String getTot07Page(HttpServletRequest request, ModelMap model) throws Exception {
+		request.getSession().setAttribute("baseMenuNo", "2000000");
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated.booleanValue())
 			return "uat/uia/EgovLoginUsr";
@@ -172,7 +183,8 @@ public class TotController {
 				: null;
 		if (EgovUserDetailsHelper.isAuthenticated().booleanValue() && user != null) {
 			searchData.put("groupNm", user.getGroupNm());
-			searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
+			if (!"ORGNZT_0000000000000".equals(user.getOrgnztId()))
+				searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
 					+ user.getId().substring(5, 10));
 			searchData.put("companyName", user.getOrgnztNm());
 			searchData.put("johapcode", user.getOrgnztId());
@@ -183,6 +195,7 @@ public class TotController {
 
 	@RequestMapping({ "/mss/tot/tot08.do" })
 	public String getTot08Page(HttpServletRequest request, ModelMap model) throws Exception {
+		request.getSession().setAttribute("baseMenuNo", "2000000");
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated.booleanValue())
 			return "uat/uia/EgovLoginUsr";
@@ -192,7 +205,8 @@ public class TotController {
 				: null;
 		if (EgovUserDetailsHelper.isAuthenticated().booleanValue() && user != null) {
 			searchData.put("groupNm", user.getGroupNm());
-			searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
+			if (!"ORGNZT_0000000000000".equals(user.getOrgnztId()))
+				searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
 					+ user.getId().substring(5, 10));
 			searchData.put("companyName", user.getOrgnztNm());
 			searchData.put("johapcode", user.getOrgnztId());
@@ -203,6 +217,7 @@ public class TotController {
 
 	@RequestMapping({ "/mss/tot/tot09.do" })
 	public String getTot09Page(HttpServletRequest request, ModelMap model) throws Exception {
+		request.getSession().setAttribute("baseMenuNo", "2000000");
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated.booleanValue())
 			return "uat/uia/EgovLoginUsr";
@@ -212,7 +227,8 @@ public class TotController {
 				: null;
 		if (EgovUserDetailsHelper.isAuthenticated().booleanValue() && user != null) {
 			searchData.put("groupNm", user.getGroupNm());
-			searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
+			if (!"ORGNZT_0000000000000".equals(user.getOrgnztId()))
+				searchData.put("bizNo", user.getId().substring(0, 3) + "-" + user.getId().substring(3, 5) + "-"
 					+ user.getId().substring(5, 10));
 			searchData.put("companyName", user.getOrgnztNm());
 			searchData.put("johapcode", user.getOrgnztId());
