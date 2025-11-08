@@ -166,9 +166,11 @@ border: 3px solid #555;
 					minDate : "-10Y",
 					
 			    });
+			    /*
 				setTimeout(function() {
 				   doAction('search');
-				 }, 500);	
+				 }, 500);
+			    */
 			
 			
 		//사업자번호 체크 후 조합원 코드 readonly 수정

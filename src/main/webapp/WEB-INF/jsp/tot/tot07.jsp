@@ -135,9 +135,11 @@ border: 3px solid #555;
 	
 	$(document).ready(function() {
 		
+		/*
 		setTimeout(function() {
 		  doAction('search');
 		  }, 500);	
+		*/
 		
 		var now = new Date();
 		var YY = now.getFullYear();

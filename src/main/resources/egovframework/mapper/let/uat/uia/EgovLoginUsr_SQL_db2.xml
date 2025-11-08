@@ -47,9 +47,9 @@
               FROM LETTNEMPLYRINFO A, LETTNORGNZTINFO B
              WHERE 1=1 
                AND A.ORGNZT_ID = B.ORGNZT_ID 
-               AND EMPLYR_ID = IFNULL(#{id}, '*')
+               AND EMPLYR_ID = #{id}
                <if test="loginType != 'member'">
-               AND PASSWORD = IFNULL(#{password}, '*')
+               AND PASSWORD = #{password}
                </if>
                -- AND EMPLYR_STTUS_CODE = 'P'
 			
