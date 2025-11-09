@@ -138,7 +138,7 @@
 .POP_DUPID_CONF .result {margin-top: 20px; padding: 28px 20px; border-radius: 9px; background: #eee;}
 .POP_DUPID_CONF .result span {color: #0465be; font-weight: 700;}
 
-.container.main {background: #f2f2f2;}
+.container.main {background: #f2f2f2; margin-top:60px;}
 .P_MAIN .inner {position: relative; height: 196px; background: #fff;}
 .P_MAIN .visual { position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 1300px; height: 320px; padding: 85px 0 0 70px; background: url(../images/main_visual.png);}
 .P_MAIN .visual > span {display: block;}
