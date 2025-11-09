@@ -56,12 +56,7 @@ body {width:100%; /*max-width: 1440px; padding:0 20px;*/}
 
 .layout .content_wrap {display: table-cell; width: 100%; height:900px; padding-left: 70px;}
 
-@media screen and (max-width:1400px) {
-	.header .inner {padding:0 20px;}
-	.header .top_menu {right:20px;}
-	.util_menu {right:20px;}
-	.sub_in {padding:0 20px;}
-}
+
 
 /* popup */
 .popup {z-index: 10; position: fixed; left: 0; top: 0; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, .7);}
@@ -89,18 +84,42 @@ body {width:100%; /*max-width: 1440px; padding:0 20px;*/}
 
 
 .footer {border-top: 1px solid #d7d7d7;}
-.footer .inner {position: relative; width: 1400px; height: 179px; margin: 0 auto; padding: 0 50px;}
-.footer .inner::after {content: ""; display: block; clear: both;}
-.footer h1 {float: left; padding-top: 49px;}
+.footer .inner {position: relative; margin: 0 auto;padding: 50px 50px;display: flex;}
 .footer h1 a {display: block;}
-.footer .mid {float: left; margin-left: 50px; padding-top: 42px;}
-.footer .mid {color: #888; font-size: 16px;}
+.footer .mid {margin-left: 50px; color: #888; font-size: 16px;}
 .footer .mid address {line-height: 26px;}
 .footer .mid .copy {margin-top: 11px;}
-.footer .right_col {position: absolute; right: 65px; top: 20px;}
+.footer .right_col {margin-left: auto; float:none;}
 .footer .right_col a {display: inline-block; height: 35px; vertical-align: top;}
 .footer .right_col a + a {margin-left: 56px;}
 
+
+@media screen and (max-width:1400px) {
+	.header .inner {padding:0 20px;}
+	.header .top_menu {right:20px;}
+	.util_menu {right:20px;}
+	.sub_in {padding:0 20px;}
+	
+	.footer .inner {flex-direction:column; align-items:center; padding:40px 20px;}
+	.footer .mid {margin:20px 0 0 0;}
+	.footer .mid address {text-align:center}
+	.footer .right_col {margin:40px 0 0 0; padding:0;}
+	.footer .mid .copy {text-align:center}
+}
+@media screen and (max-width:1024px)  {
+	.gnb {display:none;}
+	.header .inner {height:100px;}
+	.header .left_col {padding-top:50px}
+	.header .left_col .logo a {width: 200px; display: block;}
+	.header .left_col .logo a img {width:100%;}
+	.util_menu {top:50px;}
+	.util_menu ul li a.allmenu {width:40px; height:40px; background-size:100% auto;}
+	.header .top_menu  {font-size:12px;top: 10px;}
+	.header .top_menu .t {height: 24px; line-height: 24px;}
+	.header .top_menu .btn {height:24px; line-height:24px;}
+	.footer .banner_box ul li {width:150px;}
+	.footer .right_col {width:320px;}
+}
 
 .all_menu {display: none; position: absolute; left: 0; top: 180px; width: 100%; border-bottom: 1px solid #ddd; z-index: 99;}
 .all_menu > div {background: #fff;}
