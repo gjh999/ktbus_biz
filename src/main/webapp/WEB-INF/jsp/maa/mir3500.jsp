@@ -73,22 +73,40 @@
 	              <!-- 검색조건 -->
 				  <form id ="listFrm" name="listFrm" method="post">
 	              <div class="condition2">
-<!--	                <span class="lb ml20">지부</span>-->
-	                <input type='hidden' name='JIBUNM' id='JIBUNM' maxlength='10' style="width:70px;" class='f_date' value="${searchData.groupNm}" readonly />
-					<input type='hidden' name='JIBU' id='JIBU' maxlength='10' style="width:70px;" class='f_date' value="${searchData.groupId}" readonly />
-<!--	                <span class="lb ml20">사업자번호</span>-->
-	                <input type='hidden' name='SAUP' id='SAUP' maxlength='15' class='f_date' style="width:200px;" value="${searchData.bizNo}" readonly />
-	                <span class="lb ml20">조합명</span>
-	                <input type='text' name='JOHAP' id='JOHAP' maxlength='15' class='f_text' style="width:150px; outline:none;" value="${searchData.companyName}" readonly />
-					<span class="lb ml20">조합원코드</span>
-					<input type='text' name='JOCODE' id='JOCODE' maxlength='6' class='f_text' style="width:85px;outline:none;" value="${searchData.johapcode}" readonly />
-	                <span class="lb ml20">해당년월</span>
-					<input type='hidden' name='FYM' id='FYM' class='f_date' maxlength="6" style="width:150px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onkeydown="maxLengthCheck(this)" /> 
-					<input type='text' name='TYM' id='TYM' class='f_date' maxlength="6" style="width:150px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onkeydown="maxLengthCheck(this)" />
-					&nbsp;&nbsp;&nbsp; 
-					<button class='item btn btn_blue_46 w_100' onclick="doAction('search')" type="button">조회</a></button>
-					<input type='hidden' name='isAdminYn' id='isAdminYn'>
-	              </div>
+					  <div class="srch_wrap">
+					    <input type="hidden" name="JIBUNM" id="JIBUNM" maxlength="10" style="width:70px;" class="f_date" value="${searchData.groupNm}" readonly />
+					    <input type="hidden" name="JIBU" id="JIBU" maxlength="10" style="width:70px;" class="f_date" value="${searchData.groupId}" readonly />
+					    <input type="hidden" name="SAUP" id="SAUP" maxlength="15" class="f_date" style="width:200px;" value="${searchData.bizNo}" readonly />
+					    <input type="hidden" name="FYM" id="FYM" class="f_date" maxlength="6" style="width:150px;"
+					           oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g,'$1');"
+					           onkeydown="maxLengthCheck(this)" />
+					    <input type="hidden" name="isAdminYn" id="isAdminYn" />
+					
+					    <div class="group">
+					      <span class="lb ml20">조합명</span>
+					      <input type="text" name="JOHAP" id="JOHAP" maxlength="15" class="f_text"
+					             style="width:150px;outline:none;" value="${searchData.companyName}" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">조합원코드</span>
+					      <input type="text" name="JOCODE" id="JOCODE" maxlength="6" class="f_text"
+					             style="width:85px;outline:none;" value="${searchData.johapcode}" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">해당년월</span>
+					      <input type="text" name="TYM" id="TYM" class="f_date" maxlength="6" style="width:150px;"
+					             oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g,'$1');"
+					             onkeydown="maxLengthCheck(this)" />
+					    </div>
+					  </div>
+					
+					  <div class="srch_btn">
+					    <button class="item btn btn_blue_46 w_100" onclick="doAction('search')" type="button">조회</button>
+					  </div>
+					</div>
+
 				  <p style="text-align:right; font-weight:bold;">(단위: 원)</p>
 	              <!-- 검색조건 -->
 	              <div style='height:calc(100% - 177px)'>

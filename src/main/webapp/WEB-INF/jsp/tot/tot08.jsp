@@ -71,19 +71,33 @@ border: 3px solid #555;
 	              <form id="listFrm" name="listFrm" method="post">
 	                <!-- 검색조건 -->
 	                <div class="condition2">
-<!--	                  <span class="lb ml20">지부</span>-->
-	                  <input type='hidden' name='JIBU' id='JIBU' maxlength='10' style="width:70px;" class='f_date' value="${searchData.groupNm}" readonly />
-<!--	                  <span class="lb ml20">사업자번호</span>-->
-	                  <input type='hidden' name='SAUP' id='SAUP' maxlength='15' class='f_date' style="width:200px;" value="${searchData.bizNo}" readonly />
-	                  <span class="lb ml20">조합명</span>
-	                  <input type='text' name='JOHAP' id='JOHAP' maxlength='15' class='f_text' style="width:150px; outline:none;" value="${searchData.companyName}" readonly />
-	                  <span class="lb ml20">조합원코드</span>
-	                  <input type='text' name='JOCODE' id='JOCODE' maxlength='8' class='f_text' style="width:85px; outline:none;" value="${searchData.johapcode}" readonly />
-	                  <span class="lb ml20">기준일자</span>
-	                  <input type='text' name='FYM' id='FYM' class='f_date' maxlength='12' style="width:120px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onkeydown="maxLengthCheck(this)" readonly/>
-	                <button class='item btn btn_blue_46 w_100' onclick="doAction('search')" type="button">조회</a></button>
-					  &nbsp;&nbsp;&nbsp; 
+					  <div class="srch_wrap">
+					    <input type="hidden" name="JIBU" id="JIBU" maxlength="10" style="width:70px;" class="f_date" value="${searchData.groupNm}" readonly />
+					    <input type="hidden" name="SAUP" id="SAUP" maxlength="15" class="f_date" style="width:200px;" value="${searchData.bizNo}" readonly />
+					
+					    <div class="group">
+					      <span class="lb ml20">조합명</span>
+					      <input type="text" name="JOHAP" id="JOHAP" maxlength="15" class="f_text" style="width:150px; outline:none;" value="${searchData.companyName}" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">조합원코드</span>
+					      <input type="text" name="JOCODE" id="JOCODE" maxlength="8" class="f_text" style="width:85px; outline:none;" value="${searchData.johapcode}" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">기준일자</span>
+					      <input type="text" name="FYM" id="FYM" class="f_date" maxlength="12" style="width:120px;"
+					             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+					             onkeydown="maxLengthCheck(this)" readonly />
+					    </div>
 					  </div>
+					
+					  <div class="srch_btn">
+					    <button class="item btn btn_blue_46 w_100" onclick="doAction('search')" type="button">조회</button>
+					  </div>
+					</div>
+
 					  <p style="text-align:right; font-weight:bold;">(단위: 원,%)</p>	
 	                <!--// 검색조건 -->
 	                <div style='height:calc(100% - 177px)'>

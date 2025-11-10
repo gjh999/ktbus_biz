@@ -64,17 +64,39 @@
 	              <h1 class="tit_1">계약번호별 재갱신율 확인</h1>
 	              <br>
 	              <!-- 검색조건 -->
-	              <div class="condition2">
-	                <span class="lb ml20">지부</span>
-	                <input type='text' name='JIBU' id='JIBU' maxlength='10' style="width:70px;" class='f_date' value="서울" readonly />
-	                <span class="lb ml20">사업자번호</span>
-	                <input type='text' name='SAUP' id='SAUP' maxlength='15' class='f_date' style="width:200px;" value="123-45-65711" readonly />
-	                <span class="lb ml20">조합명</span>
-	                <input type='text' name='JOHAP' id='JOHAP' maxlength='15' class='f_date' style="width:250px; " value="제일고속관광" readonly />
-	                <br><br>
-	                <span class="lb ml20">기간 조회</span>
-	                <input type='text' name='FYY' id='FYY' class="f_date" maxlength='4' style="width:50px; " oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/^(\d{4})/g, '$1');" />년 <input type='text' name='FMM' id='FMM' class="f_date" style="width:50px; " maxlength='2' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/^(\d{4})/g, '$1');" />월 ~ &nbsp;&nbsp; <input type='text' name='FMM' id='FMM' class="f_date" style="width:50px;" maxlength='2' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/^(\d{4})/g, '$1');" />월 &nbsp;&nbsp;&nbsp; <button class='item btn btn_blue_46 w_100' onclick="doAction('search')" type="button">조회</a>
-	              </div>
+					<div class="condition2">
+					  <div class="srch_wrap">
+					    <div class="group">
+					      <span class="lb ml20">지부</span>
+					      <input type="text" name="JIBU" id="JIBU" maxlength="10" style="width:70px;" class="f_date" value="서울" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">사업자번호</span>
+					      <input type="text" name="SAUP" id="SAUP" maxlength="15" class="f_date" style="width:200px;" value="123-45-65711" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">조합명</span>
+					      <input type="text" name="JOHAP" id="JOHAP" maxlength="15" class="f_date" style="width:250px;" value="제일고속관광" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">기간 조회</span>
+					      <input type="text" name="FYY" id="FYY" class="f_date" maxlength="4" style="width:50px;"
+					             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/^(\d{4})/g, '$1');" />년
+					      <input type="text" name="FMM" id="FMM1" class="f_date" style="width:50px;" maxlength="2"
+					             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/^(\d{4})/g, '$1');" />월 ~
+					      <input type="text" name="TMM" id="TMM" class="f_date" style="width:50px;" maxlength="2"
+					             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/^(\d{4})/g, '$1');" />월
+					    </div>
+					  </div>
+					
+					  <div class="srch_btn">
+					    <button class="item btn btn_blue_46 w_100" onclick="doAction('search')" type="button">조회</button>
+					  </div>
+					</div>
+
 	              <!--// 검색조건 -->
 	              <div style='height:calc(100% - 177px)'>
 	                <div id='sheetDiv' style='width:100%;height:570px'></div>

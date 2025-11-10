@@ -56,45 +56,50 @@ border: 3px solid #555;
 	  <!--// Header -->
 	  <div class="container">
 	    <div class="sub_layout">
-	      <div class="sub_in" style="padding-left : 10px;">
+	      <div class="sub_in">
 	        <div class="layout">
 	          <!-- Left menu -->
 	          <c:import url="/sym/mms/EgovMenuLeft.do" />
 	          <!--						<c:import url="/main/inc/EgovIncHeader.do"/>-->
 	          <!--// Left menu -->
 <!--	          <div class="content_wrap">-->
-	            <div id="contents" class="content" style="width:100%; padding-left:25px;">
+	            <div id="contents" class="content" style="width:100%;">
 	              <br>
 	              <h1 class="tit_5">경과분담금 및 손해금액 현황 <button class='btn btn_excel' onclick="excelDown()" type="button" style="float:right;">엑셀다운로드</a></button></h1>  
 	              <form id="listFrm" name="listFrm" method="post">
 	                <!-- 검색조건 -->
-	                <div class="condition2">
-<!--	                  <span class="lb ml20">지부</span>-->
+	                <div class="condition2"> 
+					  <div class="srch_wrap">
+					  	<!--	                  <span class="lb ml20">지부</span>-->
 	                  		<input type='hidden' name='JIBUNM' id='JIBUNM' maxlength='10' style="width:70px;" class='f_date' value="${searchData.groupNm}" readonly />
 	                  		<input type='hidden' name='JIBU' id='JIBU' maxlength='10' style="width:70px;" class='f_date' value="${searchData.groupId}" readonly />
 <!--	                  <span class="lb ml20">사업자번호</span>-->
 	                  		<input type='hidden' name='SAUP' id='SAUP' maxlength='15' class='f_date' style="width:200px;" value="${searchData.bizNo}" readonly />
-	                  <!--<input type='hidden' name='JOCODE' id='JOCODE' maxlength='15' class='f_date' style="width:200px;" value="${searchData.johapcode}" readonly />-->
-	                  <span class="lb ml20">조합명 : </span>
-	                 	 <input type='text' name='JOHAP' id='JOHAP' maxlength='15' class='f_text' style="width:150px; outline:none;" value="${searchData.companyName}"  readonly />
-					  <span class="lb ml20">조합원코드 :</span>
-<!--					 	<input type='text' name='JOCODE' id='JOCODE' maxlength='6' class='f_text' style="width:85px; outline:none;" value="${searchData.johapcode}" readonly/>-->
-					 	<input type='text' name='JOCODE' id='JOCODE' maxlength='6' class='f_text' style="width:85px; outline:none;" value="${searchData.johapcode}" readonly/>
-					  <span class="lb ml20" >당해년도</span>
-	                  	<input type='text' name='FYY' id='FYY' class='f_date' maxlength='4' style="width:80px;" /*onmouseover="style='cursor:pointer'"*/ oninput="maxLengthCheck(this); " />년 
-					  
-						
-						&nbsp;&nbsp;&nbsp; 
-					  <button class='item btn btn_blue_46 w_100' onclick="doAction('search')" type="button">조회</a></button>
-					 
-					  
+		                  <!--<input type='hidden' name='JOCODE' id='JOCODE' maxlength='15' class='f_date' style="width:200px;" value="${searchData.johapcode}" readonly />-->
+		                  <div class="group">
+		                  		<span class="lb">조합명 : </span>
+		                 		<input type='text' name='JOHAP' id='JOHAP' maxlength='15' class='f_text' style="width:150px; outline:none;" value="${searchData.companyName}"  readonly />
+		                  </div>
+		                  <div class="group">
+							  <span class="lb">조합원코드 :</span>
+		<!--					 	<input type='text' name='JOCODE' id='JOCODE' maxlength='6' class='f_text' style="width:85px; outline:none;" value="${searchData.johapcode}" readonly/>-->
+							 	<input type='text' name='JOCODE' id='JOCODE' maxlength='6' class='f_text' style="width:85px; outline:none;" value="${searchData.johapcode}" readonly/>
+		                  </div>
+		                  <div class="group">
+						  <span class="lb" >당해년도</span>
+		                  	<input type='text' name='FYY' id='FYY' class='f_date' maxlength='4' style="width:80px;" /*onmouseover="style='cursor:pointer'"*/ oninput="maxLengthCheck(this); " />년	                  
+		                  </div>
+					  </div>
+					  <div class="srch_btn">
+					  	<button class='item btn btn_blue_46 w_100' onclick="doAction('search')" type="button">조회</a></button>
+					  </div>
 					   <input type='hidden' name='isAdminYn' id='isAdminYn'>
 					</div>
 					
 					<p style="text-align:right; font-weight:bold;">(단위: 원, %)</p>
 	                <!--// 검색조건 -->
 	                <div style='height:calc(100% - 177px)'>
-	                  <div id='sheetDiv' style='width:100%;height:420px'></div>
+	                  <div id='sheetDiv' class="sheetDiv1" style='width:100%;height:420px'></div>
 	                </div>
 					<br>
 <!--					1.합산손해율①은 순손해율②과 해당년도 사업비③를 합한 공제조합 경영실적을 판단하는 기준입니다.<br>-->

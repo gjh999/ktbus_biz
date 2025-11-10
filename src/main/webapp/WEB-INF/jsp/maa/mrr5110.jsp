@@ -74,31 +74,50 @@
 				  </h1>
 	              <!-- 검색조건 -->
 				  <form id ="listFrm" name="listFrm" method="post">
-	              <div class="condition2">
-<!--	                <span class="lb ml20">지부</span>-->
-	                <input type='hidden' name='JIBUNM' id='JIBUNM' maxlength='10' style="width:70px;" class='f_date' value="${searchData.groupNm}" readonly />
-					<input type='hidden' name='JIBU' id='JIBU' maxlength='10' style="width:70px;" class='f_date' value="${searchData.groupId}" readonly />
-<!--	                <span class="lb ml20">사업자번호</span>-->
-	                <input type='hidden' name='SAUP' id='SAUP' maxlength='15' class='f_date' style="width:200px;" value="${searchData.bizNo}" readonly />
-	                <span class="lb ml20">조합명</span>
-	                <input type='text' name='JOHAP' id='JOHAP' maxlength='15' class='f_text' style="width:150px; outline:none;" value="${searchData.companyName}" readonly />
-					<span class="lb ml20">조합원코드</span>
-					<input type='text' name='JOCODE' id='JOCODE' maxlength='6' class='f_text' style="width:85px;outline:none;" value="${searchData.johapcode}" readonly />
-	                <span class="lb ml20">기준일자</span>
-					<input type='hidden' name='FYMD' id='FYMD' class='f_date' maxlength="8" style="width:150px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onkeydown="maxLengthCheck(this)" /> 
-					<input type='text' name='TYMD' id='TYMD' class='f_date' maxlength="8" style="width:150px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onkeydown="maxLengthCheck(this)" />
-					&nbsp;&nbsp;&nbsp; 
-					<button class='item btn btn_blue_46 w_100' onclick="doAction('search')" type="button">조회</a></button>
-					&nbsp; ※ 기준일로부터 60일 전까지만 조회가 가능합니다.
-					<br>
-					  <span class="lb ml20">조회구분&nbsp;&nbsp;&nbsp;: </span>
+				  <div class="condition2">
+					  <div class="srch_wrap">
+					    <input type="hidden" name="JIBUNM" id="JIBUNM" maxlength="10" style="width:70px;" class="f_date" value="${searchData.groupNm}" readonly />
+					    <input type="hidden" name="JIBU" id="JIBU" maxlength="10" style="width:70px;" class="f_date" value="${searchData.groupId}" readonly />
+					    <input type="hidden" name="SAUP" id="SAUP" maxlength="15" class="f_date" style="width:200px;" value="${searchData.bizNo}" readonly />
+					    <input type="hidden" name="FYMD" id="FYMD" class="f_date" maxlength="8" style="width:150px;"
+					           oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g,'$1');"
+					           onkeydown="maxLengthCheck(this)" />
+					    <input type="hidden" name="isAdminYn" id="isAdminYn" />
+					
+					    <div class="group">
+					      <span class="lb ml20">조합명</span>
+					      <input type="text" name="JOHAP" id="JOHAP" maxlength="15" class="f_text"
+					             style="width:150px;outline:none;" value="${searchData.companyName}" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">조합원코드</span>
+					      <input type="text" name="JOCODE" id="JOCODE" maxlength="6" class="f_text"
+					             style="width:85px;outline:none;" value="${searchData.johapcode}" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">기준일자</span>
+					      <input type="text" name="TYMD" id="TYMD" class="f_date" maxlength="8" style="width:150px;"
+					             oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g,'$1');"
+					             onkeydown="maxLengthCheck(this)" />
+					    </div>
+					  </div>
+					
+					  <div class="srch_btn">
+					    <button class="item btn btn_blue_46 w_100" onclick="doAction('search')" type="button">조회</button>
+					    &nbsp; ※ 기준일로부터 60일 전까지만 조회가 가능합니다.
+					  </div>
+					  <div>
+					   <span class="lb ml20">조회구분&nbsp;&nbsp;&nbsp;: </span>
 					  	<input type='radio' name='GUBN' id='GUBN' class='f_button' value="0" /><span class="lb ml10">전체(해지포함)</span>
 						<input type='radio' name='GUBN' id='GUBN' class='f_button' value="1" /><span class="lb ml10">수납</span>
 						<input type='radio' name='GUBN' id='GUBN' class='f_button' value="2" checked/><span class="lb ml10">미납</span>
 						
 						
 						<input type='hidden' name='isAdminYn' id='isAdminYn'>
-	              </div>
+					  </div>
+					</div>
 	              <!-- 검색조건 -->
 	              <div style='height:calc(100% - 177px)'>
 	                <div id='sheetDiv' style='width:100%;height:550px'></div>

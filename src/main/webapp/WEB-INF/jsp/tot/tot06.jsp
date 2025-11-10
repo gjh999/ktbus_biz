@@ -71,26 +71,42 @@ border: 3px solid #555;
 	              <form id="listFrm" name="listFrm" method="post">
 	                <!-- 검색조건 -->
 	                <div class="condition2">
-<!--	              <span class="lb ml20">지부</span>-->
-	                  	<input type='hidden' name='JIBU' id='JIBU' maxlength='10' style="width:70px;" class='f_date' value="${searchData.groupNm}" readonly />
-<!--	              <span class="lb ml20">사업자번호</span>-->
-	                  	<input type='hidden' name='SAUP' id='SAUP' maxlength='15' class='f_date' style="width:200px;" value="${searchData.bizNo}" readonly />
-	                  <span class="lb ml20">조합명</span>
-	                  	<input type='text' name='JOHAP' id='JOHAP' maxlength='15' class='f_text' style="width:150px; outline:none;" value="${searchData.companyName}" readonly />
-	                  <span class="lb ml20">조합원코드</span>
-	                  	<input type='text' name='JOCODE' id='JOCODE' maxlength='15' class='f_text' style="width:85px; outline:none;" value="${searchData.johapcode}" readonly />
-	                  <span class="lb ml20">사고년월</span>
-	                  	<input type='text' name='FYM' id='FYM' class='f_date' maxlength='6' style="width:120px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  /> 
-					  &nbsp;&nbsp;&nbsp; 
-					  <button class='item btn btn_blue_46 w_100' onclick="doAction('search')" type="button">조회</a></button>
-					  &nbsp;※ 자차 과실율에 따라 자부담금 현황은 변경 될 수 있습니다.
-					  <br>
-	  					<span class="lb ml20">조회구분&nbsp;&nbsp;&nbsp;: </span>
-	  					  	<input type='radio' name='GUBN2' id='GUBN2' class='f_button' value="1" /><span class="lb ml10">수납</span>
-	  						<input type='radio' name='GUBN2' id='GUBN2' class='f_button' value="2" checked/><span class="lb ml10">미납(전체기간)</span>
-					 
-					  	<input type='hidden' name='isAdminYn' id='isAdminYn'>
-	                </div>
+					  <div class="srch_wrap">
+					    <input type="hidden" name="JIBU" id="JIBU" maxlength="10" style="width:70px;" class="f_date" value="${searchData.groupNm}" readonly />
+					    <input type="hidden" name="SAUP" id="SAUP" maxlength="15" class="f_date" style="width:200px;" value="${searchData.bizNo}" readonly />
+					    <input type="hidden" name="isAdminYn" id="isAdminYn" />
+					
+					    <div class="group">
+					      <span class="lb ml20">조합명</span>
+					      <input type="text" name="JOHAP" id="JOHAP" maxlength="15" class="f_text" style="width:150px; outline:none;" value="${searchData.companyName}" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">조합원코드</span>
+					      <input type="text" name="JOCODE" id="JOCODE" maxlength="15" class="f_text" style="width:85px; outline:none;" value="${searchData.johapcode}" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">사고년월</span>
+					      <input type="text" name="FYM" id="FYM" class="f_date" maxlength="6" style="width:120px;"
+					             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">조회구분 :</span>
+					      <input type="radio" name="GUBN2" id="GUBN2_1" class="f_button" value="1" />
+					      <span class="lb ml10">수납</span>
+					      <input type="radio" name="GUBN2" id="GUBN2_2" class="f_button" value="2" checked />
+					      <span class="lb ml10">미납(전체기간)</span>
+					    </div>
+					  </div>
+					
+					  <div class="srch_btn">
+					    <button class="item btn btn_blue_46 w_100" onclick="doAction('search')" type="button">조회</button>
+					    &nbsp;※ 자차 과실율에 따라 자부담금 현황은 변경 될 수 있습니다.
+					  </div>
+					</div>
+
                       <p style="text-align:right; font-weight:bold;">(단위: 원)</p>	
 					  <!--// 검색조건 -->
 	                <div style='height:calc(100% - 177px)'>

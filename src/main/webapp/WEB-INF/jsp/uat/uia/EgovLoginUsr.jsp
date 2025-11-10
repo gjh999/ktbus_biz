@@ -182,11 +182,14 @@ $(document).ready(function(){
 			                            </dl>
 
 			                            <div class="btn_a">
-											
-			                                <a href="#LINK" class="btn" onClick="actionLogin()">로그인</a>
-											<br/>											
-    			                            <a href="#LINK" class="btn" onClick="goRegiUsr();">회원가입</a>
+			                                <a href="#LINK" class="btn" onClick="actionLogin()">로그인</a>											
 			                            </div>
+			                            <div class="login_btn">
+											<a href="#" class="point" onClick="goRegiUsr();">회원가입</a>
+											<a href="#">아이디찾기</a>
+											<a href="#">비밀번호찾기</a>
+										</div>
+										<a href="#" class="line_btn">인증서 로그인 </a>
                                     </fieldset>
                                     <input type="hidden" name="message" value="<c:out value='${message}'/>" />
 		                            <input type="hidden" name="userSe" value="GNR"/>
