@@ -185,7 +185,7 @@ $(document).ready(function(){
 											
 			                                <a href="#LINK" class="btn" onClick="actionLogin()">로그인</a>
 											<br/>											
-    			                            <!--  <a href="#LINK" class="btn" onClick="goRegiUsr();">회원가입</a>  -->
+    			                            <a href="#LINK" class="btn" onClick="goRegiUsr();">회원가입</a>
 			                            </div>
                                     </fieldset>
                                     <input type="hidden" name="message" value="<c:out value='${message}'/>" />

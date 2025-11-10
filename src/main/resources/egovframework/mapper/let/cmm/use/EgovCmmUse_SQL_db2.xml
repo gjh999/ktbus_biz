@@ -26,7 +26,7 @@
     <select id="selectOgrnztIdDetail" parameterType="ComDefaultCodeVO" resultMap="CmmCodeDetail">
              
             SELECT 
-                IFNULL(#{tableNm}, '123')     CODE_ID, 
+                CAST(#{tableNm} AS VARCHAR(50)) AS CODE_ID, 
                 ORGNZT_ID     CODE, 
                 ORGNZT_NM     CODE_NM, 
                 ORGNZT_DC     CODE_DC
@@ -41,7 +41,7 @@
     <select id="selectGroupIdDetail" parameterType="ComDefaultCodeVO" resultMap="CmmCodeDetail">
              
             SELECT 
-                IFNULL(#{tableNm}, '123')     CODE_ID, 
+                CAST(#{tableNm} AS VARCHAR(50)) AS CODE_ID, 
                 GROUP_ID     CODE, 
                 GROUP_NM     CODE_NM, 
                 GROUP_DC     CODE_DC
