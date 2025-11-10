@@ -124,6 +124,10 @@ body {width:100%; /*max-width: 1440px; padding:0 20px;*/}
 	.footer .right_col {width:320px;}
 	.footer .mid .copy,
 	.footer .mid address {font-size:14px; line-height:1.2}
+	
+	.location {height:auto;}
+	.location ul li,
+	.location ul li a {font-size:12px;}
 }
 
 .all_menu {display: none; position: absolute; left: 0; top: 180px; width: 100%; border-bottom: 1px solid #ddd; z-index: 99;}
