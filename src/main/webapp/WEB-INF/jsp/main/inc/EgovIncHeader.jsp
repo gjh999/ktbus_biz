@@ -124,7 +124,7 @@ function fn_egov_modal_remove() {
 	                	<c:forEach var="subMenu" items="${list_menulist}" varStatus="status">
 	                	<c:if test="${upperMenu.menuNo == subMenu.upperMenuId}">
 	                		<c:if test="${subMenu.chkUrl == '/'}">
-	                		<h3>내부업무게시판관리</h3>
+	                		<h3>${subMenu.menuNm}</h3>
 	                		<ul>
 	                			<c:forEach var="subMenu2" items="${list_menulist}" varStatus="status">
 	                			<c:if test="${subMenu.menuNo == subMenu2.upperMenuId}">
