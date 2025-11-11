@@ -196,13 +196,31 @@
                                 
                                 <!-- 검색조건 -->
                                 <div class="condition2">
-                                    <label for="occurDate" class="item mr10">발생일자</label>
-                                    <input type="text" name="searchBgnDe" id="searchBgnDe" class="f_date" maxlength="10" value="<c:out value='${searchVO.searchBgnDe}'/>" title="시작일자입력" />&nbsp ~ &nbsp
-                                    <input type="text" name="searchEndDe" id="searchEndDe" class="f_date" maxlength="10" value="<c:out value='${searchVO.searchEndDe}'/>" title="종료일자입력" >
+								  <div class="srch_wrap">
+								    <div class="group">
+								      <label for="occurDate" class="item mr10">발생일자</label>
+								      <input type="text" name="searchBgnDe" id="searchBgnDe" class="f_date" maxlength="10"
+								             value="<c:out value='${searchVO.searchBgnDe}'/>" title="시작일자입력" />
+								      &nbsp; ~ &nbsp;
+								      <input type="text" name="searchEndDe" id="searchEndDe" class="f_date" maxlength="10"
+								             value="<c:out value='${searchVO.searchEndDe}'/>" title="종료일자입력" />
+								    </div>
+								  </div>
+								
+								  <div class="srch_btn">
+								    <a href="<c:url value='/sym/log/SelectLoginLogList.do'/>"
+								       class="item btn btn_blue_46 w_100 ml10"
+								       onclick="javascript:fn_egov_select_loginLog('1'); return false;">
+								       <spring:message code='button.inquire' />
+								    </a>
+								    <a href="#LINK"
+								       class="item btn btn_blue_46 w_100 ml10"
+								       onclick="document.frm.searchBgnDe.value=''; document.frm.searchEndDe.value=''; return false;">
+								       초기화
+								    </a>
+								  </div>
+								</div>
 
-                                    <a href="<c:url value='/sym/log/SelectLoginLogList.do'/>" class="item btn btn_blue_46 w_100 ml10" onclick="javascript:fn_egov_select_loginLog('1'); return false;"><spring:message code='button.inquire' /></a><!-- 조회 -->
-                                    <a href="#LINK" class="item btn btn_blue_46 w_100" onclick="document.frm.searchBgnDe.value=''; document.frm.searchEndDe.value=''; return false;">초기화</a><!-- 초기화 -->
-                                </div>
                                 <!--// 검색조건 -->
 
                                 <!-- 게시판 -->

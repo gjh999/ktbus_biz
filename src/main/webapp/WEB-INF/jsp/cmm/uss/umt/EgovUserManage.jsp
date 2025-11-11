@@ -167,28 +167,35 @@ function fnViewCheck(){
                                 
                                 <!-- 검색조건 -->
                                 <div class="condition">
-                                    <label class="item f_select" for="sbscrbSttus">
-                                        <select name="sbscrbSttus" id="sbscrbSttus" title="검색조건1-사용자상태">
-                                            <option value="0" <c:if test="${empty userSearchVO.sbscrbSttus || userSearchVO.sbscrbSttus == '0'}">selected="selected"</c:if> >상태(전체)</option>
-                                            <option value="A" <c:if test="${userSearchVO.sbscrbSttus == 'A'}">selected="selected"</c:if> >가입신청</option>
-                                            <option value="D" <c:if test="${userSearchVO.sbscrbSttus == 'D'}">selected="selected"</c:if> >삭제</option>
-                                            <option value="P" <c:if test="${userSearchVO.sbscrbSttus == 'P'}">selected="selected"</c:if> >승인</option>
-                                        </select>
-                                    </label>
-                                    <label class="item f_select" for="searchCondition">
-                                        <select name="searchCondition" id="searchCondition" title="검색조건2-검색어구분">
-                                            <option value="0" <c:if test="${userSearchVO.searchCondition == '0'}">selected="selected"</c:if> >ID</option>
-                                            <option value="1" <c:if test="${empty userSearchVO.searchCondition || userSearchVO.searchCondition == '1'}">selected="selected"</c:if> >Name</option>
-                                        </select>
-                                    </label>
-
-                                    <span class="item f_search">
-                                        <input class="f_input w_350" name="searchKeyword" title="검색어" type="text" value="<c:out value="${userSearchVO.searchKeyword}"/>" />
-                                        <button class="btn" type="submit" onclick="javascript:fnSearch(); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
-                                    </span>
-
-                                    <a href="#LINK" class="item btn btn_blue_46 w_100" onclick="javascript:fnDeleteUser(); return false;"><spring:message code="button.delete" /></a><!-- 삭제 -->
-                                    <a href="<c:url value='/uss/umt/user/EgovUserInsertView.do'/>" class="item btn btn_blue_46 w_100" onclick="fnAddUserView(); return false;"><spring:message code="button.create" /></a><!-- 등록 -->
+                                	<div class="cond_wrap">
+                                		<div class="group">
+	                                		<label class="item f_select" for="sbscrbSttus">
+	                                        <select name="sbscrbSttus" id="sbscrbSttus" title="검색조건1-사용자상태">
+	                                            <option value="0" <c:if test="${empty userSearchVO.sbscrbSttus || userSearchVO.sbscrbSttus == '0'}">selected="selected"</c:if> >상태(전체)</option>
+	                                            <option value="A" <c:if test="${userSearchVO.sbscrbSttus == 'A'}">selected="selected"</c:if> >가입신청</option>
+	                                            <option value="D" <c:if test="${userSearchVO.sbscrbSttus == 'D'}">selected="selected"</c:if> >삭제</option>
+	                                            <option value="P" <c:if test="${userSearchVO.sbscrbSttus == 'P'}">selected="selected"</c:if> >승인</option>
+	                                        </select>
+		                                    </label>
+		                                    <label class="item f_select" for="searchCondition">
+		                                        <select name="searchCondition" id="searchCondition" title="검색조건2-검색어구분">
+		                                            <option value="0" <c:if test="${userSearchVO.searchCondition == '0'}">selected="selected"</c:if> >ID</option>
+		                                            <option value="1" <c:if test="${empty userSearchVO.searchCondition || userSearchVO.searchCondition == '1'}">selected="selected"</c:if> >Name</option>
+		                                        </select>
+		                                    </label>
+	                                	</div>
+	                                	<div class="group">
+	                                		<span class="item f_search">
+		                                        <input class="f_input w_350" name="searchKeyword" title="검색어" type="text" value="<c:out value="${userSearchVO.searchKeyword}"/>" />
+		                                        <button class="btn" type="submit" onclick="javascript:fnSearch(); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
+		                                    </span>
+	                                		
+	                                	</div>
+	                                	<div class="group">
+		                                    <a href="#LINK" class="item btn btn_blue_46 w_100" onclick="javascript:fnDeleteUser(); return false;"><spring:message code="button.delete" /></a><!-- 삭제 -->
+		                                    <a href="<c:url value='/uss/umt/user/EgovUserInsertView.do'/>" class="item btn btn_blue_46 w_100" onclick="fnAddUserView(); return false;"><spring:message code="button.create" /></a><!-- 등록 -->
+	                                	</div> 
+                                	</div>                          
                                 </div>
                                 <!--// 검색조건 -->
 								

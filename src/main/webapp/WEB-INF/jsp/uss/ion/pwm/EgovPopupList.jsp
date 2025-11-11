@@ -236,19 +236,25 @@ $(document).ready(function(){
                                 
 									<form name="listForm" action="<c:url value='/uss/ion/pwm/listPopup.do'/>" method="post">
 									<!-- <span>가이드</span> -->
-									<div class="search_box" title="이 레이아웃은 하단 정보를 대한 검색 정보로 구성되어 있습니다."><!-- 이 레이아웃은 하단 정보를 대한 검색 정보로 구성되어 있습니다. -->
-										<span class="lb mr10">검색조건 : </span>
-										<label class="item f_select" for="searchCondition">
-	                                        <select id="searchCondition" name="searchCondition">
-												<option value='POPUP_SJ_NM' <c:if test="${searchCondition == 'POPUP_SJ_NM'}">selected</c:if>>팝업제목<!-- 팝업제목 -->
-												<option value='FILE_URL' <c:if test="${searchCondition == 'FILE_URL'}">selected</c:if>>팝업창URL</option><!-- 팝업창URL -->
-	    	                                </select>
-	                                    </label>
-										<span class="item f_search">
-	                                        <input class="f_input w_500" title="검색값입력" id="searchKeyword" name="searchKeyword" type="text" value="${searchKeyword}" maxlength="35" onkeypress="press(event);">
-	                                        <button class="btn" type="submit" onclick="fn_egov_search_PopupManage(); return false;">조회</button><!-- 조회 -->
-	                                    </span>	                                    
-	                                    <a href="/uss/ion/pwm/registPopup.do" class="item btn btn_blue_46 w_100" onclick="">등록</a>		
+									<div class="search_box cond_wrap" title="이 레이아웃은 하단 정보를 대한 검색 정보로 구성되어 있습니다."><!-- 이 레이아웃은 하단 정보를 대한 검색 정보로 구성되어 있습니다. -->
+										<div class="group">										
+											<span class="lb mr10">검색조건 : </span>
+											<label class="item f_select" for="searchCondition">
+		                                        <select id="searchCondition" name="searchCondition">
+													<option value='POPUP_SJ_NM' <c:if test="${searchCondition == 'POPUP_SJ_NM'}">selected</c:if>>팝업제목<!-- 팝업제목 -->
+													<option value='FILE_URL' <c:if test="${searchCondition == 'FILE_URL'}">selected</c:if>>팝업창URL</option><!-- 팝업창URL -->
+		    	                                </select>
+		                                    </label>
+										</div>
+										<div class="group">										
+											<span class="item f_search">
+		                                        <input class="f_input w_500" title="검색값입력" id="searchKeyword" name="searchKeyword" type="text" value="${searchKeyword}" maxlength="35" onkeypress="press(event);">
+		                                        <button class="btn" type="submit" onclick="fn_egov_search_PopupManage(); return false;">조회</button><!-- 조회 -->
+		                                    </span>	                                    
+										</div>
+										<div class="group">
+		                                    <a href="/uss/ion/pwm/registPopup.do" class="item btn btn_blue_46 w_100" onclick="">등록</a>		
+										</div>
 									</div>
 								<input name="popupId" type="hidden" value="">
 								<input name="pageIndex" type="hidden" value="<c:out value='${popupManageVO.pageIndex}'/>"/>

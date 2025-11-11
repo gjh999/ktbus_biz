@@ -264,6 +264,50 @@ function actionLogout()
 }
 
 </script>
+<script>
+$(document).ready(function() {
+  function isMobile() {
+    return window.innerWidth <= 1024;
+  }
+
+  $('.all_menu .inner > div h2').on('click', function() {
+    if (!isMobile()) return;
+
+    var $section = $(this).closest('div');
+    var $subMenu = $section.find('h3, h3 + ul');
+
+    if ($section.hasClass('open')) {
+      $section.removeClass('open');
+      $(this).removeClass('active');
+      $subMenu.stop(true, true).slideUp(250);
+    } 
+    else {
+      $('.all_menu .inner > div.open')
+        .removeClass('open')
+        .find('h3, h3 + ul')
+        .stop(true, true)
+        .slideUp(250);
+      $('.all_menu .inner > div h2.active').removeClass('active');
+
+      $section.addClass('open');
+      $(this).addClass('active');
+      $subMenu.stop(true, true).slideDown(250);
+    }
+  });
+
+  $(window).on('resize', function() {
+    if (!isMobile()) {
+      $('.all_menu .inner > div.open')
+        .removeClass('open')
+        .find('h3, h3 + ul')
+        .removeAttr('style');
+      $('.all_menu .inner > div h2.active').removeClass('active');
+      $('.all_menu .inner > div h3, .all_menu .inner > div h3 + ul').css('display', 'block');
+    }
+  });
+});
+</script>
+
 <!-- // Topmenu end -->
 
 <!-- Menu list -->

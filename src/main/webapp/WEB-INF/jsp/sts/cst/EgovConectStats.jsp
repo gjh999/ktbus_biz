@@ -230,30 +230,49 @@ function fn_egov_init_date(){
                                 <h2 class="tit_2">접속통계관리</h2>
                                 
                                 <!-- 검색조건 -->
-                                <div class="condition2">
-                                	
-                                	<input type="hidden" name="cal_url" value="<c:url value='/sym/cmm/EgovNormalCalPopup.do'/>" />
-				                    <input type="hidden" name="fromDate" value="${statsInfo.fromDate}" size="10"/>
-				                    <input type="hidden" name="toDate" value="${statsInfo.toDate}" size="10"/>
-                                	
-                                	<input type="text" name="searchBgnDe" id="searchBgnDe" class="f_date" maxlength="10" value="${searchVO.searchBgnDe}" title="시작일자입력" />&nbsp ~ &nbsp
-                                    <input type="text" name="searchEndDe" id="searchEndDe" class="f_date" maxlength="10" value="${searchVO.searchEndDe}" title="종료일자입력" >
-                                    
-                                    <label class="f_select ml20" for="PD">
-                                        <select id="PD" name="PD" class="select" onchange="fnChangePdKind();" title="기간구분 선택">
-                                            <option value="Y" selected="">연도별</option>
-                                            <option value="M">월별</option>
-                                            <option value="D">일별</option>
-                                          </select>
-                                    </label>
-                                    <label class="f_select" for="STKIND">
-                                        <select id="STKIND" name="STKIND" class="select" onchange="fnChangeStsKind();" title="통계구분">
-                                            <option value="SERVICE" selected="">서비스별</option>
-                                          </select>
-                                    </label>
+								<div class="condition2">
+								  <div class="srch_wrap">
+								    <input type="hidden" name="cal_url" value="<c:url value='/sym/cmm/EgovNormalCalPopup.do'/>" />
+								    <input type="hidden" name="fromDate" value="${statsInfo.fromDate}" size="10" />
+								    <input type="hidden" name="toDate" value="${statsInfo.toDate}" size="10" />
+								
+								    <div class="group">
+								      <span class="lb ml20">기간</span>
+								      <input type="text" name="searchBgnDe" id="searchBgnDe" class="f_date" maxlength="10"
+								             value="${searchVO.searchBgnDe}" title="시작일자입력" />
+								      &nbsp; ~ &nbsp;
+								      <input type="text" name="searchEndDe" id="searchEndDe" class="f_date" maxlength="10"
+								             value="${searchVO.searchEndDe}" title="종료일자입력" />
+								    </div>
+								
+								    <div class="group">
+								      <span class="lb ml20">기간구분</span>
+								      <label class="f_select" for="PD">
+								        <select id="PD" name="PD" class="select" onchange="fnChangePdKind();" title="기간구분 선택">
+								          <option value="Y" selected>연도별</option>
+								          <option value="M">월별</option>
+								          <option value="D">일별</option>
+								        </select>
+								      </label>
+								    </div>
+								
+								    <div class="group">
+								      <span class="lb ml20">통계구분</span>
+								      <label class="f_select" for="STKIND">
+								        <select id="STKIND" name="STKIND" class="select" onchange="fnChangeStsKind();" title="통계구분">
+								          <option value="SERVICE" selected>서비스별</option>
+								        </select>
+								      </label>
+								    </div>
+								  </div>
+								
+								  <div class="srch_btn">
+								    <a href="#LINK" class="item btn btn_blue_46 w_100 ml10" onclick="fnSearch(); return false;">
+								      <spring:message code="button.inquire" />
+								    </a>
+								  </div>
+								</div>
 
-                                    <a href="#LINK" class="item btn btn_blue_46 w_100 ml10" onclick="fnSearch(); return false;"><spring:message code='button.inquire' /></a><!-- 조회 -->
-                                </div>
                                 <!--// 검색조건 -->
 
                                 <!-- 게시판 -->

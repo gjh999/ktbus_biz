@@ -26,13 +26,34 @@
     /* Condition */
     .condition {padding: 25px; border: 1px solid #dde2e5; border-radius: 10px; font-size: 0; text-align: center;}
     .condition .item + .item {margin-left: 20px;}
+    
+    .condition > form {display:flex;justify-content: center;}
+	.condition .f_search {max-width: 350px; width: 100% !important;}
+	.condition .f_search input[type=text] { width: 100% !important;}
+	.cond_wrap {display:flex; gap:20px; flex-wrap:wrap;}
+	.cond_wrap .group {display:flex;}
+	
+	@media screen and (max-width:1024px) {
+		.condition .item + .item {margin:10px 0 0 0;}
+		.cond_wrap .item + .item {margin:0 0 0 10px;}
+		.condition > form {flex-direction:column}
+		.condition .f_search {max-width:100%;}
+		.condition > form  .btn_blue_46 {width:100% !important;}
+	}
+	@media screen and (max-width:768px) {
+		.cond_wrap {gap:10px;}
+		.cond_wrap .group {width:100%;}
+		.cond_wrap .group .f_search {width:100%;}
+		.cond_wrap .group .btn_blue_46,
+		.cond_wrap .group label {flex:1;}
+	} 
 
     .condition2 {padding: 15px 25px 15px 15px;border: 1px solid #dde2e5;border-radius: 10px;text-align: left;display:flex;align-items: center;gap:20px;flex-wrap:wrap;}
     .condition2 .item + .item {margin-left: 20px;}
     .condition2 .lb {display: inline-block; height: 46px; line-height: 46px; vertical-align: top;}
 	.condition2 .srch_wrap {display:flex; gap:20px; flex-wrap:wrap;}
 	.condition2 .f_date ~ img {width:16px;height: 16px;display: inline-block;vertical-align: middle;}
-
+	.condition2 .srch_btn{display:flex; align-items:center; gap:5px;}
     /* List */
     .board_list {border-top: 2px solid #222;}
     .board_list table {font-size: 16px; font-weight: 300;}
@@ -257,16 +278,18 @@
 	.d_cell {display: table-cell; text-align: center; vertical-align: middle; padding-top:3px;}
 	
 	#nttCn *{display:block; max-width : 100%; text-align: center;} 
-	
+
 @media screen and (max-width:768px){
 .condition2{gap:10px;margin-bottom:10px;}
 .condition2 .srch_wrap{gap:5px;}
-.condition2 .srch_btn{width:100%;}
+.condition2 .srch_btn{width:100%; flex-wrap:wrap;}
+.condition2 .srch_btn .srch_txt {width:100%;}
 .condition2 .srch_btn .btn_blue_46{width:100%!important;}
 .tit_1{font-size:22px;line-height:1;}
 .tit_5{display:flex;margin-bottom:10px;}
 .tit_5 .btn_excel:first-child {margin-left: auto}
 .btn_excel{margin-right:0;width:80px;}
+.condition2 .f_search input[type=text] {width:100% !important;}
 .f_search .btn{background-position:center;width:20px;background-size:100% auto;}
 .f_date,.f_button,.f_text,.condition2 .lb,.f_select,.f_search input[type=text],.condition2 .lb{height:32px;line-height:32px;font-size:14px;}
 .btn_blue_46{height:35px;line-height:36px;font-size:14px;}
@@ -274,7 +297,7 @@
 #sheetDiv{height:350px!important;}
 .f_select select{font-size:14px;}
 .board_list{overflow-x:scroll;}
-.board_list table{min-width:850px;}
+.board_list table{min-width:745px;}
 .board_list th{font-size:14px;padding:15px 0;}
 .board_list td{font-size:14px;padding:14px 0 16px;}
 .paging .btn a{width:32px;height:32px;}

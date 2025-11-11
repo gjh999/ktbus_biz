@@ -225,6 +225,13 @@
 		    font-size: 14px;
 		    padding: 10px;
 		}
+		@media screen and (max-width:768px) {
+			.tb_scroll {overflow-x:scroll}
+			.tb_scroll table {width:800px;}
+			.tb_scroll table td,
+			.tb_scroll table th {height:40px}
+		}
+		
 </style>
 </head>
 <body>
@@ -248,87 +255,108 @@
 	              
 	              <h1 class="tit_5">대폐차 신청</h1>
 	             
-				  <div class="condition2">
-  <!--	                <span class="lb ml20">지부</span>-->
-  	                <input type='hidden' name='JIBUNM' id='JIBUNM' maxlength='10' style="width:70px;" class='f_date' value="${searchData.groupNm}" readonly />
-  					<input type='hidden' name='JIBU' id='JIBU' maxlength='10' style="width:70px;" class='f_date' value="${searchData.groupId}" readonly />
-  <!--	                <span class="lb ml20">사업자번호</span>-->
-  	                <input type='hidden' name='SAUP' id='SAUP' maxlength='15' class='f_date' style="width:200px;" value="${searchData.bizNo}" readonly />
-  	                <span class="lb ml20">조합명</span>
-  	                <input type='text' name='JOHAP' id='JOHAP' maxlength='15' class='f_text' style="width:150px; outline:none;" value="${searchData.companyName}" readonly />
-  					<span class="lb ml20">조합원코드</span>
-  					<input type='text' name='JOCODE' id='JOCODE' maxlength='6' class='f_text' style="width:85px;outline:none;" value="${searchData.johapcode}" readonly />
-  	                <span class="lb ml20">해당년월</span>
-  					<input type='hidden' name='FYM' id='FYM' class='f_date' maxlength="6" style="width:150px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onkeydown="maxLengthCheck(this)" /> 
-  					<input type='text' name='TYM' id='TYM' class='f_date' maxlength="6" style="width:150px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onkeydown="maxLengthCheck(this)" />
-  					&nbsp;&nbsp;&nbsp; 
-  					<input type='hidden' name='isAdminYn' id='isAdminYn'>
-  	              </div>
+					<div class="condition2">
+					  <div class="srch_wrap">
+					    <input type="hidden" name="JIBUNM" id="JIBUNM" maxlength="10" style="width:70px;" class="f_date" value="${searchData.groupNm}" readonly />
+					    <input type="hidden" name="JIBU" id="JIBU" maxlength="10" style="width:70px;" class="f_date" value="${searchData.groupId}" readonly />
+					    <input type="hidden" name="SAUP" id="SAUP" maxlength="15" class="f_date" style="width:200px;" value="${searchData.bizNo}" readonly />
+					    <input type="hidden" name="FYM" id="FYM" class="f_date" maxlength="6" style="width:150px;"
+					           oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g,'$1');"
+					           onkeydown="maxLengthCheck(this)" />
+					    <input type="hidden" name="isAdminYn" id="isAdminYn" />
+					
+					    <div class="group">
+					      <span class="lb ml20">조합명</span>
+					      <input type="text" name="JOHAP" id="JOHAP" maxlength="15" class="f_text"
+					             style="width:150px;outline:none;" value="${searchData.companyName}" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">조합원코드</span>
+					      <input type="text" name="JOCODE" id="JOCODE" maxlength="6" class="f_text"
+					             style="width:85px;outline:none;" value="${searchData.johapcode}" readonly />
+					    </div>
+					
+					    <div class="group">
+					      <span class="lb ml20">해당년월</span>
+					      <input type="text" name="TYM" id="TYM" class="f_date" maxlength="6" style="width:150px;"
+					             oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g,'$1');"
+					             onkeydown="maxLengthCheck(this)" />
+					    </div>
+					  </div>
+					
+					  <div class="srch_btn">
+					    <button class="item btn btn_blue_46 w_100" onclick="doAction('search')" type="button">조회</button>
+					  </div>
+					</div>
+
 				  
 				  
 				  
 				  <form id="listFrm" name="listFrm" method="post">
-				  <table class="form-table">
-				    <tr>
-				      <th style="width: 15%;">차량번호</th>
-				      <td style="width: 15%;"><input type="text" name="MKCHNO" id="MKCHNO" maxlength='7' /></td>
-				      <th style="width: 15%;">업체명</th>
-				      <td style="width: 25%;"><input type="text" name="JOHAP" id="JOHAP" /></td>
-				      <th style="width: 15%;">대표자</th>
-				      <td style="width: 15%;"><input type="text" name="CEO" id="CEO" /></td>
-					  <th style="width: 15%;">생년월일</th>
-	  			      <td style="width: 15%;"><input type="text" name="BIRTH" id="BIRTH" /></td>
-				    </tr>
-				    <tr>
-				      <th>관할구청</th>
-				      <td><input type="text" name="WARD" id="WARD" /></td>
-				      <th>소재지</th>
-				      <td colspan="6"><input type="text" name="LOCATION" id="LOCATION" /></td>
-				    </tr>
-				    <tr>
-				      <th>사업종류</th>
-				      <td colspan="8"><input type="text" name="TYPE" id="TYPE" value="전세버스운송사업" readonly class="readonly-field" /></td>
-				    </tr>
-				    <tr>
-				      <th>변경내용</th>
-				      <td colspan="7"><input type="text" name="CHANGES" id="CHANGES" value="사업용 차량 (말소, 대차, 대체 택1) 등록" readonly class="readonly-field" /></td>
-				    </tr>
-				
-				    <tr>
-				      <th style="width: 10%;">구분</th>
-				      <th style="width: 15%;">차량번호</th>
-				      <th style="width: 12%;">차종</th>
-				      <th style="width: 12%;">차명</th>
-				      <th style="width: 10%;">년식</th>
-				      <th style="width: 10%;">정원</th>
-				      <th style="width: 16%;">차대번호</th>
-				      <th style="width: 15%;">사유</th>
-				    </tr>
-				    <tr>
-				      <th>변경전</th>
-				      <td><input type="text" name="VNUMBER1" id="VNUMBER1" /></td>
-				      <td><input type="text" name="CTYPE1" id="CTYPE1" /></td>
-				      <td><input type="text" name="CARNAME1" id="CARNAME1" /></td>
-				      <td><input type="text" name="MYEAR1" id="MYEAR1" /></td>
-				      <td><input type="text" name="CAPACITY1" id="CAPACITY1" /></td>
-				      <td><input type="text" name="VINUM1" id="VINUM1" /></td>
-				      <td><input type="text" name="REASON1" id="REASON1" /></td>
-				    </tr>
-				    <tr>
-				      <th>변경후</th>
-				      <td><input type="text" name="VNUMBER2" id="VNUMBER2" /></td>
-				      <td><input type="text" name="CTYPE2" id="CTYPE2" /></td>
-				      <td><input type="text" name="CARNAME2" id="CARNAME2" /></td>
-				      <td><input type="text" name="MYEAR2" id="MYEAR2" /></td>
-				      <td><input type="text" name="CAPACITY2" id="CAPACITY2" /></td>
-				      <td><input type="text" name="VINUM2" id="VINUM2" /></td>
-				      <td><input type="text" name="REASON2" id="REASON2" /></td>
-				    </tr>
-				    <tr>
-				      <th>사유</th>
-				      <td colspan="7"><input type="text" name="REASON3" id="REASON3" /></td>
-				    </tr>
-				  </table>
+				  <div class="tb_scroll">				  
+					  <table class="form-table">
+					    <tr>
+					      <th style="width: 15%;">차량번호</th>
+					      <td style="width: 15%;"><input type="text" name="MKCHNO" id="MKCHNO" maxlength='7' /></td>
+					      <th style="width: 15%;">업체명</th>
+					      <td style="width: 25%;"><input type="text" name="JOHAP" id="JOHAP" /></td>
+					      <th style="width: 15%;">대표자</th>
+					      <td style="width: 15%;"><input type="text" name="CEO" id="CEO" /></td>
+						  <th style="width: 15%;">생년월일</th>
+		  			      <td style="width: 15%;"><input type="text" name="BIRTH" id="BIRTH" /></td>
+					    </tr>
+					    <tr>
+					      <th>관할구청</th>
+					      <td><input type="text" name="WARD" id="WARD" /></td>
+					      <th>소재지</th>
+					      <td colspan="6"><input type="text" name="LOCATION" id="LOCATION" /></td>
+					    </tr>
+					    <tr>
+					      <th>사업종류</th>
+					      <td colspan="8"><input type="text" name="TYPE" id="TYPE" value="전세버스운송사업" readonly class="readonly-field" /></td>
+					    </tr>
+					    <tr>
+					      <th>변경내용</th>
+					      <td colspan="7"><input type="text" name="CHANGES" id="CHANGES" value="사업용 차량 (말소, 대차, 대체 택1) 등록" readonly class="readonly-field" /></td>
+					    </tr>
+					
+					    <tr>
+					      <th style="width: 10%;">구분</th>
+					      <th style="width: 15%;">차량번호</th>
+					      <th style="width: 12%;">차종</th>
+					      <th style="width: 12%;">차명</th>
+					      <th style="width: 10%;">년식</th>
+					      <th style="width: 10%;">정원</th>
+					      <th style="width: 16%;">차대번호</th>
+					      <th style="width: 15%;">사유</th>
+					    </tr>
+					    <tr>
+					      <th>변경전</th>
+					      <td><input type="text" name="VNUMBER1" id="VNUMBER1" /></td>
+					      <td><input type="text" name="CTYPE1" id="CTYPE1" /></td>
+					      <td><input type="text" name="CARNAME1" id="CARNAME1" /></td>
+					      <td><input type="text" name="MYEAR1" id="MYEAR1" /></td>
+					      <td><input type="text" name="CAPACITY1" id="CAPACITY1" /></td>
+					      <td><input type="text" name="VINUM1" id="VINUM1" /></td>
+					      <td><input type="text" name="REASON1" id="REASON1" /></td>
+					    </tr>
+					    <tr>
+					      <th>변경후</th>
+					      <td><input type="text" name="VNUMBER2" id="VNUMBER2" /></td>
+					      <td><input type="text" name="CTYPE2" id="CTYPE2" /></td>
+					      <td><input type="text" name="CARNAME2" id="CARNAME2" /></td>
+					      <td><input type="text" name="MYEAR2" id="MYEAR2" /></td>
+					      <td><input type="text" name="CAPACITY2" id="CAPACITY2" /></td>
+					      <td><input type="text" name="VINUM2" id="VINUM2" /></td>
+					      <td><input type="text" name="REASON2" id="REASON2" /></td>
+					    </tr>
+					    <tr>
+					      <th>사유</th>
+					      <td colspan="7"><input type="text" name="REASON3" id="REASON3" /></td>
+					    </tr>
+					  </table>
+				  </div>
 				  <div class="file-list" id="fileListArea">
 				  			      <div class="no-files" id="noFilesMsg">첨부된 파일이 없습니다.</div>
 				  			      <div id="fileItems"></div>

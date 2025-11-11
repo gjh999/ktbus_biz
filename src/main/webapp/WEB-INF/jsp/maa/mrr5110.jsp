@@ -106,7 +106,7 @@
 					
 					  <div class="srch_btn">
 					    <button class="item btn btn_blue_46 w_100" onclick="doAction('search')" type="button">조회</button>
-					    &nbsp; ※ 기준일로부터 60일 전까지만 조회가 가능합니다.
+					    <p class="srch_txt">※ 기준일로부터 60일 전까지만 조회가 가능합니다.</p>
 					  </div>
 					  <div>
 					   <span class="lb ml20">조회구분&nbsp;&nbsp;&nbsp;: </span>
