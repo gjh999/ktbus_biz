@@ -75,7 +75,37 @@ function fn_egov_modal_remove() {
         <div class="gnb">
             <ul>
                 <c:forEach var="result" items="${list_headmenu}" varStatus="status">
-                	<li><a href="#LINK" onclick="javascript:goMenuPage('<c:out value="${result.menuNo}"/>')" class='<c:if test="${result.menuOrdr >= 5}">manager</c:if>'><c:out value="${result.menuNm}"/></a></li>
+                	<li>
+                		<a href="#"class='dept_01 <c:if test="${result.menuOrdr >= 5}">manager</c:if>'><c:out value="${result.menuNm}"/></a>
+                		<!--  onclick="javascript:goMenuPage('<c:out value="${result.menuNo}"/>')"  -->
+                		<div class="subMenu">
+                			<button class="subClose"></button>
+                			<h3>서브 타이틀</h3>
+                			<ul>
+                				<li>
+                					<a href="#">샘플 텍스트</a>
+                				</li>
+                				<li>
+                					<a href="#">샘플 텍스트</a>
+                				</li>
+                				<li>
+                					<a href="#">샘플 텍스트</a>
+                				</li>
+                			</ul>
+                			<h3>서브 타이틀</h3>
+                			<ul>
+                				<li>
+                					<a href="#">샘플 텍스트</a>
+                				</li>
+                				<li>
+                					<a href="#">샘플 텍스트</a>
+                				</li>
+                				<li>
+                					<a href="#">샘플 텍스트</a>
+                				</li>
+                			</ul>
+                		</div>
+                	</li>
                 </c:forEach>
                 <c:if test="${fn:length(list_headmenu) == 0 }">
                 	<!-- <li>등록된 메뉴가 없습니다.</li> -->
@@ -124,7 +154,7 @@ function fn_egov_modal_remove() {
 	                	<c:forEach var="subMenu" items="${list_menulist}" varStatus="status">
 	                	<c:if test="${upperMenu.menuNo == subMenu.upperMenuId}">
 	                		<c:if test="${subMenu.chkUrl == '/'}">
-	                		<h3>${subMenu.menuNm}</h3>
+	                		<h3>내부업무게시판관리</h3>
 	                		<ul>
 	                			<c:forEach var="subMenu2" items="${list_menulist}" varStatus="status">
 	                			<c:if test="${subMenu.menuNo == subMenu2.upperMenuId}">
@@ -307,6 +337,49 @@ $(document).ready(function() {
   });
 });
 </script>
+<script>
+$(document).ready(function() {
+  const $gnb = $('.gnb');
+
+  // 1dept 클릭 시 open 토글
+  $gnb.on('click', '.dept_01', function(e) {
+    e.preventDefault();
+    const $link = $(this);
+    const isOpen = $link.hasClass('open');
+
+    // 모든 메뉴 닫기
+    $gnb.find('.dept_01.open').removeClass('open');
+
+    // 클릭한 메뉴가 닫혀 있으면 열기
+    if (!isOpen) {
+      $link.addClass('open');
+    }
+  });
+
+  // 1dept 마우스오버 시 open 추가 (자동 닫힘 없음)
+  $gnb.on('mouseenter', '.dept_01', function() {
+    const $link = $(this);
+    // 다른 메뉴 닫기
+    $gnb.find('.dept_01.open').not($link).removeClass('open');
+    $link.addClass('open');
+  });
+
+  // 닫기 버튼 클릭 시 닫기
+  $gnb.on('click', '.subClose', function(e) {
+    e.stopPropagation();
+    $(this).closest('li').find('.dept_01.open').removeClass('open');
+  });
+
+  // GNB 영역 외 클릭 시 닫기
+  $(document).on('click', function(e) {
+    if ($(e.target).closest('.gnb').length === 0) {
+      $gnb.find('.dept_01.open').removeClass('open');
+    }
+  });
+});
+</script>
+
+
 
 <!-- // Topmenu end -->
 
