@@ -402,28 +402,38 @@ $(document).ready(function() {
     $link.next('.submenu').remove();
     
     // Create new submenu HTML
-    let submenuHtml = '<div class="submenu"><ul>';
+    let submenuHtml = '<div class="submenu">';
     
     // Get the menuNo of the clicked link
     const targetMenuNo = $link.data('menu-no');
     
+    console.log(list_menulist);
+    
     const filteredSubMenus = list_menulist.filter(subMenu => subMenu.upperMenuId == targetMenuNo);
+    
+    console.log(filteredSubMenus);
     
     // Add filtered submenus to HTML
     filteredSubMenus.forEach(subMenu => {
-      submenuHtml += '<li><h3>' + subMenu.menuNm + '</h3>';
-      submenuHtml += '<ul>';
-      
-      // Check for sub-menu items
-      const subSubMenus = list_menulist.filter(subMenu2 => subMenu.menuNo == subMenu2.upperMenuId);
-      subSubMenus.forEach(subMenu2 => {
-        submenuHtml += '<li><a href="' + subMenu2.chkUrl + '">' + subMenu2.menuNm + '</a></li>';
-      });
-      
-      submenuHtml += '</ul></li>';
-    });
+	  if (subMenu.chkUrl === '/') {
+	    submenuHtml += '<h3>' + subMenu.menuNm + '</h3>';
+	    submenuHtml += '<ul>';
+		  
+		  // Check for sub-menu items
+		  const subSubMenus = list_menulist.filter(subMenu2 => subMenu.menuNo == subMenu2.upperMenuId);
+		  subSubMenus.forEach(subMenu2 => {
+		    submenuHtml += '<li><a href="' + subMenu2.chkUrl + '">' + subMenu2.menuNm + '</a></li>';
+		  });
+		submenuHtml += '</ul>';
+		  
+	  } else{
+		  submenuHtml += '<ul>';
+		  submenuHtml += '<li><a href="' + subMenu.chkUrl + '">' + subMenu.menuNm + '</a></li>';
+		  submenuHtml += '</ul>';
+	  }
+	});
     
-    submenuHtml += '</ul></div>';
+    submenuHtml += '</div>';
     
     // Append submenu after the clicked link
     $link.after(submenuHtml);
