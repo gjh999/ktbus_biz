@@ -27,6 +27,7 @@ body {width:100%; /*max-width: 1440px; padding:0 20px;*/}
 .gnb > ul > li > a.open ~ .submenu {opacity:1; visibility: visible;}
 .submenu h3 {font-size: 17px;font-weight:700;margin-bottom:10px;}
 .submenu h3 ~ h3 {margin-top:15px;}
+.submenu ul ~ ul {margin-top:5px;}
 .submenu ul li ~ li {margin-top:5px;}
 .submenu ul li a {color:#777; transition:.3s}
 .submenu ul li a:hover {color:#111; text-decoration:underline}
