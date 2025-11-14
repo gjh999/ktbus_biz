@@ -76,11 +76,14 @@ function fn_egov_modal_remove() {
             <ul>
                 <c:forEach var="result" items="${list_headmenu}" varStatus="status">
                 	<li>
-                		<a href="#"class='dept_01 <c:if test="${result.menuOrdr >= 5}">manager</c:if>'><c:out value="${result.menuNm}"/></a>
+                		<a href="#" data-menu-no='<c:out value="${result.menuNo}"/>' class='dept_01 <c:if test="${result.menuOrdr >= 5}">manager</c:if>'><c:out value="${result.menuNm}"/></a>
                 		<!--  onclick="javascript:goMenuPage('<c:out value="${result.menuNo}"/>')"  -->
                 		<div class="subMenu">
-                			<button class="subClose"></button>
-                			<h3>서브 타이틀</h3>
+                			<!-- <button class="subClose"></button> -->
+                			
+                			
+                			<!-- 
+                			<h3>서브 타이틀1</h3>
                 			<ul>
                 				<li>
                 					<a href="#">샘플 텍스트</a>
@@ -92,7 +95,7 @@ function fn_egov_modal_remove() {
                 					<a href="#">샘플 텍스트</a>
                 				</li>
                 			</ul>
-                			<h3>서브 타이틀</h3>
+                			<h3>서브 타이틀2</h3>
                 			<ul>
                 				<li>
                 					<a href="#">샘플 텍스트</a>
@@ -104,6 +107,7 @@ function fn_egov_modal_remove() {
                 					<a href="#">샘플 텍스트</a>
                 				</li>
                 			</ul>
+                			 -->
                 		</div>
                 	</li>
                 </c:forEach>
@@ -154,7 +158,7 @@ function fn_egov_modal_remove() {
 	                	<c:forEach var="subMenu" items="${list_menulist}" varStatus="status">
 	                	<c:if test="${upperMenu.menuNo == subMenu.upperMenuId}">
 	                		<c:if test="${subMenu.chkUrl == '/'}">
-	                		<h3>내부업무게시판관리</h3>
+	                		<h3>${subMenu.menuNm}</h3>
 	                		<ul>
 	                			<c:forEach var="subMenu2" items="${list_menulist}" varStatus="status">
 	                			<c:if test="${subMenu.menuNo == subMenu2.upperMenuId}">
@@ -353,6 +357,7 @@ $(document).ready(function() {
     // 클릭한 메뉴가 닫혀 있으면 열기
     if (!isOpen) {
       $link.addClass('open');
+      showSubMenu($link);
     }
   });
 
@@ -362,6 +367,7 @@ $(document).ready(function() {
     // 다른 메뉴 닫기
     $gnb.find('.dept_01.open').not($link).removeClass('open');
     $link.addClass('open');
+    showSubMenu($link);
   });
 
   // 닫기 버튼 클릭 시 닫기
@@ -376,6 +382,52 @@ $(document).ready(function() {
       $gnb.find('.dept_01.open').removeClass('open');
     }
   });
+  
+  // list_menulist 추출	
+  const list_menulist = [
+      <c:forEach var="menu" items="${list_menulist}">
+        {
+          menuNo: "${menu.menuNo}",
+          upperMenuId: "${menu.upperMenuId}",
+          chkUrl: "${menu.chkUrl}",
+          menuNm: "${menu.menuNm}"
+        }<c:if test="${!fn:contains(menu.menuNo, fn:length(list_menulist))}">,</c:if>
+      </c:forEach>
+    ];
+  
+  //subMenu 보이기
+  function showSubMenu($link) {
+
+    // Clear previous submenu
+    $link.next('.submenu').remove();
+    
+    // Create new submenu HTML
+    let submenuHtml = '<div class="submenu"><ul>';
+    
+    // Get the menuNo of the clicked link
+    const targetMenuNo = $link.data('menu-no');
+    
+    const filteredSubMenus = list_menulist.filter(subMenu => subMenu.upperMenuId == targetMenuNo);
+    
+    // Add filtered submenus to HTML
+    filteredSubMenus.forEach(subMenu => {
+      submenuHtml += '<li><h3>' + subMenu.menuNm + '</h3>';
+      submenuHtml += '<ul>';
+      
+      // Check for sub-menu items
+      const subSubMenus = list_menulist.filter(subMenu2 => subMenu.menuNo == subMenu2.upperMenuId);
+      subSubMenus.forEach(subMenu2 => {
+        submenuHtml += '<li><a href="' + subMenu2.chkUrl + '">' + subMenu2.menuNm + '</a></li>';
+      });
+      
+      submenuHtml += '</ul></li>';
+    });
+    
+    submenuHtml += '</ul></div>';
+    
+    // Append submenu after the clicked link
+    $link.after(submenuHtml);
+  }
 });
 </script>
 
