@@ -155,6 +155,31 @@ public class UserManageVO extends UserDefaultVO{
 	 * DN 값
 	 */	
 	private String subDn;
+	
+	/**
+	 * bizNo1 값
+	 */	
+	private String bizNo1;
+	
+	/**
+	 * bizNo2 값
+	 */	
+	private String bizNo2;
+	
+	/**
+	 * bizNo3 값
+	 */	
+	private String bizNo3;
+	
+	/**
+	 * corpNo1 값
+	 */	
+	private String corpNo1;
+	
+	/**
+	 * corpNo2 값
+	 */	
+	private String corpNo2;
 	/**
 	 * oldPassword attribute 값을  리턴한다.
 	 * @return String
@@ -616,6 +641,81 @@ public class UserManageVO extends UserDefaultVO{
 	 */
 	public void setSubDn(String subDn) {
 		this.subDn = subDn;
+	}
+	
+	/**
+	 * bizNo1 attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getBizNo1() {
+		return bizNo1;
+	}
+	/**
+	 * bizNo1 attribute 값을 설정한다.
+	 * @param bizNo1 String
+	 */
+	public void setBizNo1(String bizNo1) {
+		this.bizNo1 = bizNo1;
+	}
+	
+	/**
+	 * bizNo2 attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getBizNo2() {
+		return bizNo2;
+	}
+	/**
+	 * bizNo2 attribute 값을 설정한다.
+	 * @param bizNo2 String
+	 */
+	public void setBizNo2(String bizNo2) {
+		this.bizNo2 = bizNo2;
+	}
+	
+	/**
+	 * bizNo3 attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getBizNo3() {
+		return bizNo3;
+	}
+	/**
+	 * bizNo3 attribute 값을 설정한다.
+	 * @param bizNo3 String
+	 */
+	public void setBizNo3(String bizNo3) {
+		this.bizNo3 = bizNo3;
+	}
+	
+	/**
+	 * corpNo1 attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getCorpNo1() {
+		return corpNo1;
+	}
+	/**
+	 * corpNo1 attribute 값을 설정한다.
+	 * @param corpNo1 String
+	 */
+	public void setCorpNo1(String corpNo1) {
+		this.corpNo1 = corpNo1;
+	}
+	
+	/**
+	 * corpNo2 attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getCorpNo2() {
+		return corpNo2;
+	}
+	/**
+	 * corpNo2 attribute 값을 설정한다.
+	 * @param corpNo2 String
+	 */
+	public void setCorpNo2(String corpNo2) {
+		this.corpNo2 = corpNo2;
 	}
 	
 }
