@@ -37,6 +37,11 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/page.css">
 	<script src="${pageContext.request.contextPath}/js/jquery-1.11.2.min.js?v=1"></script>
 	<script src="${pageContext.request.contextPath}/js/ui.js"></script>
+	
+	<!-- 전자인증 모듈 설정 //-->
+	<link rel="stylesheet" type="text/css" href="/web/CC_WSTD_home/unisignweb/rsrc/css/certcommon.css?v=1">
+	<script type="text/javascript" src="/web/CC_WSTD_home/unisignweb/js/unisignwebclient.js?v=1"></script>
+	<script type="text/javascript" src="/web/ccc-sample-wstd/UniSignWeb_Multi_Init_Nim.js?v=1"></script>
 <script type="text/javascript">
 
 function actionLogin() {
@@ -53,6 +58,48 @@ function actionLogin() {
         //document.loginForm.action="<c:url value='/j_spring_security_check'/>";
         document.loginForm.submit();
     }
+}
+
+function SignDataNVerifyVID() 
+{
+	alert("인증서 로그인");
+
+	if (document.login_form.plainText.value == "")
+	{
+		alert("서명할 원문이 없습니다.");
+		return;
+	}
+	
+	if (document.login_form.ssn.value == "")
+	{
+		//alert("사업자등록번호 입력하여 주시기 바랍니다.");
+		$("#j_username").attr("placeholder","필수 입력사항입니다.");
+		document.login_form.ssn.focus();
+		return;
+	}
+	
+	var signedTextBox = "";
+	
+	unisign.SignDataNVerifyVID( document.login_form.plainText.value, null, document.login_form.ssn.value, 
+		function(rv, signedText, certAttrs)
+		{ 
+			document.login_form.signedText.value = signedText;
+			
+			if ( null === document.login_form.signedText.value || '' === document.login_form.signedText.value || false === rv )
+			{
+				unisign.GetLastError(
+					function(errCode, errMsg) 
+					{ 
+						alert('Error code : ' + errCode + '\n\nError Msg : ' + errMsg); 
+					}
+				);
+			} else {
+				//alert(certAttrs.subjectName);
+				//alert('인증서의 신원확인 검증에 성공하였습니다.');
+				Send();
+			}
+		} 
+	);
 }
 
 function setCookie (name, value, expires) {
@@ -116,9 +163,28 @@ function updateLoginType(value) {
 	
 
 $(document).ready(function(){
+	// 열기
+	$("#certLoginBtn").click(function() {
+	    $("#loginModal").fadeIn();
+	});
 	
+	// 닫기 (X 버튼)
+	$(".close").click(function() {
+	    $("#loginModal").fadeOut();
+	});
 	
-
+	// 인증서 로그인
+	$("#modalLogin").click(function() {
+		SignDataNVerifyVID();
+	});
+	
+	// 배경 클릭 시 닫기
+	$(document).mouseup(function(e) {
+	  const modal = $(".modal-content");
+	  if (!modal.is(e.target) && modal.has(e.target).length === 0) {
+	      $("#loginModal").fadeOut();
+	  }
+	});
 });
 
 
@@ -162,6 +228,7 @@ $(document).ready(function(){
 										<!-- 라디오 버튼 영역 -->
 								        <div id="loginType" class="center-top">
 											<!-- Radio Buttons -->
+										    <input type='radio' name='userType' value='partner' checked onclick="updateLoginType(this.value)"/> 조합
 										    <input type='radio' name='userType' value='member' checked onclick="updateLoginType(this.value)"/> 조합원
 										    <input type='radio' name='userType' value='user' onclick="updateLoginType(this.value)" /> 사용자
 								        </div>
@@ -186,10 +253,9 @@ $(document).ready(function(){
 			                            </div>
 			                            <div class="login_btn">
 											<a href="#" class="point" onClick="goRegiUsr();">회원가입</a>
-											<a href="#">아이디찾기</a>
 											<a href="#">비밀번호찾기</a>
 										</div>
-										<a href="#" class="line_btn">인증서 로그인 </a>
+										<a href="#" class="line_btn" id="certLoginBtn">인증서 로그인 </a>
                                     </fieldset>
                                     <input type="hidden" name="message" value="<c:out value='${message}'/>" />
 		                            <input type="hidden" name="userSe" value="GNR"/>
@@ -203,6 +269,18 @@ $(document).ready(function(){
                 </div>
             </div>
         </div>
+        
+        <!-- 팝업 배경 -->
+		<div id="loginModal" class="modal">
+		  <div class="modal-content">
+		    <span class="close">&times;</span>
+		    <h3>인증서 로그인</h3>
+		    <input type="text" title="사업자번호를 입력해 주세요" placeholder="사업자번호를 입력해 주세요" autofocus="" id="id2" name="id2" maxlength="10">
+		    <div class="btn_a">
+		    	<button class="btn" id="modalLogin">로그인</button>
+		    </div>
+		  </div>
+		</div>
 
         <!-- Footer -->
         <c:import url="/sym/mms/EgovFooter.do" />
@@ -223,5 +301,59 @@ $(document).ready(function(){
 .center-top input[type='radio'] {
     margin: 0 10px; /* 버튼 간의 간격 */
 }
+
+.modal {
+  display: none; 
+  position: fixed;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background: #fff;
+  width: 443px;
+  height: 200px;
+  padding: 20px;
+  margin: 15% auto;
+  border-radius: 8px;
+}
+
+.modal-content > h3 {
+text-align : center;
+}
+
+.modal-content > input {
+width : 100%;
+height : 50px;
+margin-top : 10px;
+margin-bottom : 10px;
+}
+
+.modal-content > button {
+	width : 100%;
+	height : 50px; 
+}
+
+.btn_a .btn {
+    width: 100%;
+    height: 50px;
+    margin-right: 12px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 50px;
+    background: #169bd5;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
 </style>
 </html>

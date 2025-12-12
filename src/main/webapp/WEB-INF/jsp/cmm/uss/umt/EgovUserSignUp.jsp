@@ -208,8 +208,8 @@ function updateLoginType(value, text) {
                                 <!-- 라디오 버튼 영역 -->
 						        <div id="loginType" class="center-top" style="margin-bottom : 10px;">
 									<!-- Radio Buttons -->
-								    <input type='radio' name='userType' value='partner' checked onclick="updateLoginType(this.value, '조합')"/> 조합
-								    <input type='radio' name='userType' value='member' onclick="updateLoginType(this.value, '조합원')" /> 조합원
+								    <input type='radio' name='userType' value='partner' onclick="updateLoginType(this.value, '조합')"/> 조합
+								    <input type='radio' name='userType' value='member' checked  onclick="updateLoginType(this.value, '조합원')" /> 조합원
 								    <input type='radio' name='userType' value='user' onclick="updateLoginType(this.value, '임직원 및 관리자')" /> 임직원 및 관리자
 						        </div>
 						        
@@ -247,7 +247,7 @@ function updateLoginType(value, text) {
                                         </tr>
                                         <tr>
                                         	<td class="lb">
-                                                <label for="bizNo">사업자등록번호</label>
+                                                <label for="bizNo">사업자번호</label>
                                             </td>
                                             <td>
                                                 <form:input path="bizNo1" id="bizNo1" title="bizNo1" class="f_txt w_70" maxlength="5" />
@@ -503,7 +503,7 @@ function updateLoginType(value, text) {
                                         </tr>
                                         <tr>
                                         	<td class="lb">
-                                                <label for="bizNo">사업자등록번호</label>
+                                                <label for="bizNo">사업자번호</label>
                                             </td>
                                             <td>
                                                 <form:input path="bizNo1" id="bizNo1" title="bizNo1" class="f_txt w_70" maxlength="5" />
@@ -759,7 +759,7 @@ function updateLoginType(value, text) {
                                         </tr>
                                         <tr>
                                         	<td class="lb">
-                                                <label for="bizNo">사업자등록번호</label>
+                                                <label for="bizNo">사업자번호</label>
                                             </td>
                                             <td>
                                                 <form:input path="bizNo1" id="bizNo1" title="bizNo1" class="f_txt w_70" maxlength="5" />
