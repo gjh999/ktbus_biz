@@ -144,27 +144,6 @@ function fn_egov_modal_remove() {
 	$('#modalPan').remove();
 }
 //-->
-
-function updateLoginType(value, text) {
-	// 'loginType'이라는 hidden input 값 변경
-	document.querySelector("input[name='loginType']").value = value;
-	
-	$("#loginTypeNm").text(text + " 가입");
-	
-	if(value == "partner"){
-		$("#partnerBoard").show();
-		$("#memberBoard").hide();
-		$("#userBoard").hide();	
-	} else if(value == "member"){
-		$("#partnerBoard").hide();
-		$("#memberBoard").show();
-		$("#userBoard").hide();
-	} else if(value == "user"){
-		$("#partnerBoard").hide();
-		$("#memberBoard").hide();
-		$("#userBoard").show();
-	}
-}
 </script>
 
 </head>
@@ -202,19 +181,11 @@ function updateLoginType(value, text) {
 								<!-- 우편번호검색 -->
 								<input type="hidden" name="zip_url" value="<c:url value='/sym/cmm/EgovCcmZipSearchPopup.do'/>" />
 
-                                <h1 class="tit_1">회원가입</h1>
+                                <h1 class="tit_1">업무 스템관리</h1>
 
-                                <h2 class="tit_2" id="loginTypeNm">조합 가입</h2>
-                                <!-- 라디오 버튼 영역 -->
-						        <div id="loginType" class="center-top" style="margin-bottom : 10px;">
-									<!-- Radio Buttons -->
-								    <input type='radio' name='userType' value='partner' onclick="updateLoginType(this.value, '조합')"/> 조합
-								    <input type='radio' name='userType' value='member' checked  onclick="updateLoginType(this.value, '조합원')" /> 조합원
-								    <input type='radio' name='userType' value='user' onclick="updateLoginType(this.value, '임직원 및 관리자')" /> 임직원 및 관리자
-						        </div>
-						        
+                                <h2 class="tit_2">회원가입</h2>
 
-                                <div id="partnerBoard" class="board_view2" >
+                                <div class="board_view2">
                                     <table>
                                         <colgroup>
                                             <col style="width: 160px;">
@@ -224,7 +195,7 @@ function updateLoginType(value, text) {
                                         </colgroup>
                                         <tr>
                                             <td class="lb">
-                                                <label for="emplyrId">조합아이디(partner)</label>
+                                                <label for="emplyrId">사용자아이디</label>
                                                 <span class="req">필수</span>
                                             </td>
                                             <td>
@@ -237,93 +208,12 @@ function updateLoginType(value, text) {
                                                 <form:errors path="emplyrId" />
                                             </td>
                                             <td class="lb">
-                                                <label for="emplyrNm">회원사명</label>
+                                                <label for="moblphonNo">핸드폰번호</label>
                                                 <span class="req">필수</span>
                                             </td>
                                             <td>
                                                 <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
                                                 <form:errors path="moblphonNo" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                        	<td class="lb">
-                                                <label for="bizNo">사업자번호</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="bizNo1" id="bizNo1" title="bizNo1" class="f_txt w_70" maxlength="5" />
-                                                <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input path="bizNo2" title="bizNo2" id="bizNo2" class="f_txt w_70" maxlength="5" />
-                                                <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input path="bizNo3" title="bizNo3" id="bizNo3" class="f_txt w_70" maxlength="5" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="areaNo">법인번호</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="corpNo1" id="corpNo1" title="corpNo1" class="f_txt w_70" maxlength="5" />
-                                                <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input path="corpNo2" title="corpNo2" id="corpNo2" class="f_txt w_70" maxlength="5" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emplyrNm">대표자명</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="emplyrNm">대표자 휴대폰번호</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="homeadres">주소</label>
-                                            </td>
-                                            <td>
-                                                <span class="f_search2 w_300">
-                                                    <form:input path="homeadres" id="zip_view" title="주소" maxlength="100" readonly="true" />
-                                                    <form:errors path="homeadres" />
-                                                    <form:hidden path="zip" />
-                                                    <button type="button" class="btn" onclick="fn_egov_ZipSearch();">조회</button>
-                                                </span>
-                                                <span class="f_txt_inner ml15">(우편번호)</span>
-                                                <form:errors path="zip" />
-                                                <br/>
-                                                <br/>
-                                                <form:input path="detailAdres" id="detailAdres" title="상세주소" class="f_txt w_full" maxlength="50" />
-                                                <form:errors path="detailAdres" />
-                                                <input name="zip_view" id="zip_view" type="hidden" title="우편번호" value="<c:out value='${userManageVO.zip}'/>" maxlength="8" readonly="readonly" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="detailAdres">상세주소</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="detailAdres" id="detailAdres" title="상세주소" class="f_txt w_full" maxlength="50" />
-                                                <form:errors path="detailAdres" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="offmTelno">사무실<br>전화번호</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="offmTelno" id="offmTelno" title="사무실전화번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="offmTelno" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="fxnum">팩스번호</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="fxnum" id="fxnum" title="팩스번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="fxnum" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -368,37 +258,24 @@ function updateLoginType(value, text) {
                                         </tr>
                                         <tr>
                                             <td class="lb">
-                                                <label for="emplyrNm">담당자명</label>
+                                                <label for="emplyrNm">이름</label>
                                                 <span class="req">필수</span>
                                             </td>
                                             <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
+                                                <input name="emplyrNm" id="emplyrNm" title="사용자이름" type="text" class="f_txt w_full" value="" maxlength="60" />
+                                                <form:errors path="emplyrNm" />
                                             </td>
                                             <td class="lb">
-                                                <label for="emplyrNm">담당자부서</label>
-                                                <span class="req">필수</span>
+                                                <label for="insttCode">소속기관</label>
                                             </td>
                                             <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emplyrNm">담당자 휴대폰번호</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="emailAdres">담당자 이메일주소</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="emailAdres" id="emailAdres" title="이메일주소" class="f_txt w_full" maxlength="50" />
-                                                <form:errors path="emailAdres" />
+                                                <label class="f_select w_full" for="insttCode">
+                                                    <form:select path="insttCode" id="insttCode" name="insttCode" title="소속기관">
+	                                                    <form:option value="" label="선택하세요"/>
+	                                                    <form:options items="${insttCode_result}" itemValue="code" itemLabel="codeNm"/>
+                                                    </form:select>
+                                                </label>
+                                                <form:errors path="insttCode" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -416,8 +293,7 @@ function updateLoginType(value, text) {
                                                 <form:errors path="orgnztId" />
                                             </td>
                                             <td class="lb">
-                                                <label for="ofcpsNm">부서1</label>
-                                                <span class="req">필수</span>
+                                                <label for="ofcpsNm">직위명</label>
                                             </td>
                                             <td>
                                                 <form:input path="ofcpsNm" id="ofcpsNm" title="직위명" class="f_txt w_full" maxlength="30" />
@@ -426,144 +302,21 @@ function updateLoginType(value, text) {
                                         </tr>
                                         <tr>
                                             <td class="lb">
-                                                <label for="ofcpsNm">부서2</label>
+                                                <label for="emailAdres">이메일주소</label>
                                             </td>
                                             <td>
-                                                <form:input path="ofcpsNm" id="ofcpsNm" title="직위명" class="f_txt w_full" maxlength="30" />
-                                                <form:errors path="ofcpsNm" />
+                                                <form:input path="emailAdres" id="emailAdres" title="이메일주소" class="f_txt w_full" maxlength="50" />
+                                                <form:errors path="emailAdres" />
                                             </td>
                                             <td class="lb">
-                                                <label for="ofcpsNm">부서3</label>
+                                                <label for="areaNo">집전화<br>지역번호</label>
                                             </td>
                                             <td>
-                                                <form:input path="ofcpsNm" id="ofcpsNm" title="직위명" class="f_txt w_full" maxlength="30" />
-                                                <form:errors path="ofcpsNm" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emplyrSttusCode">사용자상태<br>코드</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <label class="f_select w_full" for="emplyrSttusCode">
-                                                    <form:select path="emplyrSttusCode" id="emplyrSttusCode" name="emplyrSttusCode" title="사용자상태코드">
-			                                            <option value="A" selected>회원 가입 신청 상태</option>
-                                                    </form:select>
-                                                </label>
-                                                <form:errors path="emplyrSttusCode" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="groupId">그룹아이디</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <label class="f_select w_full" for="groupId">
-                                                    <form:select path="groupId" id="groupId" name="groupId" title="그룹아이디">
-	                                                    <form:option value="" label="선택하세요"/>
-	                                                    <form:options items="${groupId_result}" itemValue="code" itemLabel="codeNm"/>
-                                                    </form:select>
-                                                </label>
-                                                <form:errors path="groupId" />
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                
-                                <div id="memberBoard" class="board_view2" style="display:none;">
-                                    <table>
-                                        <colgroup>
-                                            <col style="width: 160px;">
-                                            <col style="width: auto;">
-                                            <col style="width: 160px;">
-                                            <col style="width: auto;">
-                                        </colgroup>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emplyrId">조합원아이디(member)</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <span class="f_search2 w_300">
-                                                    <input type="text" maxlength="20" disabled="disabled" id="id_view" name="id_view" readonly="readonly">
-                                                    <form:input path="emplyrId" id="emplyrId" title="사용자아이디" maxlength="20" type="hidden" />
-                                                    <button type="button" class="btn" onclick="fnIdCheck();">조회</button>
-                                                </span>
-                                                <span class="f_txt_inner ml10">(중복체크)</span>
-                                                <form:errors path="emplyrId" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="emplyrNm">회원사명</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                        	<td class="lb">
-                                                <label for="bizNo">사업자번호</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="bizNo1" id="bizNo1" title="bizNo1" class="f_txt w_70" maxlength="5" />
+                                                <form:input path="areaNo" id="areaNo" title="areaNo" class="f_txt w_70" maxlength="5" />
+                                                <span class="f_txt_inner mr5 ml5" title="전화번호 첫번째">-</span>
+                                                <form:input path="homemiddleTelno" title="homemiddleTelno" id="homemiddleTelno" class="f_txt w_70" maxlength="5" />
                                                 <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input path="bizNo2" title="bizNo2" id="bizNo2" class="f_txt w_70" maxlength="5" />
-                                                <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input path="bizNo3" title="bizNo3" id="bizNo3" class="f_txt w_70" maxlength="5" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="areaNo">법인번호</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="corpNo1" id="corpNo1" title="corpNo1" class="f_txt w_70" maxlength="5" />
-                                                <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input path="corpNo2" title="corpNo2" id="corpNo2" class="f_txt w_70" maxlength="5" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emplyrNm">대표자명</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="emplyrNm">대표자 휴대폰번호</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="homeadres">주소</label>
-                                            </td>
-                                            <td>
-                                                <span class="f_search2 w_300">
-                                                    <form:input path="homeadres" id="zip_view" title="주소" maxlength="100" readonly="true" />
-                                                    <form:errors path="homeadres" />
-                                                    <form:hidden path="zip" />
-                                                    <button type="button" class="btn" onclick="fn_egov_ZipSearch();">조회</button>
-                                                </span>
-                                                <span class="f_txt_inner ml15">(우편번호)</span>
-                                                <form:errors path="zip" />
-                                                <br/>
-                                                <br/>
-                                                <form:input path="detailAdres" id="detailAdres" title="상세주소" class="f_txt w_full" maxlength="50" />
-                                                <form:errors path="detailAdres" />
-                                                <input name="zip_view" id="zip_view" type="hidden" title="우편번호" value="<c:out value='${userManageVO.zip}'/>" maxlength="8" readonly="readonly" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="detailAdres">상세주소</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="detailAdres" id="detailAdres" title="상세주소" class="f_txt w_full" maxlength="50" />
-                                                <form:errors path="detailAdres" />
+                                                <form:input path="homeendTelno" title="homeendTelno" id="homeendTelno" class="f_txt w_70" maxlength="5" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -584,219 +337,6 @@ function updateLoginType(value, text) {
                                         </tr>
                                         <tr>
                                             <td class="lb">
-                                                <label for="password">비밀번호</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:password path="password" id="password" title="비밀번호" class="f_txt w_full" maxlength="20" />
-                                                <form:errors path="password" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="password2">비밀번호확인</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <input name="password2" id="password2" title="비밀번호확인" type="password" class="f_txt w_full" maxlength="20" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="passwordHint">비밀번호힌트</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <label class="f_select w_full" for="passwordHint">
-                                                    <form:select path="passwordHint" id="passwordHint" name="passwordHint" title="비밀번호힌트">
-	                                                    <form:option value="" label="선택하세요"/>
-	                                                    <form:options items="${passwordHint_result}" itemValue="code" itemLabel="codeNm"/>
-                                                    </form:select>
-                                                </label>
-                                                <form:errors path="passwordHint" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="passwordCnsr">비밀번호정답</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="passwordCnsr" id="passwordCnsr" title="비밀번호정답" class="f_txt w_full" maxlength="100" />
-                                                <form:errors path="passwordCnsr" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emplyrNm">담당자명</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="emplyrNm">담당자부서</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emplyrNm">담당자 휴대폰번호</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="emailAdres">담당자 이메일주소</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="emailAdres" id="emailAdres" title="이메일주소" class="f_txt w_full" maxlength="50" />
-                                                <form:errors path="emailAdres" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="orgnztId">조직코드</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <label class="f_select w_full" for="orgnztId">
-                                                    <form:select path="orgnztId" id="orgnztId" name="orgnztId" title="부서">
-	                                                    <form:option value="" label="선택하세요"/>
-	                                                    <form:options items="${orgnztId_result}" itemValue="code" itemLabel="codeNm"/>
-                                                    </form:select>
-                                                </label>
-                                                <form:errors path="orgnztId" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="ofcpsNm">부서1</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="ofcpsNm" id="ofcpsNm" title="직위명" class="f_txt w_full" maxlength="30" />
-                                                <form:errors path="ofcpsNm" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="ofcpsNm">부서2</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="ofcpsNm" id="ofcpsNm" title="직위명" class="f_txt w_full" maxlength="30" />
-                                                <form:errors path="ofcpsNm" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="ofcpsNm">부서3</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="ofcpsNm" id="ofcpsNm" title="직위명" class="f_txt w_full" maxlength="30" />
-                                                <form:errors path="ofcpsNm" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emplyrSttusCode">사용자상태<br>코드</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <label class="f_select w_full" for="emplyrSttusCode">
-                                                    <form:select path="emplyrSttusCode" id="emplyrSttusCode" name="emplyrSttusCode" title="사용자상태코드">
-			                                            <option value="A" selected>회원 가입 신청 상태</option>
-                                                    </form:select>
-                                                </label>
-                                                <form:errors path="emplyrSttusCode" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="groupId">그룹아이디</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <label class="f_select w_full" for="groupId">
-                                                    <form:select path="groupId" id="groupId" name="groupId" title="그룹아이디">
-	                                                    <form:option value="" label="선택하세요"/>
-	                                                    <form:options items="${groupId_result}" itemValue="code" itemLabel="codeNm"/>
-                                                    </form:select>
-                                                </label>
-                                                <form:errors path="groupId" />
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                
-                                <div id="userBoard" class="board_view2" style="display:none;">
-                                    <table>
-                                        <colgroup>
-                                            <col style="width: 160px;">
-                                            <col style="width: auto;">
-                                            <col style="width: 160px;">
-                                            <col style="width: auto;">
-                                        </colgroup>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emplyrId">사용자아이디(user)</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <span class="f_search2 w_300">
-                                                    <input type="text" maxlength="20" disabled="disabled" id="id_view" name="id_view" readonly="readonly">
-                                                    <form:input path="emplyrId" id="emplyrId" title="사용자아이디" maxlength="20" type="hidden" />
-                                                    <button type="button" class="btn" onclick="fnIdCheck();">조회</button>
-                                                </span>
-                                                <span class="f_txt_inner ml10">(중복체크)</span>
-                                                <form:errors path="emplyrId" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="emplyrNm">회원사명</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                        	<td class="lb">
-                                                <label for="bizNo">사업자번호</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="bizNo1" id="bizNo1" title="bizNo1" class="f_txt w_70" maxlength="5" />
-                                                <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input path="bizNo2" title="bizNo2" id="bizNo2" class="f_txt w_70" maxlength="5" />
-                                                <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input path="bizNo3" title="bizNo3" id="bizNo3" class="f_txt w_70" maxlength="5" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="areaNo">법인번호</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="corpNo1" id="corpNo1" title="corpNo1" class="f_txt w_70" maxlength="5" />
-                                                <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input path="corpNo2" title="corpNo2" id="corpNo2" class="f_txt w_70" maxlength="5" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emplyrNm">대표자명</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="emplyrNm">대표자 휴대폰번호</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
                                                 <label for="homeadres">주소</label>
                                             </td>
                                             <td>
@@ -808,10 +348,6 @@ function updateLoginType(value, text) {
                                                 </span>
                                                 <span class="f_txt_inner ml15">(우편번호)</span>
                                                 <form:errors path="zip" />
-                                                <br/>
-                                                <br/>
-                                                <form:input path="detailAdres" id="detailAdres" title="상세주소" class="f_txt w_full" maxlength="50" />
-                                                <form:errors path="detailAdres" />
                                                 <input name="zip_view" id="zip_view" type="hidden" title="우편번호" value="<c:out value='${userManageVO.zip}'/>" maxlength="8" readonly="readonly" />
                                             </td>
                                             <td class="lb">
@@ -820,136 +356,6 @@ function updateLoginType(value, text) {
                                             <td>
                                                 <form:input path="detailAdres" id="detailAdres" title="상세주소" class="f_txt w_full" maxlength="50" />
                                                 <form:errors path="detailAdres" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="offmTelno">사무실<br>전화번호</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="offmTelno" id="offmTelno" title="사무실전화번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="offmTelno" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="fxnum">팩스번호</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="fxnum" id="fxnum" title="팩스번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="fxnum" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="password">비밀번호</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:password path="password" id="password" title="비밀번호" class="f_txt w_full" maxlength="20" />
-                                                <form:errors path="password" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="password2">비밀번호확인</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <input name="password2" id="password2" title="비밀번호확인" type="password" class="f_txt w_full" maxlength="20" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="passwordHint">비밀번호힌트</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <label class="f_select w_full" for="passwordHint">
-                                                    <form:select path="passwordHint" id="passwordHint" name="passwordHint" title="비밀번호힌트">
-	                                                    <form:option value="" label="선택하세요"/>
-	                                                    <form:options items="${passwordHint_result}" itemValue="code" itemLabel="codeNm"/>
-                                                    </form:select>
-                                                </label>
-                                                <form:errors path="passwordHint" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="passwordCnsr">비밀번호정답</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="passwordCnsr" id="passwordCnsr" title="비밀번호정답" class="f_txt w_full" maxlength="100" />
-                                                <form:errors path="passwordCnsr" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emplyrNm">담당자명</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="emplyrNm">담당자부서</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emplyrNm">담당자 휴대폰번호</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="emailAdres">담당자 이메일주소</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="emailAdres" id="emailAdres" title="이메일주소" class="f_txt w_full" maxlength="50" />
-                                                <form:errors path="emailAdres" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="orgnztId">조직코드</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <label class="f_select w_full" for="orgnztId">
-                                                    <form:select path="orgnztId" id="orgnztId" name="orgnztId" title="부서">
-	                                                    <form:option value="" label="선택하세요"/>
-	                                                    <form:options items="${orgnztId_result}" itemValue="code" itemLabel="codeNm"/>
-                                                    </form:select>
-                                                </label>
-                                                <form:errors path="orgnztId" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="ofcpsNm">부서1</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input path="ofcpsNm" id="ofcpsNm" title="직위명" class="f_txt w_full" maxlength="30" />
-                                                <form:errors path="ofcpsNm" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="ofcpsNm">부서2</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="ofcpsNm" id="ofcpsNm" title="직위명" class="f_txt w_full" maxlength="30" />
-                                                <form:errors path="ofcpsNm" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="ofcpsNm">부서3</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="ofcpsNm" id="ofcpsNm" title="직위명" class="f_txt w_full" maxlength="30" />
-                                                <form:errors path="ofcpsNm" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -1000,7 +406,6 @@ function updateLoginType(value, text) {
 						        <input type="hidden" name="searchKeyword" value="<c:out value='${userSearchVO.searchKeyword}'/>"/>
 						        <input type="hidden" name="sbscrbSttus" value="<c:out value='${userSearchVO.sbscrbSttus}'/>"/>
 						        <input type="hidden" name="pageIndex" value="<c:out value='${userSearchVO.pageIndex}'/><c:if test="${userSearchVO.pageIndex eq null}">1</c:if>"/>
-						        <input type="hidden" name="loginType" value="partner"/>
 						        
 			                	</form:form>
                                 

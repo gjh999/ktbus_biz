@@ -552,4 +552,53 @@ public class EgovMberManageController {
 
 		return "cmm/uss/umt/EgovIdDplctCnfirm";
 	}
+	
+	/**
+	 * 입력한 사용자아이디의 중복확인화면 이동
+	 * @param model 화면모델
+	 * @return cmm/uss/umt/EgovIdDplctCnfirm
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/uss/umt/user/EgovIdNmcbCnfirmView.do")
+	public String checkIdNmcb(ModelMap model) throws Exception {
+		/*
+		 * // 미인증 사용자에 대한 보안처리 Boolean isAuthenticated =
+		 * EgovUserDetailsHelper.isAuthenticated(); if(!isAuthenticated) {
+		 * model.addAttribute("message",
+		 * egovMessageSource.getMessage("fail.common.login")); return
+		 * "uat/uia/EgovLoginUsr"; }
+		 */
+		model.addAttribute("checkId", "");
+		model.addAttribute("usedCnt", "-1");
+		return "cmm/uss/umt/EgovIdNmcbCnfirm";
+	}
+
+	/**
+	 * 입력한 사용자아이디의 중복여부를 체크하여 사용가능여부를 확인
+	 * @param commandMap 파라메터전달용 commandMap
+	 * @param model 화면모델
+	 * @return cmm/uss/umt/EgovIdDplctCnfirm
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/uss/umt/cmm/EgovIdNmcbCnfirm.do")
+	public String checkIdNmcb(@RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {
+		/*
+		 * // 미인증 사용자에 대한 보안처리 Boolean isAuthenticated =
+		 * EgovUserDetailsHelper.isAuthenticated(); if(!isAuthenticated) {
+		 * model.addAttribute("message",
+		 * egovMessageSource.getMessage("fail.common.login")); return
+		 * "uat/uia/EgovLoginUsr"; }
+		 */
+		String checkId = (String) commandMap.get("checkId");
+		checkId = new String(checkId.getBytes("ISO-8859-1"), "UTF-8");
+
+		if (checkId == null || checkId.equals(""))
+			return "forward:/uss/umt/EgovIdNmcbCnfirmView.do";
+
+		int usedCnt = mberManageService.checkIdDplct(checkId);
+		model.addAttribute("usedCnt", usedCnt);
+		model.addAttribute("checkId", checkId);
+
+		return "cmm/uss/umt/EgovIdNmcbCnfirm";
+	}
 }

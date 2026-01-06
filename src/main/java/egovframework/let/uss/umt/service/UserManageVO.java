@@ -157,19 +157,19 @@ public class UserManageVO extends UserDefaultVO{
 	private String subDn;
 	
 	/**
-	 * bizNo1 값
+	 * orgnztDescNm 값
 	 */	
-	private String bizNo1;
+	private String orgnztDescNm;
 	
 	/**
-	 * bizNo2 값
+	 * jbgdNm 값
 	 */	
-	private String bizNo2;
+	private String jbgdNm;
 	
 	/**
-	 * bizNo3 값
+	 * jbpsNm 값
 	 */	
-	private String bizNo3;
+	private String jbpsNm;
 	
 	/**
 	 * corpNo1 값
@@ -180,6 +180,13 @@ public class UserManageVO extends UserDefaultVO{
 	 * corpNo2 값
 	 */	
 	private String corpNo2;
+	
+	/**
+	 * 조합명
+	 */	
+	private String partnerNm;
+	
+	
 	/**
 	 * oldPassword attribute 값을  리턴한다.
 	 * @return String
@@ -644,48 +651,48 @@ public class UserManageVO extends UserDefaultVO{
 	}
 	
 	/**
-	 * bizNo1 attribute 값을  리턴한다.
+	 * orgnztDescNm attribute 값을  리턴한다.
 	 * @return String
 	 */
-	public String getBizNo1() {
-		return bizNo1;
+	public String getOrgnztDescNm() {
+		return orgnztDescNm;
 	}
 	/**
-	 * bizNo1 attribute 값을 설정한다.
-	 * @param bizNo1 String
+	 * orgnztDescNm attribute 값을 설정한다.
+	 * @param orgnztDescNm String
 	 */
-	public void setBizNo1(String bizNo1) {
-		this.bizNo1 = bizNo1;
+	public void setOrgnztDescNm(String orgnztDescNm) {
+		this.orgnztDescNm = orgnztDescNm;
 	}
 	
 	/**
-	 * bizNo2 attribute 값을  리턴한다.
+	 * jbgdNm attribute 값을  리턴한다.
 	 * @return String
 	 */
-	public String getBizNo2() {
-		return bizNo2;
+	public String getJbgdNm() {
+		return jbgdNm;
 	}
 	/**
-	 * bizNo2 attribute 값을 설정한다.
-	 * @param bizNo2 String
+	 * jbgdNm attribute 값을 설정한다.
+	 * @param jbgdNm String
 	 */
-	public void setBizNo2(String bizNo2) {
-		this.bizNo2 = bizNo2;
+	public void setJbgdNm(String jbgdNm) {
+		this.jbgdNm = jbgdNm;
 	}
 	
 	/**
-	 * bizNo3 attribute 값을  리턴한다.
+	 * jbpsNm attribute 값을  리턴한다.
 	 * @return String
 	 */
-	public String getBizNo3() {
-		return bizNo3;
+	public String getJbpsNm() {
+		return jbpsNm;
 	}
 	/**
-	 * bizNo3 attribute 값을 설정한다.
-	 * @param bizNo3 String
+	 * jbpsNm attribute 값을 설정한다.
+	 * @param jbpsNm String
 	 */
-	public void setBizNo3(String bizNo3) {
-		this.bizNo3 = bizNo3;
+	public void setJbpsNm(String jbpsNm) {
+		this.jbpsNm = jbpsNm;
 	}
 	
 	/**
@@ -716,6 +723,21 @@ public class UserManageVO extends UserDefaultVO{
 	 */
 	public void setCorpNo2(String corpNo2) {
 		this.corpNo2 = corpNo2;
+	}
+	
+	/**
+	 * partnerNm attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getPartnerNm() {
+		return partnerNm;
+	}
+	/**
+	 * partnerNm attribute 값을 설정한다.
+	 * @param partnerNm String
+	 */
+	public void setPartnerNm(String partnerNm) {
+		this.partnerNm = partnerNm;
 	}
 	
 }

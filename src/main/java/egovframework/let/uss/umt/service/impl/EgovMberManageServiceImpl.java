@@ -2,6 +2,8 @@ package egovframework.let.uss.umt.service.impl;
 
 import java.util.List;
 
+import egovframework.let.sec.rgm.service.AuthorGroup;
+import egovframework.let.sec.rgm.service.impl.AuthorGroupDAO;
 import egovframework.let.uss.umt.service.EgovMberManageService;
 import egovframework.let.uss.umt.service.MberManageVO;
 import egovframework.let.uss.umt.service.UserDefaultVO;
@@ -41,6 +43,10 @@ public class EgovMberManageServiceImpl extends EgovAbstractServiceImpl implement
 	/** egovUsrCnfrmIdGnrService */
 	@Resource(name="egovUsrCnfrmIdGnrService")
 	private EgovIdGnrService idgenService;
+	
+	/** authorGroupDAO */
+	@Resource(name="authorGroupDAO")
+	private AuthorGroupDAO authorGroupDAO;
 
 	/**
 	 * 사용자의 기본정보를 화면에서 입력하여 항목의 정합성을 체크하고 데이터베이스에 저장
@@ -50,14 +56,30 @@ public class EgovMberManageServiceImpl extends EgovAbstractServiceImpl implement
 	 */
 	@Override
 	public int insertMber(MberManageVO mberManageVO) throws Exception  {
+		
 		//고유아이디 셋팅
 		String uniqId = idgenService.getNextStringId();
 		mberManageVO.setUniqId(uniqId);
 		//패스워드 암호화
 		String pass = EgovFileScrty.encryptPassword(mberManageVO.getPassword(), mberManageVO.getMberId());
 		mberManageVO.setPassword(pass);
-
-		int result = mberManageDAO.insertMber(mberManageVO);
+		
+		int result = 0;
+		try {
+		    result = mberManageDAO.insertMber(mberManageVO);
+		    // 회원가입시 유저권한 매핑 테이블에도 넣어줘야함
+			AuthorGroup authorGroup = new AuthorGroup();
+			authorGroup.setUniqId(uniqId);
+			authorGroup.setMberTyCode("USR");
+			authorGroup.setAuthorCode("ROLE_USER_MEMBER");
+			authorGroupDAO.insertAuthorGroup(authorGroup);
+		} catch (NullPointerException e) { // NullPointerException 처리
+		    System.err.println("널 포인터 예외 발생: 데이터가 null일 수 있습니다.");
+		    e.printStackTrace();
+		} catch (Exception e) { // 기타 모든 예외 처리
+		    System.err.println("예상치 못한 에러 발생: " + e.getMessage());
+		    e.printStackTrace();
+		}
 		return result;
 	}
 

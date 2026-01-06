@@ -149,7 +149,7 @@ function goRegiUsr() {
     var userSe = document.loginForm.userSe.value;
     // 일반회원
     if (userSe == "GNR") {
-        document.loginForm.action="<c:url value='/uss/umt/user/EgovUserSignUpView.do'/>";
+        document.loginForm.action="<c:url value='/uss/umt/user/EgovUserSignUpSelect.do'/>";
         document.loginForm.submit();
     }else{
         alert("일반회원 가입만 허용됩니다.");

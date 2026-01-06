@@ -58,9 +58,11 @@
                 var focusField = null;
                 var i = 0;
                 var fields = new Array();
-                oRequired = new required();                                
+                oRequired = new required();    
+                console.log(form);
                 for (x in oRequired) {
-                var field = form[oRequired[x][0]];                 
+                var field = form[oRequired[x][0]];  
+                console.log("oRequired[x][0] = " + oRequired[x][0]);               
 
            if ((field.type == 'hidden' ||
                field.type == 'text' ||
@@ -126,6 +128,8 @@
            }
                 }
                 if (fields.length > 0) {
+                   console.log("fields = " + fields);
+                   console.log("focusField = " + focusField);
                    focusField.focus();
                    alert(fields.join('\n'));
                 }
@@ -229,6 +233,7 @@
                 oMaxLength = new maxlength();
                 for (x in oMaxLength) {
                     var field = form[oMaxLength[x][0]];
+                    console.log("oMaxLength[x][0] = " + oMaxLength[x][0]);
                     
                     if (field.type == 'text' ||
                         field.type == 'textarea') {

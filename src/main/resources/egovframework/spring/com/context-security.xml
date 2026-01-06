@@ -13,16 +13,25 @@
  	<security:http pattern="/resource/**" security="none"/>
  	<security:http pattern="\A/WEB-INF/jsp/.*\Z" request-matcher="regex" security="none"/>
  	<!-- 회원가입-->
+ 	<security:http pattern="/uss/umt/user/EgovMberSignUp.do" security="none"/>
  	<security:http pattern="/uss/umt/cmm/EgovMberSbscrbView.do" security="none"/>
  	<security:http pattern="/uss/umt/mber/EgovMberInsert.do" security="none"/>
  	<security:http pattern="/uss/umt/cmm/EgovStplatCnfirmMber.do" security="none"/>
  	<security:http pattern="/uss/umt/cmm/EgovMberIdDplctCnfirm.do" security="none"/>
  	<security:http pattern="/uss/umt/cmm/EgovMberSbscrb.do" security="none"/>
+ 	
+ 	
  	<!-- 유저가입-->
  	<security:http pattern="/uss/umt/user/EgovUserSignUpView.do" security="none"/>
  	<security:http pattern="/uss/umt/user/EgovUserSignUp.do" security="none"/>
+ 	<security:http pattern="/uss/umt/user/EgovUserSignUpSelect.do" security="none"/>
+ 	<security:http pattern="/uss/umt/user/EgovUserSignUpPartner.do" security="none"/>
+ 	<security:http pattern="/uss/umt/user/EgovUserSignUpMember.do" security="none"/>
+ 	<security:http pattern="/uss/umt/user/EgovUserSignUpUser.do" security="none"/>
  	<security:http pattern="/uss/umt/user/EgovIdDplctCnfirmView.do" security="none"/>
  	<security:http pattern="/uss/umt/cmm/EgovIdDplctCnfirm.do" security="none"/>
+ 	<security:http pattern="/uss/umt/user/EgovIdNmcbCnfirmView.do" security="none"/>
+ 	<security:http pattern="/uss/umt/cmm/EgovIdNmcbCnfirm.do" security="none"/>
  	<!-- 로그인-->
  	
 
