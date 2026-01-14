@@ -43,6 +43,7 @@ function setReturnValue(obj) {
 				if (callbackMethod != null) {
 					opener[callbackMethod](obj);
 				} else {
+					console.log("111");
 					opener.showModalDialogCallback(obj);
 				}
 			} catch (err) {
@@ -56,6 +57,7 @@ function setReturnValue(obj) {
 				if (callbackMethod != null) {
 					parent.opener[callbackMethod](obj);
 				} else {
+					console.log("222");
 					parent.opener.showModalDialogCallback(obj);
 				}
 			} catch (err) {

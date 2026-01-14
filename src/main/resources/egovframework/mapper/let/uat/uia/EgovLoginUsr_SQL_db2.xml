@@ -29,7 +29,7 @@
 		<result property="password" column="password" columnIndex="1"/>
 	</resultMap>
 	-->
-	<!-- 일반 로그인 -->
+	<!-- 일반 사용자 로그인 -->
 	<select id="loginDAO.actionLogin" resultMap="login">
 		<!-- <if test="userSe == &quot;USR&quot;"> -->
 			
@@ -48,12 +48,44 @@
              WHERE 1=1 
                AND A.ORGNZT_ID = B.ORGNZT_ID 
                AND EMPLYR_ID = #{id}
-               <if test="loginType != 'member'">
                AND PASSWORD = #{password}
-               </if>
                -- AND EMPLYR_STTUS_CODE = 'P'
 			
 		<!-- </if> -->
+	</select>
+	
+	<!-- 일반 회원 로그인 -->
+	<select id="loginDAO.actionLogin2" resultMap="login">
+		<!-- <if test="userSe == &quot;USR&quot;"> -->
+			
+            SELECT A.MBER_ID AS ID
+			     , A.MBER_NM AS name
+			     , A.PASSWORD AS PASSWORD
+			     , A.IHIDNUM AS ihidNum
+			     , A.MBER_EMAIL_ADRES AS email
+			     , 'GNR' AS userSe
+			     , '' AS orgnztId
+			     , A.ESNTL_ID AS uniqId
+			     , A.MBER_STTUS_CODE AS emplyrSttusCode
+			     , A.PARTNER_NM AS companyName
+			     , A.GROUP_ID AS groupId
+			FROM LETTNGNRLMBER A
+			WHERE 1=1
+			AND A.MBER_ID = #{id}
+			AND A.PASSWORD = #{password}
+			
+		<!-- </if> -->
+	</select>
+	
+	<!-- 조합 아이디 찾기 -->
+	<select id="loginDAO.searchPartnerId" resultMap="login">
+			
+            SELECT A.ENTRPRS_MBER_ID AS ID
+			     , A.CMPNY_NM AS name
+			FROM LETTNENTRPRSMBER A
+			WHERE 1=1
+			AND A.ENTRPRS_MBER_ID = #{id}
+			
 	</select>
 	
 	<!-- 인증서 로그인

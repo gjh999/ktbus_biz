@@ -13,6 +13,7 @@ import egovframework.let.sec.rgm.service.AuthorGroup;
 import egovframework.let.sec.rgm.service.EgovAuthorGroupService;
 import egovframework.let.uss.ion.pwm.service.PopupManageVO;
 import egovframework.let.uss.umt.service.EgovMberManageService;
+import egovframework.let.uss.umt.service.EgovPartnerManageService;
 import egovframework.let.uss.umt.service.EgovUserManageService;
 import egovframework.let.uss.umt.service.MberManageVO;
 import egovframework.let.uss.umt.service.PartnerManageVO;
@@ -68,6 +69,10 @@ public class EgovUserManageController {
 	/** mberManageService */
 	@Resource(name = "mberManageService")
 	private EgovMberManageService mberManageService;
+	
+	/** partnerManageService */
+	@Resource(name = "partnerManageService")
+	private EgovPartnerManageService partnerManageService;
 
 	/** cmmUseService */
 	@Resource(name = "EgovCmmUseService")
@@ -511,6 +516,71 @@ public class EgovUserManageController {
 			//userManageService.insertUser(mberManageVO);
 			
 			mberManageService.insertMber(mberManageVO);
+			
+			//Exception 없이 진행시 등록성공메시지
+			//model.addAttribute("resultMsg", "success.common.insert");
+			model.addAttribute("message", "회원가입에 성공하였습니다.\n승인대기중입니다.");
+		}
+		return "forward:/uat/uia/egovLoginUsr.do";
+	}
+	
+	/**
+	 * 사용자등록처리후 목록화면으로 이동한다.
+	 * @param userManageVO 사용자등록정보
+	 * @param bindingResult 입력값검증용 bindingResult
+	 * @param model 화면모델
+	 * @return forward:/uss/umt/user/EgovUserManage.do
+	 * @throws Exception
+	 */
+	@RequestMapping("/uss/umt/user/EgovPartnerSignUp.do")
+	public String insertMberSingUp(@ModelAttribute("mberManageVO") PartnerManageVO partnerManageVO, BindingResult bindingResult, Model model) throws Exception {
+
+		/*
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		// isAuthenticated = true;
+    	if(!isAuthenticated) {
+    		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+        	return "uat/uia/EgovLoginUsr";
+    	}
+    	*/
+
+		beanValidator.validate(partnerManageVO, bindingResult);
+		if (bindingResult.hasErrors()) {
+			ComDefaultCodeVO vo = new ComDefaultCodeVO();
+			//패스워드힌트목록을 코드정보로부터 조회
+			vo.setCodeId("COM022");
+			model.addAttribute("passwordHint_result", cmmUseService.selectCmmCodeDetail(vo)); //패스워트힌트목록
+
+			//성별구분코드를 코드정보로부터 조회
+			vo.setCodeId("COM014");
+			//List sexdstnCode_result = cmmUseService.selectCmmCodeDetail(vo);
+			model.addAttribute("sexdstnCode_result", cmmUseService.selectCmmCodeDetail(vo));
+
+			//사용자상태코드를 코드정보로부터 조회
+			vo.setCodeId("COM013");
+			model.addAttribute("emplyrSttusCode_result", cmmUseService.selectCmmCodeDetail(vo));
+
+			//소속기관코드를 코드정보로부터 조회 - COM025
+			vo.setCodeId("COM025");
+			model.addAttribute("insttCode_result", cmmUseService.selectCmmCodeDetail(vo));
+
+			//조직정보를 조회 - ORGNZT_ID정보
+			vo.setTableNm("LETTNORGNZTINFO");
+			model.addAttribute("orgnztId_result", cmmUseService.selectOgrnztIdDetail(vo));
+
+			//그룹정보를 조회 - GROUP_ID정보
+			vo.setTableNm("LETTNORGNZTINFO");
+			model.addAttribute("groupId_result", cmmUseService.selectGroupIdDetail(vo));
+			//return "forward:/uss/umt/user/EgovUserInsertView.do";
+			//return "cmm/uss/umt/EgovUserInsert";
+			return "cmm/uss/umt/EgovUserSignUp";
+		} else {
+			//userManageService.insertUser(mberManageVO);
+			
+			//mberManageService.insertMber(partnerManageVO);
+			
+			partnerManageService.insertPartner(partnerManageVO);
 			
 			//Exception 없이 진행시 등록성공메시지
 			//model.addAttribute("resultMsg", "success.common.insert");

@@ -3,6 +3,7 @@ package egovframework.let.uat.uia.service.impl;
 import egovframework.com.cmm.LoginVO;
 import egovframework.let.cmm.util.StringUtil;
 import egovframework.let.uat.uia.service.EgovLoginService;
+import egovframework.let.uss.umt.service.PartnerManageVO;
 import egovframework.let.utl.fcc.service.EgovNumberUtil;
 import egovframework.let.utl.fcc.service.EgovStringUtil;
 import egovframework.let.utl.sim.service.EgovFileScrty;
@@ -52,7 +53,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
     //private EgovSndngMailRegistService sndngMailRegistService;
 
     /**
-	 * 일반 로그인을 처리한다
+	 * 일반 사용자 로그인을 처리한다
 	 * @param vo LoginVO
 	 * @return LoginVO
 	 * @exception Exception
@@ -66,6 +67,34 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
 
     	// 2. 아이디와 암호화된 비밀번호가 DB와 일치하는지 확인한다.
     	LoginVO loginVO = loginDAO.actionLogin(vo);
+
+    	// 3. 결과를 리턴한다.
+    	if (loginVO != null && !loginVO.getId().equals("") && !loginVO.getPassword().equals("")) {
+    		return loginVO;
+    	} else {
+    		loginVO = new LoginVO();
+    	}
+    	
+    	System.out.println(" >>>> 리턴전... ");
+
+    	return loginVO;
+    }
+    
+    /**
+	 * 일반 회원 로그인을 처리한다
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+    @Override
+	public LoginVO actionLogin2(LoginVO vo) throws Exception {
+
+    	// 1. 입력한 비밀번호를 암호화한다.
+    	String enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), vo.getId());
+    	vo.setPassword(enpassword);
+
+    	// 2. 아이디와 암호화된 비밀번호가 DB와 일치하는지 확인한다.
+    	LoginVO loginVO = loginDAO.actionLogin2(vo);
 
     	// 3. 결과를 리턴한다.
     	if (loginVO != null && !loginVO.getId().equals("") && !loginVO.getPassword().equals("")) {
@@ -113,7 +142,53 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
 
     	return loginVO;
     }
+    
+    /**
+	 * nmcb 아이디로 정보를 조회한다.
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+    @Override
+	public PartnerManageVO nmcbSearch(LoginVO vo) throws Exception {
 
+    	// 1. 아이디로 nmcb 조합 ID를 조회한다.
+    	PartnerManageVO partnerVO = loginDAO2.nmcbSearch(vo); // nmcb.org
+    	
+    	// 2. 결과를 리턴한다.
+    	if (partnerVO != null && !partnerVO.getEntrprsMberId().equals("")) {
+    		return partnerVO;
+    	} else {
+    		partnerVO = new PartnerManageVO();
+    	}
+    	
+    	System.out.println(" >>>> 리턴전... ");
+
+    	return partnerVO;
+    }
+
+    /**
+	 * 조합 아이디를 찾는다.
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+    @Override
+	public LoginVO searchPartnerId(LoginVO vo) throws Exception {
+
+    	// 1. 이름, 이메일주소가 DB와 일치하는 사용자 ID를 조회한다.
+    	LoginVO loginVO = loginDAO.searchPartnerId(vo);
+
+    	// 2. 결과를 리턴한다.
+    	if (loginVO != null && !loginVO.getId().equals("")) {
+    		return loginVO;
+    	} else {
+    		loginVO = new LoginVO();
+    	}
+
+    	return loginVO;
+    }
+    
     /**
 	 * 아이디를 찾는다.
 	 * @param vo LoginVO
@@ -124,7 +199,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
 	public LoginVO searchId(LoginVO vo) throws Exception {
 
     	// 1. 이름, 이메일주소가 DB와 일치하는 사용자 ID를 조회한다.
-    	LoginVO loginVO = loginDAO.searchId(vo);
+    	LoginVO loginVO = loginDAO.searchPartnerId(vo);
 
     	// 2. 결과를 리턴한다.
     	if (loginVO != null && !loginVO.getId().equals("")) {

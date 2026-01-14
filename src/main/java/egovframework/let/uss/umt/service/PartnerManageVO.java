@@ -28,6 +28,41 @@ public class PartnerManageVO extends UserDefaultVO{
     private String oldPassword = "";
     
     /**
+	 * ENTRPRS_MBER_ID
+	 */
+	private String entrprsMberId;
+	
+	/**
+	 * 대표자명
+	 */
+	private String ceoNm;
+	
+	/**
+	 * 대표자 휴대폰번호
+	 */
+	private String ceoMoblphonNo;
+	
+	/**
+	 * 담담자명
+	 */
+	private String picNm;
+	
+	/**
+	 * 담당자부서명
+	 */
+	private String picDeptNm;
+	
+	/**
+	 * 담당자 휴대폰번호
+	 */
+	private String picMoblphonNo;
+	
+	/**
+	 * 담당자 이메일주소
+	 */
+	private String picEmailAdres;
+    
+    /**
 	 * 가입일
 	 */
 	private String sbscrbDe;
@@ -47,6 +82,10 @@ public class PartnerManageVO extends UserDefaultVO{
 	 * 생일
 	 */
 	private String brth;
+	/**
+	 * 주소
+	 */
+	private String adres;
 	/**
 	 * 상세주소
 	 */
@@ -115,6 +154,10 @@ public class PartnerManageVO extends UserDefaultVO{
 	 * 사무실전화번호
 	 */
 	private String offmTelno;
+	/**
+	 * 사무실팩스번호
+	 */
+	private String offmFaxno;
 	/**
 	 * 조직 ID
 	 */
@@ -186,6 +229,16 @@ public class PartnerManageVO extends UserDefaultVO{
 	 */	
 	private String partnerNm;
 	
+	/**
+	 * bizNo 값
+	 */	
+	private String bizNo;
+	
+	/**
+	 * corpNo 값
+	 */	
+	private String corpNo;
+	
 	
 	/**
 	 * oldPassword attribute 값을  리턴한다.
@@ -202,6 +255,105 @@ public class PartnerManageVO extends UserDefaultVO{
 		this.oldPassword = oldPassword;
 	}
 	/**
+	 * entrprsMberId attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getEntrprsMberId() {
+		return entrprsMberId;
+	}
+	/**
+	 * entrprsMberId attribute 값을 설정한다.
+	 * @param entrprsMberId String
+	 */
+	public void setEntrprsMberId(String entrprsMberId) {
+		this.entrprsMberId = entrprsMberId;
+	}
+	/**
+	 * ceoNm attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getCeoNm() {
+		return ceoNm;
+	}
+	/**
+	 * ceoNm attribute 값을 설정한다.
+	 * @param ceoNm String
+	 */
+	public void setCeoNm(String ceoNm) {
+		this.ceoNm = ceoNm;
+	}
+	/**
+	 * ceoMoblphonNo attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getCeoMoblphonNo() {
+		return ceoMoblphonNo;
+	}
+	/**
+	 * ceoMoblphonNo attribute 값을 설정한다.
+	 * @param ceoMoblphonNo String
+	 */
+	public void setCeoMoblphonNo(String ceoMoblphonNo) {
+		this.ceoMoblphonNo = ceoMoblphonNo;
+	}
+	/**
+	 * picNm attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getPicNm() {
+		return picNm;
+	}
+	/**
+	 * picNm attribute 값을 설정한다.
+	 * @param picNm String
+	 */
+	public void setPicNm(String picNm) {
+		this.picNm = picNm;
+	}
+	/**
+	 * picDeptNm attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getPicDeptNm() {
+		return picDeptNm;
+	}
+	/**
+	 * picDeptNm attribute 값을 설정한다.
+	 * @param picDeptNm String
+	 */
+	public void setPicDeptNm(String picDeptNm) {
+		this.picDeptNm = picDeptNm;
+	}
+	/**
+	 * picMoblphonNo attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getPicMoblphonNo() {
+		return picMoblphonNo;
+	}
+	/**
+	 * picMoblphonNo attribute 값을 설정한다.
+	 * @param picMoblphonNo String
+	 */
+	public void setPicMoblphonNo(String picMoblphonNo) {
+		this.picMoblphonNo = picMoblphonNo;
+	}
+	/**
+	 * picEmailAdres attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getPicEmailAdres() {
+		return picEmailAdres;
+	}
+	/**
+	 * picEmailAdres attribute 값을 설정한다.
+	 * @param picEmailAdres String
+	 */
+	public void setPicEmailAdres(String picEmailAdres) {
+		this.picEmailAdres = picEmailAdres;
+	}
+	
+	/**
 	 * sbscrbDe attribute 값을  리턴한다.
 	 * @return String
 	 */
@@ -215,6 +367,7 @@ public class PartnerManageVO extends UserDefaultVO{
 	public void setSbscrbDe(String sbscrbDe) {
 		this.sbscrbDe = sbscrbDe;
 	}
+	
 	/**
 	 * uniqId attribute 값을  리턴한다.
 	 * @return String
@@ -270,6 +423,20 @@ public class PartnerManageVO extends UserDefaultVO{
 	 */
 	public void setBrth(String brth) {
 		this.brth = brth;
+	}
+	/**
+	 * adres attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getAdres() {
+		return adres;
+	}
+	/**
+	 * adres attribute 값을 설정한다.
+	 * @param adres String
+	 */
+	public void setAdres(String adres) {
+		this.adres = adres;
 	}
 	/**
 	 * detailAdres attribute 값을  리턴한다.
@@ -510,6 +677,20 @@ public class PartnerManageVO extends UserDefaultVO{
 		this.offmTelno = offmTelno;
 	}
 	/**
+	 * offmFaxno attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getOffmFaxno() {
+		return offmFaxno;
+	}
+	/**
+	 * offmFaxno attribute 값을 설정한다.
+	 * @param offmFaxno String
+	 */
+	public void setOffmFaxno(String offmFaxno) {
+		this.offmFaxno = offmFaxno;
+	}
+	/**
 	 * orgnztId attribute 값을  리턴한다.
 	 * @return String
 	 */
@@ -738,6 +919,36 @@ public class PartnerManageVO extends UserDefaultVO{
 	 */
 	public void setPartnerNm(String partnerNm) {
 		this.partnerNm = partnerNm;
+	}
+	
+	/**
+	 * bizNo attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getBizNo() {
+		return bizNo;
+	}
+	/**
+	 * bizNo attribute 값을 설정한다.
+	 * @param bizNo String
+	 */
+	public void setBizNo(String bizNo) {
+		this.bizNo = bizNo;
+	}
+	
+	/**
+	 * corpNo attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getCorpNo() {
+		return corpNo;
+	}
+	/**
+	 * corpNo attribute 값을 설정한다.
+	 * @param corpNo String
+	 */
+	public void setCorpNo(String corpNo) {
+		this.corpNo = corpNo;
 	}
 	
 }

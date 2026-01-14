@@ -1,6 +1,7 @@
 package egovframework.let.uat.uia.service;
 
 import egovframework.com.cmm.LoginVO;
+import egovframework.let.uss.umt.service.PartnerManageVO;
 
 /**
  * 일반 로그인, 인증서 로그인을 처리하는 비즈니스 인터페이스 클래스
@@ -22,12 +23,20 @@ import egovframework.com.cmm.LoginVO;
 public interface EgovLoginService {
 	
 	/**
-	 * 일반 로그인을 처리한다
+	 * 일반 사용자 로그인을 처리한다
 	 * @param vo LoginVO
 	 * @return LoginVO
 	 * @exception Exception
 	 */
     LoginVO actionLogin(LoginVO vo) throws Exception;
+    
+    /**
+	 * 일반 회원 로그인을 처리한다
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+    LoginVO actionLogin2(LoginVO vo) throws Exception;
     
     /**
 	 * nmcb 일반 로그인을 처리한다
@@ -38,12 +47,28 @@ public interface EgovLoginService {
     LoginVO nmcbLogin(LoginVO vo) throws Exception;
     
     /**
+	 * nmcb 조합(파트너) 로그인을 처리한다
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+    PartnerManageVO nmcbSearch(LoginVO vo) throws Exception;
+    
+    /**
 	 * 아이디를 찾는다.
 	 * @param vo LoginVO
 	 * @return LoginVO
 	 * @exception Exception
 	 */
     LoginVO searchId(LoginVO vo) throws Exception;
+    
+    /**
+	 * 조합 아이디를 찾는다.
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+    LoginVO searchPartnerId(LoginVO vo) throws Exception;
     
     /**
 	 * 비밀번호를 찾는다.

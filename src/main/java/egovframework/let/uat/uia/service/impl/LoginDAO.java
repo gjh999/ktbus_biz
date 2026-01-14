@@ -27,13 +27,23 @@ import org.springframework.stereotype.Repository;
 public class LoginDAO extends EgovAbstractMapper {
 
 	/**
-	 * 일반 로그인을 처리한다
+	 * 일반 사용자 로그인을 처리한다
 	 * @param vo LoginVO
 	 * @return LoginVO
 	 * @exception Exception
 	 */
     public LoginVO actionLogin(LoginVO vo) throws Exception {
     	return (LoginVO)selectOne("loginDAO.actionLogin", vo);
+    }
+    
+    /**
+	 * 일반 회원 로그인을 처리한다
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+    public LoginVO actionLogin2(LoginVO vo) throws Exception {
+    	return (LoginVO)selectOne("loginDAO.actionLogin2", vo);
     }
 
     /**
@@ -45,6 +55,17 @@ public class LoginDAO extends EgovAbstractMapper {
     public LoginVO searchId(LoginVO vo) throws Exception {
 
     	return (LoginVO)selectOne("loginDAO.searchId", vo);
+    }
+    
+    /**
+	 * 아이디를 찾는다.
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+    public LoginVO searchPartnerId(LoginVO vo) throws Exception {
+
+    	return (LoginVO)selectOne("loginDAO.searchPartnerId", vo);
     }
 
     /**

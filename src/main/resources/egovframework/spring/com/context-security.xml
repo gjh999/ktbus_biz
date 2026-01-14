@@ -20,7 +20,6 @@
  	<security:http pattern="/uss/umt/cmm/EgovMberIdDplctCnfirm.do" security="none"/>
  	<security:http pattern="/uss/umt/cmm/EgovMberSbscrb.do" security="none"/>
  	
- 	
  	<!-- 유저가입-->
  	<security:http pattern="/uss/umt/user/EgovUserSignUpView.do" security="none"/>
  	<security:http pattern="/uss/umt/user/EgovUserSignUp.do" security="none"/>
@@ -32,9 +31,11 @@
  	<security:http pattern="/uss/umt/cmm/EgovIdDplctCnfirm.do" security="none"/>
  	<security:http pattern="/uss/umt/user/EgovIdNmcbCnfirmView.do" security="none"/>
  	<security:http pattern="/uss/umt/cmm/EgovIdNmcbCnfirm.do" security="none"/>
- 	<!-- 로그인-->
  	
-
+ 	<!-- 조합가입 -->
+ 	<security:http pattern="/uss/umt/user/EgovPartnerSignUp.do" security="none"/>
+ 	
+ 	<!-- 로그인-->
     <egov-security:config id="securityConfig"
         loginUrl="/uat/uia/actionSecurityLogin.do"
         logoutSuccessUrl="/uat/uia/egovLoginUsr.do"

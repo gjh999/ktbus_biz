@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mberManageDAO">
+<mapper namespace="partnerManageDAO">
 
 
     <resultMap id="stplatMap" type="egovframework.let.uss.umt.service.StplatVO">
@@ -74,55 +74,60 @@ FROM(
             </if>
     </select>
     
-    <insert id="insertMber_S">
+    <insert id="insertPartner_S">
         
-            INSERT INTO LETTNGNRLMBER 
-                (   
-                    ESNTL_ID          ,
-                    MBER_ID          ,
-                    MBER_NM          ,
-                    PASSWORD         ,
-                    PASSWORD_HINT    ,
-                    PASSWORD_CNSR    ,
-                    IHIDNUM          ,
-                    SEXDSTN_CODE     ,
-                    ZIP              ,
-                    ADRES            ,
-                    AREA_NO          ,
-                    MBER_STTUS       ,
-                    DETAIL_ADRES     ,
-                    END_TELNO        ,
-                    MBTLNUM      ,
-                    GROUP_ID         ,
-                    MBER_FXNUM       ,
-                    MBER_EMAIL_ADRES ,
-                    MIDDLE_TELNO     ,
-                    SBSCRB_DE        ,
-                    MBER_STTUS_CODE  ,
-                    ORGNZT_ID			)
-              VALUES(
-                    #{uniqId},
-                    #{mberId},
-                    #{mberNm},
-                    #{password},
-                    #{passwordHint},
-                    #{passwordCnsr},
-                    #{ihidnum},
-                    #{sexdstnCode},
-                    #{zip},
-                    #{adres},
-                    #{areaNo},
-                    #{mberSttus},
-                    #{detailAdres},
-                    #{endTelno},
-                    #{moblphonNo},
-                    'GROUP_00000000000000',
-                    #{mberFxnum},
-                    #{mberEmailAdres},
-                    #{middleTelno},
-                    NOW(),
-                    'A',  
-                    'ORGNZT_0000000000000')              
+            INSERT INTO LETTNENTRPRSMBER (
+			  ENTRPRS_MBER_ID
+			, ENTRPRS_SE_CODE
+			, BIZRNO
+			, JURIRNO
+			, CMPNY_NM
+			, CXFC
+			, ZIP
+			, ADRES
+			, ENTRPRS_MIDDLE_TELNO
+			, FXNUM
+			, INDUTY_CODE
+			, APPLCNT_NM
+			, APPLCNT_IHIDNUM
+			, SBSCRB_DE
+			, ENTRPRS_MBER_STTUS
+			, ENTRPRS_MBER_PASSWORD
+			, ENTRPRS_MBER_PASSWORD_HINT
+			, ENTRPRS_MBER_PASSWORD_CNSR
+			, GROUP_ID
+			, DETAIL_ADRES
+			, ENTRPRS_END_TELNO
+			, AREA_NO
+			, APPLCNT_EMAIL_ADRES
+			, ESNTL_ID
+			) VALUES (
+			 #{entrprsMberId}
+			 , 'ENT'
+			 , #{bizNo} 
+			 , #{corpNo1}
+			 , #{partnerNm}
+			 , ''
+			 , #{zip}
+			 , #{adres}
+			 , ''
+			 , #{offmFaxno}
+			 , ''
+			 , #{picNm}
+			 , ''
+			 , NOW()
+			 , 'A'
+			 , #{password}
+			 , #{passwordHint}
+			 , #{passwordCnsr}
+			 , #{groupId}
+			 , #{detailAdres}
+			 , ''
+			 , ''
+			 , #{picEmailAdres}
+			 , #{uniqId}
+			)
+             
         
     </insert>
     

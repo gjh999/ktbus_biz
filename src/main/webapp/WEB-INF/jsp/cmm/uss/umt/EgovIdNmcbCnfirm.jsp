@@ -47,16 +47,33 @@ function fnCheckId(){
     }
 }
 function fnReturnId(){
-	var retVal="";
+	var retVal = new Map();
     if (document.checkForm.usedCnt.value == 0){
-	    retVal = document.checkForm.resultId.value;
-	    parent.showModalDialogCallback(retVal);
-    }else if (document.checkForm.usedCnt.value == 1){
-        alert("이미사용중인 아이디입니다.");
+    	alert("존재하지 않는 아이디입니다.");
         return;
-    }else{
+    }else if (document.checkForm.usedCnt.value == 1){
+        alert("이미 사용중인 아이디입니다.");
+        return;
+    }else if (document.checkForm.usedCnt.value == -1){
     	alert("먼저 중복확인을 실행하십시오");
         return;
+    } else {
+    	retVal.set("resultId", document.checkForm.resultId.value);
+    	retVal.set("partnerNm", document.checkForm.partnerNm.value);
+    	retVal.set("ceoNm", document.checkForm.ceoNm.value);
+    	retVal.set("ceoMoblphonNo", document.checkForm.ceoMoblphonNo.value);
+    	retVal.set("offmTelno", document.checkForm.offmTelno.value);
+    	retVal.set("offmFaxno", document.checkForm.offmFaxno.value);
+    	retVal.set("picNm", document.checkForm.picNm.value);
+    	retVal.set("picMoblphonNo", document.checkForm.picMoblphonNo.value);
+    	retVal.set("picDeptNm", document.checkForm.picDeptNm.value);
+    	retVal.set("picEmailAdres", document.checkForm.picEmailAdres.value);
+    	retVal.set("bizNo1", document.checkForm.bizNo1.value);
+    	retVal.set("bizNo2", document.checkForm.bizNo2.value);
+    	retVal.set("bizNo3", document.checkForm.bizNo3.value);
+    	retVal.set("corpNo1", document.checkForm.corpNo1.value);
+    	retVal.set("corpNo2", document.checkForm.corpNo2.value);
+	    parent.showModalDialogCallback2(retVal);
     }
 }
 function fnClose(){
@@ -86,15 +103,29 @@ function fnCheckNotKorean(koreanStr){
     <div class="popup POP_DUPID_CONF">
         <div class="pop_inner">
             <div class="pop_header">
-                <h1>Nmcb 아이디 중복확인</h1>
+                <h1>Nmcb 아이디 조회하기</h1>
                 <button type="button" class="close" onclick="fnClose(); return false;">닫기</button>
             </div>
 
             <div class="pop_container">
                 <div class="box_1">
-                    <label for="mid">사용할 아이디</label>
+                    <label for="mid">조회할 아이디</label>
                     <input type="hidden" name="resultId" value="<c:out value="${checkId}"/>" />
                     <input type="hidden" name="usedCnt" value="<c:out value="${usedCnt}"/>" />
+                    <input type="hidden" name="partnerNm" value="<c:out value="${resultVO.partnerNm}"/>" />
+                    <input type="hidden" name="ceoNm" value="<c:out value="${resultVO.ceoNm}"/>" />
+                    <input type="hidden" name="ceoMoblphonNo" value="<c:out value="${resultVO.ceoMoblphonNo}"/>" />
+                    <input type="hidden" name="offmTelno" value="<c:out value="${resultVO.offmTelno}"/>" />
+                    <input type="hidden" name="offmFaxno" value="<c:out value="${resultVO.offmFaxno}"/>" />
+                    <input type="hidden" name="picNm" value="<c:out value="${resultVO.picNm}"/>" />
+                    <input type="hidden" name="picMoblphonNo" value="<c:out value="${resultVO.picMoblphonNo}"/>" />
+                    <input type="hidden" name="picDeptNm" value="<c:out value="${resultVO.picDeptNm}"/>" />
+                    <input type="hidden" name="picEmailAdres" value="<c:out value="${resultVO.picEmailAdres}"/>" />
+                    <input type="hidden" name="bizNo1" value="<c:out value="${resultVO.bizNo1}"/>" />
+                    <input type="hidden" name="bizNo2" value="<c:out value="${resultVO.bizNo2}"/>" />
+                    <input type="hidden" name="bizNo3" value="<c:out value="${resultVO.bizNo3}"/>" />
+                    <input type="hidden" name="corpNo1" value="<c:out value="${resultVO.corpNo1}"/>" />
+                    <input type="hidden" name="corpNo2" value="<c:out value="${resultVO.corpNo2}"/>" />
                     <input id="mid" class="f_txt2 ml15" type="text" name="checkId" title="선택여부" value="<c:out value="${checkId}"/>" maxlength="20" />
                 </div>
 
@@ -108,8 +139,11 @@ function fnCheckNotKorean(koreanStr){
                     	<c:when test="${usedCnt eq 0}">
                     		<span><c:out value="${checkId}"/></span> 는 존재하지 않는 아이디입니다.
                     	</c:when>
+                    	<c:when test="${usedCnt eq 1}">
+                    		<span><c:out value="${resultVO.partnerNm}"/></span> 는 이미 가입한 아이디입니다.
+                    	</c:when>
                     	<c:otherwise>
-                    		<span><c:out value="${checkId}"/></span> 는 가입 가능한 아이디입니다.
+                    		<span><c:out value="${resultVO.partnerNm}"/></span> 는 가입 가능한 아이디입니다.
                     	</c:otherwise>
                     </c:choose>
                 </p>

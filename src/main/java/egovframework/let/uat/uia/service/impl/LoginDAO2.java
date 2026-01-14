@@ -1,6 +1,7 @@
 package egovframework.let.uat.uia.service.impl;
 
 import egovframework.com.cmm.LoginVO;
+import egovframework.let.uss.umt.service.PartnerManageVO;
 
 import javax.annotation.Resource;
 
@@ -39,6 +40,16 @@ public class LoginDAO2 extends EgovAbstractMapper {
 	 */
     public LoginVO nmcbLogin(LoginVO vo) throws Exception {
     	return (LoginVO)sqlSessionTemplate2.selectOne("loginDAO2.nmcbLogin", vo);
+    }
+    
+    /**
+	 * nmcb 조합(파트너) 아이디를 찾는다 로그인을 처리한다
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+    public PartnerManageVO nmcbSearch(LoginVO vo) throws Exception {
+    	return (PartnerManageVO)sqlSessionTemplate2.selectOne("loginDAO2.nmcbSearch", vo);
     }
 
 }

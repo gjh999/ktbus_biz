@@ -4,9 +4,12 @@ import java.util.Map;
 
 import egovframework.com.cmm.ComDefaultCodeVO;
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.service.EgovCmmUseService;
+import egovframework.let.uat.uia.service.EgovLoginService;
 import egovframework.let.uss.umt.service.EgovMberManageService;
 import egovframework.let.uss.umt.service.MberManageVO;
+import egovframework.let.uss.umt.service.PartnerManageVO;
 import egovframework.let.uss.umt.service.UserDefaultVO;
 import egovframework.let.utl.sim.service.EgovFileScrty;
 
@@ -49,6 +52,10 @@ public class EgovMberManageController {
 	/** mberManageService */
 	@Resource(name = "mberManageService")
 	private EgovMberManageService mberManageService;
+	
+	/** EgovLoginService */
+	@Resource(name = "loginService")
+	private EgovLoginService loginService;
 
 	/** cmmUseService */
 	@Resource(name = "EgovCmmUseService")
@@ -589,15 +596,37 @@ public class EgovMberManageController {
 		 * egovMessageSource.getMessage("fail.common.login")); return
 		 * "uat/uia/EgovLoginUsr"; }
 		 */
+		int usedCnt = -1;
+		
 		String checkId = (String) commandMap.get("checkId");
 		checkId = new String(checkId.getBytes("ISO-8859-1"), "UTF-8");
 
 		if (checkId == null || checkId.equals(""))
 			return "forward:/uss/umt/EgovIdNmcbCnfirmView.do";
+		
+		// nmcb 조합 DB 조회
+		LoginVO searchVO = new LoginVO();
+		PartnerManageVO resultVO = new PartnerManageVO();
+		LoginVO regCheckVO = new LoginVO();
+		searchVO.setId(checkId);
+		resultVO = loginService.nmcbSearch(searchVO);
 
-		int usedCnt = mberManageService.checkIdDplct(checkId);
-		model.addAttribute("usedCnt", usedCnt);
+		model.addAttribute("resultVO", resultVO);
 		model.addAttribute("checkId", checkId);
+		if(resultVO != null) {
+			usedCnt = 1;
+		} else {
+			usedCnt = 0;
+		}
+		
+		if(usedCnt > 0) {
+			regCheckVO = loginService.searchPartnerId(searchVO);
+			if(regCheckVO.getId() == null || "".equals(regCheckVO.getId())) {
+				usedCnt = 2;
+			}
+		}
+		
+		model.addAttribute("usedCnt", usedCnt);
 
 		return "cmm/uss/umt/EgovIdNmcbCnfirm";
 	}

@@ -124,6 +124,14 @@ public class EgovLoginController {
 			resultVO = loginService.actionLogin(loginVO);
 			loginPolicyVO.setEmplyrId(resultVO.getId());
 			loginPolicyVO = egovLoginPolicyService.selectLoginPolicy(loginPolicyVO);
+		} else if("member".equals(loginType)) {
+			resultVO = loginService.actionLogin2(loginVO);
+			loginPolicyVO.setEmplyrId(resultVO.getId());
+			loginPolicyVO = egovLoginPolicyService.selectLoginPolicy(loginPolicyVO);
+		} else if("partner".equals(loginType)) {
+			resultVO = loginService.actionLogin(loginVO);
+			loginPolicyVO.setEmplyrId(resultVO.getId());
+			loginPolicyVO = egovLoginPolicyService.selectLoginPolicy(loginPolicyVO);
 		} else {
 			// nmcb 조합 DB 조회
 			resultVO = loginService.nmcbLogin(loginVO);
@@ -205,6 +213,32 @@ public class EgovLoginController {
 			return "uat/uia/EgovLoginUsr";
 			
 		} else if (resultVO != null && resultVO.getId() != null && !resultVO.getId().equals("") && loginPolicyYn && "USR".equals(resultVO.getUserSe())) {
+
+			// 2. spring security 연동
+			request.getSession().setAttribute("LoginVO", resultVO);
+
+			UsernamePasswordAuthenticationFilter springSecurity = null;
+
+			ApplicationContext act = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
+						
+			Map<String, UsernamePasswordAuthenticationFilter> beans = act.getBeansOfType(UsernamePasswordAuthenticationFilter.class);
+			
+			if (beans.size() > 0) {
+				
+				springSecurity = (UsernamePasswordAuthenticationFilter) beans.values().toArray()[0];
+				springSecurity.setUsernameParameter("egov_security_username");
+				springSecurity.setPasswordParameter("egov_security_password");
+				springSecurity.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(request.getServletContext().getContextPath() +"/egov_security_login", "POST"));
+				
+			} else {
+				throw new IllegalStateException("No AuthenticationProcessingFilter");
+			}
+			
+			springSecurity.doFilter(new RequestWrapperForSecurity(request, resultVO.getUserSe()+ resultVO.getId(), resultVO.getUniqId()), response, null);
+			
+			return "forward:/cmm/main/mainPage.do"; // 성공 시 페이지.. (redirect 불가)
+
+		} else if (resultVO != null && resultVO.getId() != null && !resultVO.getId().equals("") && loginPolicyYn && "GNR".equals(resultVO.getUserSe())) {
 
 			// 2. spring security 연동
 			request.getSession().setAttribute("LoginVO", resultVO);
