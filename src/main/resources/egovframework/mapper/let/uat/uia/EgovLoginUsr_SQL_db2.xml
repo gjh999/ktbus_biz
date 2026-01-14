@@ -77,6 +77,29 @@
 		<!-- </if> -->
 	</select>
 	
+	<!-- 일반 조합 로그인 -->
+	<select id="loginDAO.actionLogin3" resultMap="login">
+		<!-- <if test="userSe == &quot;USR&quot;"> -->
+			
+            SELECT A.ENTRPRS_MBER_ID AS ID
+			     , A.CMPNY_NM AS name
+			     , A.ENTRPRS_MBER_PASSWORD AS PASSWORD
+			     , A.BIZRNO AS ihidNum
+			     , A.APPLCNT_EMAIL_ADRES AS email
+			     , 'ENT' AS userSe
+			     , '' AS orgnztId
+			     , A.ESNTL_ID AS uniqId
+			     , A.ENTRPRS_MBER_STTUS AS emplyrSttusCode
+			     , A.CMPNY_NM AS companyName
+			     , A.GROUP_ID AS groupId
+			FROM LETTNENTRPRSMBER A
+			WHERE 1=1
+			AND A.ENTRPRS_MBER_ID = #{id}
+			AND A.ENTRPRS_MBER_PASSWORD = #{password}
+			
+		<!-- </if> -->
+	</select>
+	
 	<!-- 조합 아이디 찾기 -->
 	<select id="loginDAO.searchPartnerId" resultMap="login">
 			

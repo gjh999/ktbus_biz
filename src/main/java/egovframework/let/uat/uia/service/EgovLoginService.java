@@ -39,6 +39,14 @@ public interface EgovLoginService {
     LoginVO actionLogin2(LoginVO vo) throws Exception;
     
     /**
+	 * 일반 조합 로그인을 처리한다
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+    LoginVO actionLogin3(LoginVO vo) throws Exception;
+    
+    /**
 	 * nmcb 일반 로그인을 처리한다
 	 * @param vo LoginVO
 	 * @return LoginVO

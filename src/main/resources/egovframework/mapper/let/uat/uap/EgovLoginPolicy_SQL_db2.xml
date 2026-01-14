@@ -62,6 +62,7 @@
                 ON A.USER_ID = B.EMPLYR_ID   
              WHERE 1 = 1
                AND A.USER_ID = #{emplyrId}
+             ORDER BY A.ESNTL_ID DESC FETCH FIRST 1 ROW ONLY
     </select>
     
     <insert id="insertLoginPolicy" parameterType="egovframework.let.uat.uap.service.LoginPolicy">

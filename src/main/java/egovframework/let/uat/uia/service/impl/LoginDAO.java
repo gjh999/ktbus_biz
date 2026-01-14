@@ -45,6 +45,16 @@ public class LoginDAO extends EgovAbstractMapper {
     public LoginVO actionLogin2(LoginVO vo) throws Exception {
     	return (LoginVO)selectOne("loginDAO.actionLogin2", vo);
     }
+    
+    /**
+	 * 일반 회원 로그인을 처리한다
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+    public LoginVO actionLogin3(LoginVO vo) throws Exception {
+    	return (LoginVO)selectOne("loginDAO.actionLogin3", vo);
+    }
 
     /**
 	 * 아이디를 찾는다.
