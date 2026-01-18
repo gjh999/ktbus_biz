@@ -119,7 +119,7 @@ function fnInsert(){
 
     <div class="wrap">
         <!-- header start -->
-	    <c:import url="/sym/mms/EgovAdminHeader.do" />
+	    <c:import url="/sym/mms/EgovHeader.do" />
 	    <!-- //header end -->
 
         <div class="container">
@@ -145,13 +145,9 @@ function fnInsert(){
 
 								<form:form modelAttribute="mberManageVO" name="mberManageVO" action="${pageContext.request.contextPath}/uss/umt/mber/EgovMberInsert.do" method="post" >
 
-                                <h1 class="tit_1">업무시스템관리</h1>
+                                <h1 class="tit_1">내부시스템관리</h1>
 
-                                <p class="txt_1">업무시스템의 사용자 및 권한에 대한 제반사항을 관리합니다.</p>
-
-                                <h2 class="tit_2">사용자관리</h2>
-
-                                <h3 class="tit_3">회원관리</h3>
+                                <h2 class="tit_2">조합원 등록관리</h2>
 
                                 <div class="board_view2">
                                     <table summary="일반회원 등록정보">
