@@ -32,7 +32,7 @@
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
-<title>사용자부재 수정</title>
+<title>사용자 부재수정</title>
 <script type="text/javascript" src="<c:url value='/js/EgovMultiFile.js'/>"></script>
 <script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
 <validator:javascript formName="mainImage" staticJavascript="false" xhtml="true" cdata="false"/>
@@ -94,7 +94,7 @@ function fncUserAbsnceDelete() {
                                         <li><a class="home" href="">Home</a></li>
                                         <li><a href="">내부시스템관리</a></li>
                                         <li><a href="">사용자관리</a></li>
-                                        <li>사용자부재관리</li>
+                                        <li>사용자 부재관리</li>
                                     </ul>
                                 </div>
                                 <!--// Location -->
@@ -103,7 +103,7 @@ function fncUserAbsnceDelete() {
 
                                 <h1 class="tit_1">내부시스템관리</h1>
 
-                                <h2 class="tit_2">사용자부재관리</h2>
+                                <h2 class="tit_2">사용자 부재관리</h2>
 
                                 <div class="board_view2">
                                     <table>

@@ -352,13 +352,16 @@ function openPostcode() {
                                                 <form:errors path="mberEmailAdres" />
                                             </td>
                                             <td class="lb">
-                                                <label for=""></label>
+                                                <label for="emplyrSttusCode">사용자상태<br>코드</label>
+                                                <span class="req">필수</span>
                                             </td>
                                             <td>
-                                                <!-- 
-                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
-                                                 -->
+                                                <label class="f_select w_full" for="mberSttusCode">
+                                                    <form:select path="mberSttusCode" id="mberSttusCode" name="mberSttusCode" title="회원상태코드">
+			                                            <option value="A" selected>회원 가입 신청 상태</option>
+                                                    </form:select>
+                                                </label>
+                                                <form:errors path="mberSttusCode" />
                                             </td>
                                         </tr>
                                     </table>

@@ -29,7 +29,7 @@
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
-<title>내부업무 사이트 > 내부시스템관리 > 사용자부재관리</title>
+<title>내부업무 사이트 > 내부시스템관리 > 사용자 부재관리</title>
 
 <script type="text/javaScript" language="javascript" defer="defer">
 <!--
@@ -219,14 +219,14 @@ function press() {
                                         <li><a class="home" href="">Home</a></li>
                                         <li><a href="">내부시스템관리</a></li>
                                         <li><a href="">사용자관리</a></li>
-                                        <li>사용자부재관리</li>
+                                        <li>사용자 부재관리</li>
                                     </ul>
                                 </div>
                                 <!--// Location -->
 
                                 <h1 class="tit_1">내부시스템관리</h1>
 
-                                <h2 class="tit_2">사용자부재관리</h2>
+                                <h2 class="tit_2">사용자 부재관리</h2>
                                 
                                 <!-- 검색조건 -->
                                 <div class="condition2">

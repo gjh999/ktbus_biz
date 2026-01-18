@@ -137,6 +137,11 @@ public class MberManageVO extends UserDefaultVO{
 	 */	
 	private String offmTelno;
 	
+	/**
+	 * mberSttusCode 값
+	 */	
+	private String mberSttusCode;
+	
 	
 	
 	
@@ -522,6 +527,21 @@ public class MberManageVO extends UserDefaultVO{
 	 */
 	public void setOffmTelno(String offmTelno) {
 		this.offmTelno = offmTelno;
+	}
+	
+	/**
+	 * mberSttusCode attribute 값을  리턴한다.
+	 * @return String
+	 */
+	public String getMberSttusCode() {
+		return offmTelno;
+	}
+	/**
+	 * mberSttusCode attribute 값을 설정한다.
+	 * @param mberSttusCode String
+	 */
+	public void setMberSttusCode(String mberSttusCode) {
+		this.offmTelno = mberSttusCode;
 	}
 	
 	

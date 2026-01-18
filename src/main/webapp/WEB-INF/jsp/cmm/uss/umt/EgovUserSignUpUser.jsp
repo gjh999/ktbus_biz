@@ -156,18 +156,18 @@ function execPostcode() {
 	  }
 	}
 
-	function openPostcode() {
-	  new daum.Postcode({
-	    oncomplete: function (data) {
-	      // 도로명/지번 중 선택된 최종 주소
-	      const addr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress;
-	      document.getElementById('zip').value = data.zonecode; // 5자리 우편번호
-	      document.getElementById('zip_view').value = data.zonecode; // 5자리 우편번호
-	      document.getElementById('address').value = addr;
-	      document.getElementById('detailAddress').focus();
-	    }
-	  }).open();
-	}
+function openPostcode() {
+  new daum.Postcode({
+    oncomplete: function (data) {
+      // 도로명/지번 중 선택된 최종 주소
+      const addr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress;
+      document.getElementById('zip').value = data.zonecode; // 5자리 우편번호
+      document.getElementById('zip_view').value = data.zonecode; // 5자리 우편번호
+      document.getElementById('address').value = addr;
+      document.getElementById('detailAddress').focus();
+    }
+  }).open();
+}
 </script>
 
 </head>
@@ -425,7 +425,7 @@ function execPostcode() {
 						        <input type="hidden" name="searchKeyword" value="<c:out value='${userSearchVO.searchKeyword}'/>"/>
 						        <input type="hidden" name="sbscrbSttus" value="<c:out value='${userSearchVO.sbscrbSttus}'/>"/>
 						        <input type="hidden" name="pageIndex" value="<c:out value='${userSearchVO.pageIndex}'/><c:if test="${userSearchVO.pageIndex eq null}">1</c:if>"/>
-						        <input type="hidden" name="loginType" value="partner"/>
+						        <input type="hidden" name="loginType" value="user"/>
 						        
 			                	</form:form>
                                 

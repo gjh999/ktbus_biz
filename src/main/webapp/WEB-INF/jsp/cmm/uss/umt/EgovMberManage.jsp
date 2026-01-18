@@ -29,7 +29,7 @@
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
-<title>샘플 포털 > 포털시스템관리 > 사용자관리 > 회원관리</title>
+<title>내부업무 사이트 > 내부시스템관리 > 조합원 등록관리</title>
 <script type="text/javaScript" language="javascript" defer="defer">
 <!--
 function fnCheckAll() {
@@ -115,13 +115,14 @@ function fnSearch(){
 </script>
 </head>
 <body>
+<noscript class="noScriptTitle">자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>
 
     <!-- Skip navigation -->
     <a href="#contents" class="skip_navi">본문 바로가기</a>
 
     <div class="wrap">
         <!-- header start -->
-	    <c:import url="/sym/mms/EgovAdminHeader.do" />
+	    <c:import url="/sym/mms/EgovHeader.do" />
 	    <!-- //header end -->
 
         <div class="container">
@@ -138,48 +139,54 @@ function fnSearch(){
                                 <div class="location">
                                     <ul>
                                         <li><a class="home" href="">Home</a></li>
-                                        <li><a href="">포털시스템관리</a></li>
-                                        <li><a href="">사용자관리</a></li>
-                                        <li>회원관리</li>
+                                        <li><a href="">내부시스템관리</a></li>
+                                        <li><a href="">사용자/조합원/조합</a></li>
+                                        <li>조합원 등록관리</li>
                                     </ul>
                                 </div>
                                 <!--// Location -->
 
 								<form name="listForm" action="/uss/umt/mber/EgovMberManage.do" method="post">
+								
 								<input name="selectedId" type="hidden" />
 								<input name="checkedIdForDel" type="hidden" />
 								<input name="pageIndex" type="hidden" value="<c:out value='${userSearchVO.pageIndex}'/>"/>
 
-                                <h1 class="tit_1">포털시스템관리</h1>
+                                <h1 class="tit_1">내부시스템관리</h1>
 
-                                <p class="txt_1">포털시스템의 사용자 및 권한에 대한 제반사항을 관리합니다.</p>
-
-                                <h2 class="tit_2">사용자관리</h2>
-
-                                <h3 class="tit_3">회원관리</h3>
+                                <h2 class="tit_2">조합원 등록관리</h2>
                                 
                                 <!-- 검색조건 -->
                                 <div class="condition">
-                                    <label class="item f_select" for="sbscrbSttus">
-                                        <select name="sbscrbSttus" id="sbscrbSttus" title="조회조건1">
-                                            <option value="0" <c:if test="${empty userSearchVO.sbscrbSttus || userSearchVO.sbscrbSttus == '0'}">selected="selected"</c:if> >상태(전체)</option>
-					                        <option value="A" <c:if test="${userSearchVO.sbscrbSttus == 'A'}">selected="selected"</c:if> >가입신청</option>
-					                        <option value="D" <c:if test="${userSearchVO.sbscrbSttus == 'D'}">selected="selected"</c:if> >삭제</option>
-					                        <option value="P" <c:if test="${userSearchVO.sbscrbSttus == 'P'}">selected="selected"</c:if> >승인</option>
-                                        </select>
-                                    </label>
-
-                                    <label class="item f_select" for="searchCondition">
-                                        <select name="searchCondition" id="searchCondition" title="조회조건2">
-                                            <option value="0" <c:if test="${userSearchVO.searchCondition == '0'}">selected="selected"</c:if> >ID</option>
-                                            <option value="1" <c:if test="${empty userSearchVO.searchCondition || userSearchVO.searchCondition == '1'}">selected="selected"</c:if> >Name</option>
-                                        </select>
-                                    </label>
-
-                                    <span class="item f_search">
-                                        <input name="searchKeyword" id="searchKeyword" class="f_input w_500" title="검색" type="text" value="<c:out value="${userSearchVO.searchKeyword}"/>" />
-                                        <button class="btn" type="submit" onclick="fnSearch(); return false;"><spring:message code="button.search" /></button><!-- 조회 -->
-                                    </span>
+                                	<div class="cond_wrap">
+                                		<div class="group">
+	                                		<label class="item f_select" for="sbscrbSttus">
+	                                        <select name="sbscrbSttus" id="sbscrbSttus" title="검색조건1-사용자상태">
+	                                            <option value="0" <c:if test="${empty userSearchVO.sbscrbSttus || userSearchVO.sbscrbSttus == '0'}">selected="selected"</c:if> >상태(전체)</option>
+	                                            <option value="A" <c:if test="${userSearchVO.sbscrbSttus == 'A'}">selected="selected"</c:if> >가입신청</option>
+	                                            <option value="D" <c:if test="${userSearchVO.sbscrbSttus == 'D'}">selected="selected"</c:if> >삭제</option>
+	                                            <option value="P" <c:if test="${userSearchVO.sbscrbSttus == 'P'}">selected="selected"</c:if> >승인</option>
+	                                        </select>
+		                                    </label>
+		                                    <label class="item f_select" for="searchCondition">
+		                                        <select name="searchCondition" id="searchCondition" title="검색조건2-검색어구분">
+		                                            <option value="0" <c:if test="${userSearchVO.searchCondition == '0'}">selected="selected"</c:if> >ID</option>
+		                                            <option value="1" <c:if test="${empty userSearchVO.searchCondition || userSearchVO.searchCondition == '1'}">selected="selected"</c:if> >Name</option>
+		                                        </select>
+		                                    </label>
+	                                	</div>
+	                                	<div class="group">
+	                                		<span class="item f_search">
+		                                        <input class="f_input w_350" name="searchKeyword" title="검색어" type="text" value="<c:out value="${userSearchVO.searchKeyword}"/>" />
+		                                        <button class="btn" type="submit" onclick="javascript:fnSearch(); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
+		                                    </span>
+	                                		
+	                                	</div>
+	                                	<div class="group">
+		                                    <a href="#LINK" class="item btn btn_blue_46 w_100" onclick="javascript:fnDeleteUser(); return false;"><spring:message code="button.delete" /></a><!-- 삭제 -->
+		                                    <a href="<c:url value='/uss/umt/user/EgovUserInsertView.do'/>" class="item btn btn_blue_46 w_100" onclick="fnAddUserView(); return false;"><spring:message code="button.create" /></a><!-- 등록 -->
+	                                	</div> 
+                                	</div>                          
                                 </div>
                                 <!--// 검색조건 -->
 

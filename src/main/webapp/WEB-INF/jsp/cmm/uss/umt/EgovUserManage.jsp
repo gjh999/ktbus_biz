@@ -29,7 +29,7 @@
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
-<title>내부업무 사이트 > 내부시스템관리 > 사용자등록관리</title>
+<title>내부업무 사이트 > 내부시스템관리 > 사용자 등록관리</title>
 <script type="text/javaScript" language="javascript" defer="defer">
 <!--
 function fnCheckAll() {
@@ -82,6 +82,8 @@ function fnDeleteUser() {
             document.listForm.action = "<c:url value='/uss/umt/user/EgovUserDelete.do'/>";
             document.listForm.submit();
         }
+    } else {
+    	alert("삭제할 ID를 체크하세요");
     }
 }
 function fnSelectUser(id) {
@@ -149,8 +151,8 @@ function fnViewCheck(){
                                     <ul>
                                         <li><a class="home" href="">Home</a></li>
                                         <li><a href="">내부시스템관리</a></li>
-                                        <li><a href="">사용자관리</a></li>
-                                        <li>사용자등록관리</li>
+                                        <li><a href="">사용자/조합원/조합</a></li>
+                                        <li>사용자 등록관리</li>
                                     </ul>
                                 </div>
                                 <!--// Location -->
@@ -163,7 +165,7 @@ function fnViewCheck(){
 
                                 <h1 class="tit_1">내부시스템관리</h1>
 
-                                <h2 class="tit_2">사용자등록관리</h2>
+                                <h2 class="tit_2">사용자 등록관리</h2>
                                 
                                 <!-- 검색조건 -->
                                 <div class="condition">
@@ -193,7 +195,7 @@ function fnViewCheck(){
 	                                	</div>
 	                                	<div class="group">
 		                                    <a href="#LINK" class="item btn btn_blue_46 w_100" onclick="javascript:fnDeleteUser(); return false;"><spring:message code="button.delete" /></a><!-- 삭제 -->
-		                                    <a href="<c:url value='/uss/umt/user/EgovUserInsertView.do'/>" class="item btn btn_blue_46 w_100" onclick="fnAddUserView(); return false;"><spring:message code="button.create" /></a><!-- 등록 -->
+		                                    <%-- <a href="<c:url value='/uss/umt/user/EgovUserInsertView.do'/>" class="item btn btn_blue_46 w_100" onclick="fnAddUserView(); return false;"><spring:message code="button.create" /></a><!-- 등록 --> --%>
 	                                	</div> 
                                 	</div>                          
                                 </div>
@@ -277,7 +279,7 @@ function fnViewCheck(){
                                 </div>
 
 								<!-- 페이지 네비게이션 시작 -->
-								<c:if test="${!empty userAbsnceVO.pageIndex }">
+								<%-- <c:if test="${!empty userAbsnceVO.pageIndex }"> --%>
                                 <div class="board_list_bot">
                                     <div class="paging" id="paging_div">
                                         <ul>
@@ -285,7 +287,7 @@ function fnViewCheck(){
                                         </ul>
                                     </div>
                                 </div>
-                                </c:if>
+                                <%-- </c:if> --%>
                                 <!-- //페이지 네비게이션 끝 -->
                                 <!--// 게시판 -->
                                 

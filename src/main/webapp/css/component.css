@@ -86,6 +86,7 @@
     .paging > ul li strong {display: block; width: 34px; height: 34px; font-weight: 300; line-height: 34px; text-align: center;}
     .paging > ul li a {color: #888;}
     .paging > ul li strong {border-radius: 50%; color: #fff; background: #222;}
+    .paging > ul li a > img {margin-top: 10px;}
 
     .board_list_top {display: table; width: 100%;}
     .board_list_top .left_col {display: table-cell; width: 50%; vertical-align: top;}

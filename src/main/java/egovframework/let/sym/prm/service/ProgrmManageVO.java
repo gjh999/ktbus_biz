@@ -1,5 +1,7 @@
 package egovframework.let.sym.prm.service;
 
+import org.apache.commons.text.StringEscapeUtils;
+
 /** 
  * 프로그램목록 처리를 위한 VO 클래스르를 정의한다
  * @author 개발환경 개발팀 이용
@@ -43,7 +45,7 @@ public class ProgrmManageVO{
 	 * @param progrmFileNm String
 	 */
 	public void setProgrmFileNm(String progrmFileNm) {
-		this.progrmFileNm = progrmFileNm;
+		this.progrmFileNm = StringEscapeUtils.unescapeHtml4(progrmFileNm); ;
 	}
 	/**
 	 * progrmStrePath attribute를 리턴한다.
@@ -71,7 +73,7 @@ public class ProgrmManageVO{
 	 * @param progrmKoreanNm String
 	 */
 	public void setProgrmKoreanNm(String progrmKoreanNm) {
-		this.progrmKoreanNm = progrmKoreanNm;
+		this.progrmKoreanNm = StringEscapeUtils.unescapeHtml4(progrmKoreanNm);
 	}
 	/**
 	 * url attribute를 리턴한다.
@@ -99,7 +101,7 @@ public class ProgrmManageVO{
 	 * @param progrmDc String
 	 */
 	public void setProgrmDc(String progrmDc) {
-		this.progrmDc = progrmDc;
+		this.progrmDc = StringEscapeUtils.unescapeHtml4(progrmDc);
 	}
   
 }

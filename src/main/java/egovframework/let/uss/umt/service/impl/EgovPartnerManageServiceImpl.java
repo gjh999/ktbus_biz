@@ -77,7 +77,7 @@ public class EgovPartnerManageServiceImpl extends EgovAbstractServiceImpl implem
 			AuthorGroup authorGroup = new AuthorGroup();
 			authorGroup.setUniqId(uniqId);
 			authorGroup.setMberTyCode("USR");
-			authorGroup.setAuthorCode("ROLE_USER_MEMBER");
+			authorGroup.setAuthorCode("ROLE_PARTNER");
 			authorGroupDAO.insertAuthorGroup(authorGroup);
 		} catch (NullPointerException e) { // NullPointerException 처리
 		    System.err.println("널 포인터 예외 발생: 데이터가 null일 수 있습니다.");

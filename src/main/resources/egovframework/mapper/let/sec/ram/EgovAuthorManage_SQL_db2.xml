@@ -33,7 +33,7 @@
            VALUES ( #{authorCode}
                   , #{authorNm}
                   , #{authorDc}
-                  , now())
+                  , CHAR(CURRENT_DATE, ISO))
          
     </insert>
 

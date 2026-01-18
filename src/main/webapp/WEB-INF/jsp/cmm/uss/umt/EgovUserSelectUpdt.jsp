@@ -30,6 +30,7 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/page.css">
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <title>사용자 상세 및 수정</title>
 <script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
@@ -107,6 +108,28 @@ function fn_egov_modal_remove() {
 	$('#modalPan').remove();
 }
 
+function execPostcode() {
+	  // autoload=false로 로드했을 경우:
+	  if (window.daum && daum.postcode && daum.postcode.load) {
+	    daum.postcode.load(openPostcode);
+	  } else {
+	    openPostcode();
+	  }
+	}
+
+function openPostcode() {
+  new daum.Postcode({
+    oncomplete: function (data) {
+      // 도로명/지번 중 선택된 최종 주소
+      const addr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress;
+      document.getElementById('zip').value = data.zonecode; // 5자리 우편번호
+      document.getElementById('zip_view').value = data.zonecode; // 5자리 우편번호
+      document.getElementById('address').value = addr;
+      document.getElementById('detailAddress').focus();
+    }
+  }).open();
+}
+
 </script>
 
 </head>
@@ -152,8 +175,9 @@ function fn_egov_modal_remove() {
 								<input type="hidden" name="searchKeyword" value="<c:out value='${userSearchVO.searchKeyword}'/>"/>
 								<input type="hidden" name="sbscrbSttus" value="<c:out value='${userSearchVO.sbscrbSttus}'/>"/>
 								<input type="hidden" name="pageIndex" value="<c:out value='${userSearchVO.pageIndex}'/>"/>
+								<input type="hidden" name="loginType" value="user"/>
 								<!-- 우편번호검색 -->
-								<input type="hidden" name="zip_url" value="<c:url value='/sym/cmm/EgovCcmZipSearchPopup.do'/>" />
+								<%-- <input type="hidden" name="zip_url" value="<c:url value='/sym/cmm/EgovCcmZipSearchPopup.do'/>" /> --%>
 								<!-- 사용자유형정보 : password 수정화면으로 이동시 타겟 유형정보 확인용, 만약검색조건으로 유형이 포함될경우 혼란을 피하기위해 userTy명칭을 쓰지 않음-->
 								<input type="hidden" name="userTyForPassword" value="<c:out value='${userManageVO.userTy}'/>" />
 
@@ -180,11 +204,55 @@ function fn_egov_modal_remove() {
                                                 <form:hidden path="uniqId" />
                                             </td>
                                             <td class="lb">
-                                                <label for="moblphonNo">핸드폰번호</label>
+                                                <label for="emplyrNm">이름</label>
+                                                <span class="req">필수</span>
                                             </td>
                                             <td>
-                                                <form:input path="moblphonNo" id="moblphonNo" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="moblphonNo" />
+                                                <form:input path="emplyrNm" id="emplyrNm" title="사용자이름" class="f_txt w_full" maxlength="15" />
+                                                <form:errors path="emplyrNm" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="lb">
+                                                <label for="homeadres">주소</label>
+                                            </td>
+                                            <td>
+                                                <span class="f_search2 w_300">
+                                                	<input name="zip_view" id="zip_view" type="text" value="<c:out value='${userManageVO.zip}'/>" maxlength="8" readonly="readonly" />
+                                                    <form:hidden path="zip" />
+                                                    <button type="button" class="btn" onclick="execPostcode();">조회</button> 
+                                                </span>
+                                                <form:errors path="zip" />
+                                                <br/>
+                                                <br/>
+                                                <form:input path="homeadres" id="address" title="기본주소" class="f_txt w_full" maxlength="50" />
+                                                <form:errors path="homeadres" />
+                                                <%-- <input name="zip_view" id="zip_view" type="hidden" title="우편번호" value="<c:out value='${userManageVO.zip}'/>" maxlength="8" readonly="readonly" /> --%>
+                                            </td>
+                                            <td class="lb">
+                                                <label for="detailAdres">상세주소</label>
+                                            </td>
+                                            <td>
+                                                <form:input path="detailAdres" id="detailAddress" title="상세주소" class="f_txt w_full" maxlength="50" />
+                                                <form:errors path="detailAdres" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="lb">
+                                                <label for="offmTelno">사무실<br>전화번호</label>
+                                                <span class="req">필수</span>
+                                            </td>
+                                            <td>
+                                                <form:input path="offmTelno" id="offmTelno" title="사무실전화번호" class="f_txt w_full" maxlength="15" />
+                                                <form:errors path="offmTelno" />
+                                            </td>
+                                            <td class="lb">
+                                                <label for="fxnum">팩스번호</label>
+                                                <span class="req">필수</span>
+                                            </td>
+                                            <td>
+                                                <form:input path="fxnum" id="fxnum" title="팩스번호" class="f_txt w_full" maxlength="15" />
+                                                <form:errors path="fxnum" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -195,127 +263,90 @@ function fn_egov_modal_remove() {
                                             <td>
                                                 <label class="f_select w_full" for="passwordHint">
                                                     <form:select path="passwordHint" id="passwordHint" name="passwordHint" title="비밀번호힌트">
-                                                    	<form:option value="" label="선택하세요"/>
-                                                    	<form:options items="${passwordHint_result}" itemValue="code" itemLabel="codeNm"/>
+	                                                    <form:option value="" label="선택하세요"/>
+	                                                    <form:options items="${passwordHint_result}" itemValue="code" itemLabel="codeNm"/>
                                                     </form:select>
                                                 </label>
-                                                <form:errors path="passwordHint" cssClass="error"/>
+                                                <form:errors path="passwordHint" />
                                             </td>
                                             <td class="lb">
                                                 <label for="passwordCnsr">비밀번호정답</label>
                                                 <span class="req">필수</span>
                                             </td>
                                             <td>
-                                                <form:input class="f_txt w_full" path="passwordCnsr" id="passwordCnsr" maxlength="100" />
+                                                <form:input path="passwordCnsr" id="passwordCnsr" title="비밀번호정답" class="f_txt w_full" maxlength="100" />
                                                 <form:errors path="passwordCnsr" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="lb">
-                                                <label for="emplyrNm">이름</label>
+                                                <label for="moblphonNo">휴대폰번호</label>
                                                 <span class="req">필수</span>
                                             </td>
                                             <td>
-                                                <form:input path="emplyrNm" id="emplyrNm" class="f_txt w_full" maxlength="60" />
-                                                <form:errors path="emplyrNm" />
+                                                <form:input path="moblphonNo" id="moblphonNo" title="핸드폰번호" class="f_txt w_full" maxlength="15" />
+                                                <form:errors path="moblphonNo" />
                                             </td>
-                                            <td class="lb">
-                                                <label for="insttCode">소속기관</label>
-                                            </td>
-                                            <td>
-                                                <label class="f_select w_full" for="insttCode">
-                                                    <form:select path="insttCode" id="insttCode" name="insttCode" title="소속기관">
-                                                    	<form:option value="" label="선택하세요"/>
-                                                    	<form:options items="${insttCode_result}" itemValue="code" itemLabel="codeNm"/>
-                                                    </form:select>
-                                                </label>
-                                                <form:errors path="insttCode" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="orgnztId">부서</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <label class="f_select w_full" for="orgnztId">
-                                                    <form:select path="orgnztId" id="orgnztId" name="orgnztId" title="부서">
-                                                    	<form:option value="" label="선택하세요"/>
-                                                    	<form:options items="${orgnztId_result}" itemValue="code" itemLabel="codeNm"/>
-                                                    </form:select>
-                                                </label>
-                                                <form:errors path="orgnztId" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="ofcpsNm">직위명</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="ofcpsNm" id="ofcpsNm" class="f_txt w_full" maxlength="30" />
-                                                <form:errors path="ofcpsNm" />
-                                            </td>
-                                        </tr>
-                                        <tr>
                                             <td class="lb">
                                                 <label for="emailAdres">이메일주소</label>
+                                                <span class="req">필수</span>
                                             </td>
                                             <td>
-                                                <form:input path="emailAdres" id="emailAdres" class="f_txt w_full" maxlength="50" />
+                                                <form:input path="emailAdres" id="emailAdres" title="이메일주소" class="f_txt w_full" maxlength="50" />
                                                 <form:errors path="emailAdres" />
                                             </td>
+                                        </tr>
+                                        <tr>
                                             <td class="lb">
-                                                <label for="areaNo">집전화<br>지역번호</label>
+                                                <label for="groupId">그룹아이디<br>(해당지부)</label>
+                                                <span class="req">필수</span>
                                             </td>
                                             <td>
-                                                <form:input path="areaNo" id="areaNo" class="f_txt w_70" maxlength="4" title="전화번호 첫번째" />
-                                                <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input path="homemiddleTelno" id="homemiddleTelno" class="f_txt w_70" maxlength="4" title="전화번호 두번째" />
-                                                <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input path="homeendTelno" id="homeendTelno" class="f_txt w_70" maxlength="4" title="전화번호 세번째" />
-                                                <form:errors path="areaNo" />
-                                                <form:errors path="homemiddleTelno" />
-                                                <form:errors path="homeendTelno" />
+                                                <label class="f_select w_full" for="groupId">
+                                                    <form:select path="groupId" id="groupId" name="groupId" title="그룹아이디">
+	                                                    <form:option value="" label="선택하세요"/>
+	                                                    <form:options items="${groupId_result}" itemValue="code" itemLabel="codeNm"/>
+                                                    </form:select>
+                                                </label>
+                                                <form:errors path="groupId" />
+                                            </td>
+                                            <td class="lb">
+                                                <label for="orgnztNm">부서1</label>
+                                                <span class="req">필수</span>
+                                            </td>
+                                            <td>
+                                                <form:input path="orgnztNm" id="orgnztNm" title="부서명" class="f_txt w_full" maxlength="30" />
+                                                <form:input path="orgnztId" id="orgnztId" title="부서Id" maxlength="20" type="hidden" value="ORGNZT_0000000000000"/>
+                                                <form:errors path="orgnztNm" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="lb">
-                                                <label for="offmTelno">사무실<br>전화번호</label>
+                                                <label for="orgnztDescNm">부서2</label>
+                                                <span class="req">필수</span>
                                             </td>
                                             <td>
-                                                <form:input path="offmTelno" id="offmTelno" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="offmTelno" />
+                                                <form:input path="orgnztDescNm" id="orgnztDescNm" title="부서상세명" class="f_txt w_full" maxlength="30" />
+                                                <form:errors path="orgnztDescNm" />
                                             </td>
                                             <td class="lb">
-                                                <label for="fxnum">팩스번호</label>
+                                                <label for="jbgdNm">직급</label>
+                                                <span class="req">필수</span>
                                             </td>
                                             <td>
-                                                <form:input path="fxnum" id="fxnum" class="f_txt w_full" maxlength="15" />
-                                                <form:errors path="fxnum" />
+                                                <form:input path="jbgdNm" id="jbgdNm" title="직급명" class="f_txt w_full" maxlength="30" />
+                                                <form:errors path="jbgdNm" />
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="lb">
-                                                <label for="homeadres">주소</label>
+                                        	<td class="lb">
+                                                <label for="jbpsNm">직위</label>
+                                                <span class="req">필수</span>
                                             </td>
                                             <td>
-                                                <span class="f_search2 w_150">
-                                                    <form:input path="homeadres" id="zip_view" maxlength="100" readonly="readonly"/>
-                                                    <form:errors path="homeadres" />
-                                                    <input name="zip_view" id="zip_view" type="hidden" value="<c:out value='${userManageVO.zip}'/>" maxlength="8" readonly="readonly"/>
-                                                    <form:hidden path="zip" />
-                                                    	<button type="button" class="btn" onclick="fn_egov_ZipSearch();">조회</button>
-                                                    <form:errors path="zip" />
-                                                </span>
-                                                <span class="f_txt_inner ml15">(우편번호 검색)</span>
+                                                <form:input path="jbpsNm" id="jbpsNm" title="직위명" class="f_txt w_full" maxlength="30" />
+                                                <form:errors path="jbpsNm" />
                                             </td>
-                                            <td class="lb">
-                                                <label for="detailAdres">상세주소</label>
-                                            </td>
-                                            <td>
-                                                <form:input path="detailAdres" id="detailAdres" class="f_txt w_full" maxlength="50" />
-                                                <form:errors path="detailAdres" />
-                                            </td>
-                                        </tr>
-                                        <tr>
                                             <td class="lb">
                                                 <label for="emplyrSttusCode">사용자상태<br>코드</label>
                                                 <span class="req">필수</span>
@@ -328,19 +359,6 @@ function fn_egov_modal_remove() {
                                                     </form:select>
                                                 </label>
                                                 <form:errors path="emplyrSttusCode" />
-                                            </td>
-                                            <td class="lb">
-                                                <label for="groupId">권한그룹</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <label class="f_select w_full" for="groupId">
-                                                    <form:select path="groupId" id="groupId" name="groupId" title="그룹아이디">
-                                                    	<form:option value="" label="선택하세요"/>
-                                                    	<form:options items="${groupId_result}" itemValue="code" itemLabel="codeNm"/>
-                                                    </form:select>
-                                                </label>
-                                                <form:errors path="groupId" />
                                             </td>
                                         </tr>
                                     </table>
