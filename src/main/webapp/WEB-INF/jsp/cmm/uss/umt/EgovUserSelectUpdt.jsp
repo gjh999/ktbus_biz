@@ -160,8 +160,8 @@ function openPostcode() {
                                     <ul>
                                         <li><a class="home" href="">Home</a></li>
                                         <li><a href="">내부시스템관리</a></li>
-                                        <li><a href="">사용자관리</a></li>
-                                        <li>사용자등록관리</li>
+                                        <li><a href="">사용자/조합원/조합</a></li>
+                                        <li>사용자 등록관리</li>
                                     </ul>
                                 </div>
                                 <!--// Location -->
