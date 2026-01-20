@@ -5,24 +5,26 @@
 
 
     <select id="selectUserList_S" parameterType="egovframework.let.uss.umt.service.UserDefaultVO" resultType="egovMap">
-SELECT 
-    uniq_Id, user_Ty, user_Id , user_Nm, email_Adres, area_No, middle_Telno, end_Telno, moblphon_No, group_Id, sttus, sbscrb_De
-FROM(
-    SELECT
-        ESNTL_ID               uniq_Id,
-        'USR03'               user_Ty,
-        EMPLYR_ID             user_Id,
-        USER_NM,
-        EMAIL_ADRES,
-        AREA_NO,
-        HOUSE_MIDDLE_TELNO      middle_Telno,
-        HOUSE_END_TELNO         end_Telno,
-        MBTLNUM           moblphon_No,
-        GROUP_ID,
-        EMPLYR_STTUS_CODE     sttus,
-        VARCHAR_FORMAT(SBSCRB_DE, 'YYYY-MM-DD') as sbscrb_De
-    FROM    LETTNEMPLYRINFO
-    ) A
+		SELECT 
+		    uniq_Id, user_Ty, user_Id , user_Nm, email_Adres, area_No, middle_Telno, end_Telno, moblphon_No, group_Id, sttus, sbscrb_De
+		FROM(
+		    SELECT
+		        ESNTL_ID               uniq_Id,
+		        'USR03'               user_Ty,
+		        EMPLYR_ID             user_Id,
+		        USER_NM,
+		        EMAIL_ADRES,
+		        AREA_NO,
+		        HOUSE_MIDDLE_TELNO      middle_Telno,
+		        HOUSE_END_TELNO         end_Telno,
+		        MBTLNUM           moblphon_No,
+		        GROUP_ID,
+		        EMPLYR_STTUS_CODE     sttus,
+		        VARCHAR_FORMAT(SBSCRB_DE, 'YYYY-MM-DD') as sbscrb_De
+		    FROM    LETTNEMPLYRINFO
+		    WHERE 1=1
+		    AND ORGNZT_ID = 'ORGNZT_0000000000000'
+		    ) A
         WHERE 1=1
         <if test='sbscrbSttus != "0"'>
             AND sttus LIKE  #{sbscrbSttus}
@@ -54,6 +56,8 @@ FROM(
 		        EMPLYR_STTUS_CODE     sttus,
 		        VARCHAR_FORMAT(SBSCRB_DE, 'YYYY-MM-DD') as sbscrb_De
 		    FROM    LETTNEMPLYRINFO
+		    WHERE 1=1
+		    AND ORGNZT_ID = 'ORGNZT_0000000000000'
             ) A
         WHERE 1=1
             <if test='sbscrbSttus != "0"'>
