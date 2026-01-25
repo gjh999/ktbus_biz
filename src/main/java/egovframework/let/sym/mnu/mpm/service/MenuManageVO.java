@@ -1,6 +1,7 @@
 package egovframework.let.sym.mnu.mpm.service;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.text.StringEscapeUtils;
 
 /** 
  * 메뉴목록관리 처리를 위한 VO 클래스르를 정의한다
@@ -111,7 +112,7 @@ public class MenuManageVO{
 	 * @param menuNm String
 	 */
 	public void setMenuNm(String menuNm) {
-		this.menuNm = menuNm;
+		this.menuNm = StringEscapeUtils.unescapeHtml4(menuNm);
 	}
 	/**
 	 * upperMenuId attribute를 리턴한다.
@@ -139,7 +140,7 @@ public class MenuManageVO{
 	 * @param menuDc String
 	 */
 	public void setMenuDc(String menuDc) {
-		this.menuDc = menuDc;
+		this.menuDc = StringEscapeUtils.unescapeHtml4(menuDc);
 	}
 	/**
 	 * relateImagePath attribute를 리턴한다.

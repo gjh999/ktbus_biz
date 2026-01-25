@@ -7,8 +7,8 @@ import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.service.EgovCmmUseService;
 import egovframework.let.uat.uia.service.EgovLoginService;
-import egovframework.let.uss.umt.service.EgovMberManageService;
-import egovframework.let.uss.umt.service.MberManageVO;
+import egovframework.let.uss.umt.service.EgovPartnerManageService;
+import egovframework.let.uss.umt.service.PartnerManageVO;
 import egovframework.let.uss.umt.service.PartnerManageVO;
 import egovframework.let.uss.umt.service.UserDefaultVO;
 import egovframework.let.utl.sim.service.EgovFileScrty;
@@ -47,11 +47,11 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * </pre>
  */
 @Controller
-public class EgovMberManageController {
+public class EgovPartnerManageController {
 
-	/** mberManageService */
-	@Resource(name = "mberManageService")
-	private EgovMberManageService mberManageService;
+	/** partnerManageService */
+	@Resource(name = "partnerManageService")
+	private EgovPartnerManageService partnerManageService;
 	
 	/** EgovLoginService */
 	@Resource(name = "loginService")
@@ -77,10 +77,10 @@ public class EgovMberManageController {
 	 * 일반회원목록을 조회한다. (pageing)
 	 * @param userSearchVO 검색조건정보
 	 * @param model 화면모델
-	 * @return cmm/uss/umt/EgovMberManage
+	 * @return cmm/uss/umt/EgovPartnerManage
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/uss/umt/mber/EgovMberManage.do")
+	@RequestMapping(value = "/uss/umt/mber/EgovPartnerManage.do")
 	public String selectMberList(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, ModelMap model, HttpServletRequest request) throws Exception {
 		
 			// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
@@ -108,9 +108,9 @@ public class EgovMberManageController {
 		userSearchVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		userSearchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-		model.addAttribute("resultList", mberManageService.selectMberList(userSearchVO));
+		model.addAttribute("resultList", partnerManageService.selectMberList(userSearchVO));
 
-		int totCnt = mberManageService.selectMberListTotCnt(userSearchVO);
+		int totCnt = partnerManageService.selectMberListTotCnt(userSearchVO);
 		paginationInfo.setTotalRecordCount(totCnt);
 		model.addAttribute("paginationInfo", paginationInfo);
 
@@ -119,19 +119,19 @@ public class EgovMberManageController {
 		vo.setCodeId("COM013");
 		model.addAttribute("entrprsMberSttus_result", cmmUseService.selectCmmCodeDetail(vo));
 		
-		return "cmm/uss/umt/EgovMberManage";
+		return "cmm/uss/umt/EgovPartnerManage";
 	}
 
 	/**
 	 * 일반회원등록화면으로 이동한다.
 	 * @param userSearchVO 검색조건정보
-	 * @param mberManageVO 일반회원초기화정보
+	 * @param partnerManageVO 일반회원초기화정보
 	 * @param model 화면모델
-	 * @return cmm/uss/umt/EgovMberInsert
+	 * @return cmm/uss/umt/EgovPartnerInsert
 	 * @throws Exception
 	 */
-	@RequestMapping("/uss/umt/mber/EgovMberInsertView.do")
-	public String insertMberView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("mberManageVO") MberManageVO mberManageVO, Model model)
+	@RequestMapping("/uss/umt/mber/EgovPartnerInsertView.do")
+	public String insertMberView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO, Model model)
 			throws Exception {
 
 		/*
@@ -162,19 +162,19 @@ public class EgovMberManageController {
 		vo.setTableNm("LETTNORGNZTINFO");
 		model.addAttribute("groupId_result", cmmUseService.selectGroupIdDetail(vo));
 
-		return "cmm/uss/umt/EgovMberInsert";
+		return "cmm/uss/umt/EgovPartnerInsert";
 	}
 
 	/**
 	 * 일반회원등록처리후 목록화면으로 이동한다.
-	 * @param mberManageVO 일반회원등록정보
+	 * @param partnerManageVO 일반회원등록정보
 	 * @param bindingResult 입력값검증용 bindingResult
 	 * @param model 화면모델
-	 * @return forward:/uss/umt/mber/EgovMberManage.do
+	 * @return forward:/uss/umt/mber/EgovPartnerManage.do
 	 * @throws Exception
 	 */
-	@RequestMapping("/uss/umt/mber/EgovMberInsert.do")
-	public String insertMber(@ModelAttribute("mberManageVO") MberManageVO mberManageVO, BindingResult bindingResult, Model model) throws Exception {
+	@RequestMapping("/uss/umt/mber/EgovPartnerInsert.do")
+	public String insertMber(@ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO, BindingResult bindingResult, Model model) throws Exception {
 		
 		/*
 		// 미인증 사용자에 대한 보안처리
@@ -186,7 +186,7 @@ public class EgovMberManageController {
     	}
     	*/
     	
-		beanValidator.validate(mberManageVO, bindingResult);
+		beanValidator.validate(partnerManageVO, bindingResult);
 		if (bindingResult.hasErrors()) {
 			ComDefaultCodeVO vo = new ComDefaultCodeVO();
 
@@ -205,13 +205,13 @@ public class EgovMberManageController {
 			//그룹정보를 조회 - GROUP_ID정보
 			vo.setTableNm("LETTNORGNZTINFO");
 			model.addAttribute("groupId_result", cmmUseService.selectGroupIdDetail(vo));
-			return "cmm/uss/umt/EgovMberInsert";
+			return "cmm/uss/umt/EgovPartnerInsert";
 		} else {
-			mberManageService.insertMber(mberManageVO);
+			partnerManageService.insertPartner(partnerManageVO);
 			//Exception 없이 진행시 등록 성공메시지
 			model.addAttribute("resultMsg", "success.common.insert");
 		}
-		return "forward:/uss/umt/mber/EgovMberManage.do";
+		return "forward:/uss/umt/mber/EgovPartnerManage.do";
 	}
 
 	/**
@@ -219,10 +219,10 @@ public class EgovMberManageController {
 	 * @param mberId 상세조회대상 일반회원아이디
 	 * @param userSearchVO 검색조건
 	 * @param model 화면모델
-	 * @return cmm/uss/umt/EgovMberSelectUpdt
+	 * @return cmm/uss/umt/EgovPartnerSelectUpdt
 	 * @throws Exception
 	 */
-	@RequestMapping("/uss/umt/mber/EgovMberSelectUpdtView.do")
+	@RequestMapping("/uss/umt/mber/EgovPartnerSelectUpdtView.do")
 	public String updateMberView(@RequestParam("selectedId") String mberId, @ModelAttribute("searchVO") UserDefaultVO userSearchVO, Model model) throws Exception {
 
 		// 미인증 사용자에 대한 보안처리
@@ -251,23 +251,23 @@ public class EgovMberManageController {
 		vo.setTableNm("LETTNORGNZTINFO");
 		model.addAttribute("groupId_result", cmmUseService.selectGroupIdDetail(vo));
 
-		MberManageVO mberManageVO = mberManageService.selectMber(mberId);
-		model.addAttribute("mberManageVO", mberManageVO);
+		PartnerManageVO partnerManageVO = partnerManageService.selectMber(mberId);
+		model.addAttribute("partnerManageVO", partnerManageVO);
 		model.addAttribute("userSearchVO", userSearchVO);
 
-		return "cmm/uss/umt/EgovMberSelectUpdt";
+		return "cmm/uss/umt/EgovPartnerSelectUpdt";
 	}
 
 	/**
 	 * 일반회원정보 수정후 목록조회 화면으로 이동한다.
-	 * @param mberManageVO 일반회원수정정보
+	 * @param partnerManageVO 일반회원수정정보
 	 * @param bindingResult 입력값검증용 bindingResult
 	 * @param model 화면모델
-	 * @return forward:/uss/umt/mber/EgovMberManage.do
+	 * @return forward:/uss/umt/mber/EgovPartnerManage.do
 	 * @throws Exception
 	 */
-	@RequestMapping("/uss/umt/mber/EgovMberSelectUpdt.do")
-	public String updateMber(@ModelAttribute("mberManageVO") MberManageVO mberManageVO, BindingResult bindingResult, Model model) throws Exception {
+	@RequestMapping("/uss/umt/mber/EgovPartnerSelectUpdt.do")
+	public String updateMber(@ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO, BindingResult bindingResult, Model model) throws Exception {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -277,7 +277,7 @@ public class EgovMberManageController {
         	return "uat/uia/EgovLoginUsr";
     	}
 
-		beanValidator.validate(mberManageVO, bindingResult);
+		beanValidator.validate(partnerManageVO, bindingResult);
 		if (bindingResult.hasErrors()) {
 			ComDefaultCodeVO vo = new ComDefaultCodeVO();
 
@@ -296,12 +296,12 @@ public class EgovMberManageController {
 			//그룹정보를 조회 - GROUP_ID정보
 			vo.setTableNm("LETTNORGNZTINFO");
 			model.addAttribute("groupId_result", cmmUseService.selectGroupIdDetail(vo));
-			return "cmm/uss/umt/EgovMberSelectUpdt";
+			return "cmm/uss/umt/EgovPartnerSelectUpdt";
 		} else {
-			mberManageService.updateMber(mberManageVO);
+			partnerManageService.updateMber(partnerManageVO);
 			//Exception 없이 진행시 수정성공메시지
 			model.addAttribute("resultMsg", "success.common.update");
-			return "forward:/uss/umt/mber/EgovMberManage.do";
+			return "forward:/uss/umt/mber/EgovPartnerManage.do";
 		}
 	}
 
@@ -310,10 +310,10 @@ public class EgovMberManageController {
 	 * @param checkedIdForDel 삭제대상 아이디 정보
 	 * @param userSearchVO 검색조건정보
 	 * @param model 화면모델
-	 * @return forward:/uss/umt/mber/EgovMberManage.do
+	 * @return forward:/uss/umt/mber/EgovPartnerManage.do
 	 * @throws Exception
 	 */
-	@RequestMapping("/uss/umt/mber/EgovMberDelete.do")
+	@RequestMapping("/uss/umt/mber/EgovPartnerDelete.do")
 	public String deleteMber(@RequestParam("checkedIdForDel") String checkedIdForDel, @ModelAttribute("searchVO") UserDefaultVO userSearchVO, Model model) throws Exception {
 
 		// 미인증 사용자에 대한 보안처리
@@ -324,23 +324,23 @@ public class EgovMberManageController {
         	return "uat/uia/EgovLoginUsr";
     	}
 
-		mberManageService.deleteMber(checkedIdForDel);
+		partnerManageService.deleteMber(checkedIdForDel);
 		//Exception 없이 진행시 삭제성공메시지
 		model.addAttribute("resultMsg", "success.common.delete");
-		return "forward:/uss/umt/mber/EgovMberManage.do";
+		return "forward:/uss/umt/mber/EgovPartnerManage.do";
 	}
 
 	/**
 	 * 일반회원가입신청 등록화면으로 이동한다.
 	 * @param userSearchVO 검색조건
-	 * @param mberManageVO 일반회원가입신청정보
+	 * @param partnerManageVO 일반회원가입신청정보
 	 * @param commandMap 파라메터전달용 commandMap
 	 * @param model 화면모델
-	 * @return cmm/uss/umt/EgovMberSbscrb
+	 * @return cmm/uss/umt/EgovPartnerSbscrb
 	 * @throws Exception
 	 */
-	@RequestMapping("/uss/umt/cmm/EgovMberSbscrbView.do")
-	public String sbscrbMberView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("mberManageVO") MberManageVO mberManageVO,
+	@RequestMapping("/uss/umt/cmm/EgovPartnerSbscrbView.do")
+	public String sbscrbMberView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO,
 			@RequestParam Map<String, Object> commandMap, Model model) throws Exception {
 
 		// 미인증 사용자에 대한 보안처리
@@ -369,69 +369,41 @@ public class EgovMberManageController {
 			model.addAttribute("mberNm", commandMap.get("realName")); //실명인증된 이름 - ipin인증
 		}
 
-		mberManageVO.setGroupId("DEFAULT");
-		mberManageVO.setMberSttus("DEFAULT");
+		partnerManageVO.setGroupId("DEFAULT");
+		//partnerManageVO.setEmplyrSttusCode("P");
 
-		return "cmm/uss/umt/EgovMberSbscrb";
+		return "cmm/uss/umt/EgovPartnerSbscrb";
 	}
 
 	/**
 	 * 일반회원가입신청등록처리후로그인화면으로 이동한다.
-	 * @param mberManageVO 일반회원가입신청정보
+	 * @param partnerManageVO 일반회원가입신청정보
 	 * @return forward:/uat/uia/egovLoginUsr.do
 	 * @throws Exception
 	 */
-	@RequestMapping("/uss/umt/cmm/EgovMberSbscrb.do")
-	public String sbscrbMber(@ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
+	@RequestMapping("/uss/umt/cmm/EgovPartnerSbscrb.do")
+	public String sbscrbMber(@ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO) throws Exception {
 
 		//가입상태 초기화
-		mberManageVO.setMberSttus("A");
+		partnerManageVO.setEmplyrSttusCode("A");
 		//그룹정보 초기화
-		mberManageVO.setGroupId("GROUP_00000000000000"); //기본그룹
+		partnerManageVO.setGroupId("GROUP_00000000000000"); //기본그룹
 		//일반회원가입신청 등록시 일반회원등록기능을 사용하여 등록한다.
-		mberManageService.insertMber(mberManageVO);
+		partnerManageService.insertPartner(partnerManageVO);
 		return "forward:/uat/uia/egovLoginUsr.do";
-	}
-
-	/**
-	 * 일반회원 약관확인
-	 * @param model 화면모델
-	 * @return cmm/uss/umt/EgovStplatCnfirm
-	 * @throws Exception
-	 */
-	@RequestMapping("/uss/umt/cmm/EgovStplatCnfirmMber.do")
-	public String sbscrbEntrprsMber(Model model) throws Exception {
-
-		// 미인증 사용자에 대한 보안처리
-		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-		// isAuthenticated = true;
-    	if(!isAuthenticated) {
-    		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
-        	return "uat/uia/EgovLoginUsr";
-    	}
-
-		//일반회원용 약관 아이디 설정
-		String stplatId = "STPLAT_0000000000001";
-		//회원가입유형 설정-일반회원
-		String sbscrbTy = "USR01";
-		//약관정보 조회
-		model.addAttribute("stplatList", mberManageService.selectStplat(stplatId));
-		model.addAttribute("sbscrbTy", sbscrbTy); //회원가입유형 포함
-
-		return "cmm/uss/umt/EgovStplatCnfirm";
 	}
 
 	/**
 	 * @param model 화면모델
 	 * @param commandMap 파라메터전달용 commandMap
 	 * @param userSearchVO 검색조건
-	 * @param mberManageVO 일반회원수정정보(비밀번호)
-	 * @return cmm/uss/umt/EgovMberPasswordUpdt
+	 * @param partnerManageVO 일반회원수정정보(비밀번호)
+	 * @return cmm/uss/umt/EgovPartnerPasswordUpdt
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/uss/umt/mber/EgovMberPasswordUpdt.do")
+	@RequestMapping(value = "/uss/umt/mber/EgovPartnerPasswordUpdt.do")
 	public String updatePassword(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
-			@ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
+			@ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO) throws Exception {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -447,15 +419,15 @@ public class EgovMberManageController {
 		String uniqId = (String) commandMap.get("uniqId");
 
 		boolean isCorrectPassword = false;
-		MberManageVO resultVO = new MberManageVO();
-		mberManageVO.setPassword(newPassword);
-		mberManageVO.setOldPassword(oldPassword);
-		mberManageVO.setUniqId(uniqId);
+		PartnerManageVO resultVO = new PartnerManageVO();
+		partnerManageVO.setPassword(newPassword);
+		partnerManageVO.setOldPassword(oldPassword);
+		partnerManageVO.setUniqId(uniqId);
 
 		String resultMsg = "";
-		resultVO = mberManageService.selectPassword(mberManageVO);
+		resultVO = partnerManageService.selectPassword(partnerManageVO);
 		//패스워드 암호화
-		String encryptPass = EgovFileScrty.encryptPassword(oldPassword, mberManageVO.getMberId());
+		String encryptPass = EgovFileScrty.encryptPassword(oldPassword, partnerManageVO.getEntrprsMberId());
 		if (encryptPass.equals(resultVO.getPassword())) {
 			if (newPassword.equals(newPassword2)) {
 				isCorrectPassword = true;
@@ -469,17 +441,17 @@ public class EgovMberManageController {
 		}
 
 		if (isCorrectPassword) {
-			mberManageVO.setPassword(EgovFileScrty.encryptPassword(newPassword, mberManageVO.getMberId()));
-			mberManageService.updatePassword(mberManageVO);
-			model.addAttribute("mberManageVO", mberManageVO);
+			partnerManageVO.setPassword(EgovFileScrty.encryptPassword(newPassword, partnerManageVO.getEntrprsMberId()));
+			partnerManageService.updatePassword(partnerManageVO);
+			model.addAttribute("partnerManageVO", partnerManageVO);
 			resultMsg = "success.common.update";
 		} else {
-			model.addAttribute("mberManageVO", mberManageVO);
+			model.addAttribute("partnerManageVO", partnerManageVO);
 		}
 		model.addAttribute("userSearchVO", userSearchVO);
 		model.addAttribute("resultMsg", resultMsg);
 
-		return "cmm/uss/umt/EgovMberPasswordUpdt";
+		return "cmm/uss/umt/EgovPartnerPasswordUpdt";
 	}
 
 	/**
@@ -487,13 +459,13 @@ public class EgovMberManageController {
 	 * @param model 화면모델
 	 * @param commandMap 파라메터전달용 commandMap
 	 * @param userSearchVO 검색조건
-	 * @param mberManageVO 일반회원수정정보(비밀번호)
-	 * @return cmm/uss/umt/EgovMberPasswordUpdt
+	 * @param partnerManageVO 일반회원수정정보(비밀번호)
+	 * @return cmm/uss/umt/EgovPartnerPasswordUpdt
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/uss/umt/mber/EgovMberPasswordUpdtView.do")
+	@RequestMapping(value = "/uss/umt/mber/EgovPartnerPasswordUpdtView.do")
 	public String updatePasswordView(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
-			@ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
+			@ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO) throws Exception {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -504,21 +476,22 @@ public class EgovMberManageController {
     	}
 
 		String userTyForPassword = (String) commandMap.get("userTyForPassword");
-		mberManageVO.setUserTy(userTyForPassword);
+		partnerManageVO.setUserTy(userTyForPassword);
 
 		model.addAttribute("userSearchVO", userSearchVO);
-		model.addAttribute("mberManageVO", mberManageVO);
-		return "cmm/uss/umt/EgovMberPasswordUpdt";
+		model.addAttribute("partnerManageVO", partnerManageVO);
+		return "cmm/uss/umt/EgovPartnerPasswordUpdt";
 	}
 
 	/**
-	 * 입력한 사용자아이디의 중복확인화면 이동
+	 * 입력한 사용자아이디의 중복여부를 체크하여 사용가능여부를 확인
+	 * @param commandMap 파라메터전달용 commandMap
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovIdDplctCnfirm
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/uss/umt/user/EgovIdDplctCnfirmView.do")
-	public String checkIdDplct(ModelMap model) throws Exception {
+	@RequestMapping(value = "/uss/umt/cmm/EgovIdNmcbCnfirm.do")
+	public String checkIdNmcb(@RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {
 		/*
 		 * // 미인증 사용자에 대한 보안처리 Boolean isAuthenticated =
 		 * EgovUserDetailsHelper.isAuthenticated(); if(!isAuthenticated) {
@@ -526,12 +499,38 @@ public class EgovMberManageController {
 		 * egovMessageSource.getMessage("fail.common.login")); return
 		 * "uat/uia/EgovLoginUsr"; }
 		 */
-		model.addAttribute("checkId", "");
-		model.addAttribute("usedCnt", "-1");
-		return "cmm/uss/umt/EgovIdDplctCnfirm";
-	}
+		int usedCnt = -1;
+		
+		String checkId = (String) commandMap.get("checkId");
+		checkId = new String(checkId.getBytes("ISO-8859-1"), "UTF-8");
 
-	
-	
-	
+		if (checkId == null || checkId.equals(""))
+			return "forward:/uss/umt/EgovIdNmcbCnfirmView.do";
+		
+		// nmcb 조합 DB 조회
+		LoginVO searchVO = new LoginVO();
+		PartnerManageVO resultVO = new PartnerManageVO();
+		LoginVO regCheckVO = new LoginVO();
+		searchVO.setId(checkId);
+		resultVO = loginService.nmcbSearch(searchVO);
+
+		model.addAttribute("resultVO", resultVO);
+		model.addAttribute("checkId", checkId);
+		if(resultVO != null) {
+			usedCnt = 1;
+		} else {
+			usedCnt = 0;
+		}
+		
+		if(usedCnt > 0) {
+			regCheckVO = loginService.searchPartnerId(searchVO);
+			if(regCheckVO.getId() == null || "".equals(regCheckVO.getId())) {
+				usedCnt = 2;
+			}
+		}
+		
+		model.addAttribute("usedCnt", usedCnt);
+
+		return "cmm/uss/umt/EgovIdNmcbCnfirm";
+	}
 }

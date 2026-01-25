@@ -25,7 +25,7 @@ FROM(
         END_TELNO             end_Telno,
         MBTLNUM           moblphon_No,
         GROUP_ID              group_Id,
-        MBER_STTUS            sttus,
+        MBER_STTUS_CODE            sttus,
         VARCHAR_FORMAT(SBSCRB_DE,'YYYY-MM-DD') sbscrb_De
     FROM    LETTNGNRLMBER
     ) A
@@ -58,7 +58,7 @@ FROM(
                 END_TELNO             end_Telno,
                 MBTLNUM           moblphon_No,
                 GROUP_ID              group_Id,
-                MBER_STTUS            sttus,
+                MBER_STTUS_CODE            sttus,
                 SBSCRB_DE             sbscrb_De
             FROM    LETTNGNRLMBER
             ) A
@@ -148,7 +148,7 @@ FROM(
                 ZIP              zip,
                 ADRES            adres,
                 AREA_NO          area_No,
-                MBER_STTUS       mber_Sttus,
+                MBER_STTUS_CODE       mber_Sttus,
                 DETAIL_ADRES     detail_Adres,
                 END_TELNO        end_Telno,
                 MBTLNUM      moblphon_No,
@@ -174,7 +174,7 @@ FROM(
                 ZIP              = #{zip},
                 ADRES            = #{adres},
                 AREA_NO          = #{areaNo},
-                MBER_STTUS       = #{mberSttus},
+                MBER_STTUS_CODE       = #{mberSttus},
                 DETAIL_ADRES     = #{detailAdres},
                 END_TELNO        = #{endTelno},
                 MBTLNUM      = #{moblphonNo},

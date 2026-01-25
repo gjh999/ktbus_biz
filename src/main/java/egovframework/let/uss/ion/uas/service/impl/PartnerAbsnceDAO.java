@@ -27,8 +27,8 @@ import org.springframework.stereotype.Repository;
  *
  * </pre>
  */
-@Repository("mberAbsnceDAO")
-public class MberAbsnceDAO extends EgovAbstractMapper {
+@Repository("partnerAbsnceDAO")
+public class PartnerAbsnceDAO extends EgovAbstractMapper {
 
 	/**
 	 * 사용자부재정보를 관리하기 위해 등록된 사용자부재 목록을 조회한다.
@@ -36,8 +36,8 @@ public class MberAbsnceDAO extends EgovAbstractMapper {
 	 * @return List - 사용자부재 목록
 	 */
 	@SuppressWarnings("unchecked")
-	public List<UserAbsnceVO> selectMberAbsnceList(UserAbsnceVO userAbsnceVO) throws Exception {
-		return (List<UserAbsnceVO>) list("mberAbsnceDAO.selectMberAbsnceList", userAbsnceVO);
+	public List<UserAbsnceVO> selectPartnerAbsnceList(UserAbsnceVO userAbsnceVO) throws Exception {
+		return (List<UserAbsnceVO>) list("partnerAbsnceDAO.selectPartnerAbsnceList", userAbsnceVO);
 	}
 
     /**
@@ -46,8 +46,8 @@ public class MberAbsnceDAO extends EgovAbstractMapper {
 	 * @return int
 	 * @exception Exception
 	 */
-    public int selectMberAbsnceListTotCnt(UserAbsnceVO userAbsnceVO) throws Exception {
-        return (Integer)selectOne("mberAbsnceDAO.selectMberAbsnceListTotCnt", userAbsnceVO);
+    public int selectPartnerAbsnceListTotCnt(UserAbsnceVO userAbsnceVO) throws Exception {
+        return (Integer)selectOne("partnerAbsnceDAO.selectPartnerAbsnceListTotCnt", userAbsnceVO);
     }
 
 	/**
@@ -55,32 +55,32 @@ public class MberAbsnceDAO extends EgovAbstractMapper {
 	 * @param userAbsnceVO - 사용자부재 VO
 	 * @return UserAbsnceVO - 사용자부재 VO
 	 */
-	public UserAbsnceVO selectMberAbsnce(UserAbsnceVO userAbsnceVO) throws Exception {
-		return (UserAbsnceVO) selectOne("mberAbsnceDAO.selectMberAbsnce", userAbsnceVO);
+	public UserAbsnceVO selectPartnerAbsnce(UserAbsnceVO userAbsnceVO) throws Exception {
+		return (UserAbsnceVO) selectOne("partnerAbsnceDAO.selectPartnerAbsnce", userAbsnceVO);
 	}
 
 	/**
 	 * 사용자부재정보를 신규로 등록한다.
 	 * @param userAbsnce - 사용자부재 model
 	 */
-	public void insertMberAbsnce(UserAbsnce userAbsnce) throws Exception {
-		insert("mberAbsnceDAO.insertMberAbsnce", userAbsnce);
+	public void insertPartnerAbsnce(UserAbsnce userAbsnce) throws Exception {
+		insert("partnerAbsnceDAO.insertPartnerAbsnce", userAbsnce);
 	}
 
 	/**
 	 * 기 등록된 사용자부재정보를 수정한다.
 	 * @param userAbsnce - 사용자부재 model
 	 */
-	public void updateMberAbsnce(UserAbsnce userAbsnce) throws Exception {
-		update("mberAbsnceDAO.updateMberAbsnce", userAbsnce);
+	public void updatePartnerAbsnce(UserAbsnce userAbsnce) throws Exception {
+		update("partnerAbsnceDAO.updatePartnerAbsnce", userAbsnce);
 	}
 
 	/**
 	 * 기 등록된 사용자부재정보를 삭제한다.
 	 * @param userAbsnce - 사용자부재 model
 	 */
-	public void deleteMberAbsnce(UserAbsnce userAbsnce) throws Exception {
-		delete("mberAbsnceDAO.deleteMberAbsnce", userAbsnce);
+	public void deletePartnerAbsnce(UserAbsnce userAbsnce) throws Exception {
+		delete("partnerAbsnceDAO.deletePartnerAbsnce", userAbsnce);
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class MberAbsnceDAO extends EgovAbstractMapper {
 	 * @param userAbsnceVO - 사용자부재 VO
 	 * @return UserAbsnceVO - 사용자부재 VO
 	 */
-	public UserAbsnceVO selectMberAbsnceResult(UserAbsnceVO userAbsnceVO) throws Exception {
+	public UserAbsnceVO selectPartnerAbsnceResult(UserAbsnceVO userAbsnceVO) throws Exception {
 		return null;
 	}
 }
