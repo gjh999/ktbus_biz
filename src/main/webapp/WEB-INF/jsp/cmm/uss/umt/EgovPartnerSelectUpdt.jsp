@@ -1,5 +1,5 @@
 <%--
-  Class Name : EgovMberSelectUpdt.jsp
+  Class Name : EgovPartnerSelectUpdt.jsp
   Description : 일반회원상세조회, 수정 JSP
   Modification Information
  
@@ -37,28 +37,28 @@
 	
 <title>샘플 포털 > 포털시스템관리 > 사용자관리 > 회원관리</title>
 <script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
-<validator:javascript formName="mberManageVO" staticJavascript="false" xhtml="true" cdata="false"/>
+<validator:javascript formName="partnerManageVO" staticJavascript="false" xhtml="true" cdata="false"/>
 <script type="text/javaScript" language="javascript" defer="defer">
 <!--
 function fnListPage(){
-    document.mberManageVO.action = "<c:url value='/uss/umt/mber/EgovMberManage.do'/>";
-    document.mberManageVO.submit();
+    document.partnerManageVO.action = "<c:url value='/uss/umt/mber/EgovPartnerManage.do'/>";
+    document.partnerManageVO.submit();
 }
 function fnDeleteMber(checkedIds) {
     if(confirm('<spring:message code="common.delete.msg" />')) {
-        document.mberManageVO.checkedIdForDel.value=checkedIds;
-        document.mberManageVO.action = "<c:url value='/uss/umt/mber/EgovMberDelete.do'/>";
-        document.mberManageVO.submit(); 
+        document.partnerManageVO.checkedIdForDel.value=checkedIds;
+        document.partnerManageVO.action = "<c:url value='/uss/umt/mber/EgovPartnerDelete.do'/>";
+        document.partnerManageVO.submit(); 
     }
 }
 function fnPasswordMove(){
-    document.mberManageVO.action = "<c:url value='/uss/umt/mber/EgovMberPasswordUpdtView.do'/>";
-    document.mberManageVO.submit();
+    document.partnerManageVO.action = "<c:url value='/uss/umt/mber/EgovPartnerPasswordUpdtView.do'/>";
+    document.partnerManageVO.submit();
 }
 function fnUpdate(){
-	document.mberManageVO.action = "<c:url value='/uss/umt/mber/EgovMberSelectUpdt.do'/>";
-    if(validateMberManageVO(document.mberManageVO)){
-        document.mberManageVO.submit();
+	document.partnerManageVO.action = "<c:url value='/uss/umt/mber/EgovPartnerSelectUpdt.do'/>";
+    if(validateMberManageVO(document.partnerManageVO)){
+        document.partnerManageVO.submit();
     }
 }
 
@@ -147,7 +147,7 @@ function openPostcode() {
                                 </div>
                                 <!--// Location -->
 
-								<form:form modelAttribute="mberManageVO" name="mberManageVO"  method="post" >
+								<form:form modelAttribute="partnerManageVO" name="partnerManageVO"  method="post" >
 								
 								<!-- 상세정보 사용자 삭제시 prameter 전달용 input -->
 					            <input name="checkedIdForDel" type="hidden" />
@@ -156,17 +156,17 @@ function openPostcode() {
 					            <input type="hidden" name="searchKeyword" value="<c:out value='${userSearchVO.searchKeyword}'/>"/>
 					            <input type="hidden" name="sbscrbSttus" value="<c:out value='${userSearchVO.sbscrbSttus}'/>"/>
 					            <input type="hidden" name="pageIndex" value="<c:out value='${userSearchVO.pageIndex}'/>"/>
-					            <input type="hidden" name="loginType" value="member"/>
+					            <input type="hidden" name="loginType" value="partner"/>
 					            <!-- 우편번호검색 -->
 					            <%-- <input type="hidden" name="zip_url" value="<c:url value='/sym/cmm/EgovCcmZipSearchPopup.do'/>" /> --%>
 					            <!-- 사용자유형정보 : password 수정화면으로 이동시 타겟 유형정보 확인용, 만약검색조건으로 유형이 포함될경우 혼란을 피하기위해 userTy명칭을 쓰지 않음-->
-					            <input type="hidden" name="userTyForPassword" value="<c:out value='${mberManageVO.userTy}'/>" />
+					            <input type="hidden" name="userTyForPassword" value="<c:out value='${partnerManageVO.userTy}'/>" />
 
                                 <h1 class="tit_1">내부시스템관리</h1>
 
                                 <h2 class="tit_2">조합원 상세조회(수정)</h2>
 
-                                <div id="memberBoard" class="board_view2">
+                                <div id="partnerBoard" class="board_view2">
                                     <table>
                                         <colgroup>
                                             <col style="width: 160px;">
@@ -176,7 +176,7 @@ function openPostcode() {
                                         </colgroup>
                                         <tr>
                                             <td class="lb">
-                                                <label for="mberId">조합원아이디(member)</label>
+                                                <label for="mberId">조합사아이디(partner)</label>
                                                 <span class="req">필수</span>
                                             </td>
                                             <td>
@@ -260,7 +260,7 @@ function openPostcode() {
                                             </td>
                                             <td>
                                                 <span class="f_search2 w_300">
-                                                    <input name="zip_view" id="zip_view" type="text" value="<c:out value='${mberManageVO.zip}'/>" maxlength="8" readonly="readonly" />
+                                                    <input name="zip_view" id="zip_view" type="text" value="<c:out value='${partnerManageVOManageVO.zip}'/>" maxlength="8" readonly="readonly" />
                                                     <form:hidden path="zip" />
                                                     <button type="button" class="btn" onclick="execPostcode();">조회</button> 
                                                 </span>
@@ -269,7 +269,7 @@ function openPostcode() {
                                                 <br/>
                                                 <form:input path="adres" id="address" title="기본주소" class="f_txt w_full" maxlength="50" />
                                                 <form:errors path="adres" />
-                                                <input name="zip_view" id="zip_view" type="hidden" title="우편번호" value="<c:out value='${mberManageVO.zip}'/>" maxlength="8" readonly="readonly" />
+                                                <input name="zip_view" id="zip_view" type="hidden" title="우편번호" value="<c:out value='${partnerManageVO.zip}'/>" maxlength="8" readonly="readonly" />
                                             </td>
                                             <td class="lb">
                                                 <label for="detailAdres">상세주소</label>
@@ -325,14 +325,14 @@ function openPostcode() {
 								<!-- 목록/저장버튼  시작-->
                                 <div class="board_view_bot">
                                     <div class="left_col btn3">
-                                        <a href="<c:url value='/uss/umt/mber/EgovMberManage.do'/>" class="btn btn_skyblue_h46 w_100" onclick="fnDeleteMber('<c:out value='${mberManageVO.userTy}'/>:<c:out value='${mberManageVO.uniqId}'/>'); return false;"><spring:message code="button.delete" /></a><!-- 삭제 -->
-                                        <a href="<c:url value='/uss/umt/mber/EgovMberPasswordUpdtView.do'/>" class="btn btn_skyblue_h46 w_100" onclick="fnPasswordMove(); return false;"><spring:message code="button.passwordUpdate" /></a><!-- 암호변경 -->
-                                        <a href="#LINK" class="btn btn_skyblue_h46 w_100" onclick="javascript:document.mberManageVO.reset();"><spring:message code="button.reset" /></a><!-- 취소 -->
+                                        <a href="<c:url value='/uss/umt/mber/EgovPartnerManage.do'/>" class="btn btn_skyblue_h46 w_100" onclick="fnDeleteMber('<c:out value='${partnerManageVO.userTy}'/>:<c:out value='${partnerManageVO.uniqId}'/>'); return false;"><spring:message code="button.delete" /></a><!-- 삭제 -->
+                                        <a href="<c:url value='/uss/umt/mber/EgovPartnerPasswordUpdtView.do'/>" class="btn btn_skyblue_h46 w_100" onclick="fnPasswordMove(); return false;"><spring:message code="button.passwordUpdate" /></a><!-- 암호변경 -->
+                                        <a href="#LINK" class="btn btn_skyblue_h46 w_100" onclick="javascript:document.partnerManageVO.reset();"><spring:message code="button.reset" /></a><!-- 취소 -->
                                     </div>
 
                                     <div class="right_col btn1">
                                         <a href="#LINK" class="btn btn_blue_46 w_100" onclick="fnUpdate(); return false;"><spring:message code="button.save" /></a><!-- 저장 -->
-                                        <a href="<c:url value='/uss/umt/mber/EgovMberManage.do'/>" class="btn btn_blue_46 w_100" onclick="fnListPage(); return false;"><spring:message code="button.list" /></a><!-- 목록 -->
+                                        <a href="<c:url value='/uss/umt/mber/EgovPartnerManage.do'/>" class="btn btn_blue_46 w_100" onclick="fnListPage(); return false;"><spring:message code="button.list" /></a><!-- 목록 -->
                                     </div>
                                 </div>
                                 <!-- 목록/저장버튼  끝-->

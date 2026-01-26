@@ -4,7 +4,7 @@ import java.util.List;
 
 import egovframework.let.sec.rgm.service.AuthorGroup;
 import egovframework.let.sec.rgm.service.impl.AuthorGroupDAO;
-import egovframework.let.uss.umt.service.EgovMberManageService;
+import egovframework.let.uss.umt.service.EgovPartnerManageService;
 import egovframework.let.uss.umt.service.EgovPartnerManageService;
 import egovframework.let.uss.umt.service.PartnerManageVO;
 import egovframework.let.uss.umt.service.PartnerManageVO;
@@ -96,8 +96,8 @@ public class EgovPartnerManageServiceImpl extends EgovAbstractServiceImpl implem
 	 * @throws Exception
 	 */
 	@Override
-	public PartnerManageVO selectMber(String uniqId) {
-		PartnerManageVO partnerManageVO = partnerManageDAO.selectMber(uniqId);
+	public PartnerManageVO selectPartner(String uniqId) {
+		PartnerManageVO partnerManageVO = partnerManageDAO.selectPartner(uniqId);
 		return partnerManageVO;
 	}
 
@@ -107,8 +107,8 @@ public class EgovPartnerManageServiceImpl extends EgovAbstractServiceImpl implem
 	 * @return List<PartnerManageVO> 일반회원목록정보
 	 */
 	@Override
-	public List<PartnerManageVO> selectMberList(UserDefaultVO userSearchVO) {
-		return partnerManageDAO.selectMberList(userSearchVO);
+	public List<PartnerManageVO> selectPartnerList(UserDefaultVO userSearchVO) {
+		return partnerManageDAO.selectPartnerList(userSearchVO);
 	}
 
     /**
@@ -117,8 +117,8 @@ public class EgovPartnerManageServiceImpl extends EgovAbstractServiceImpl implem
      * @return 일반회원총갯수(int)
      */
     @Override
-	public int selectMberListTotCnt(UserDefaultVO userSearchVO) {
-    	return partnerManageDAO.selectMberListTotCnt(userSearchVO);
+	public int selectPartnerListTotCnt(UserDefaultVO userSearchVO) {
+    	return partnerManageDAO.selectPartnerListTotCnt(userSearchVO);
     }
 
 	/**
@@ -127,11 +127,11 @@ public class EgovPartnerManageServiceImpl extends EgovAbstractServiceImpl implem
 	 * @throws Exception
 	 */
 	@Override
-	public void updateMber(PartnerManageVO partnerManageVO) throws Exception {
+	public void updatePartner(PartnerManageVO partnerManageVO) throws Exception {
 		//패스워드 암호화
 		String pass = EgovFileScrty.encryptPassword(partnerManageVO.getPassword(), partnerManageVO.getEntrprsMberId());
 		partnerManageVO.setPassword(pass);
-		partnerManageDAO.updateMber(partnerManageVO);
+		partnerManageDAO.updatePartner(partnerManageVO);
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class EgovPartnerManageServiceImpl extends EgovAbstractServiceImpl implem
 	 * @throws Exception
 	 */
 	@Override
-	public void deleteMber(String checkedIdForDel)  {
+	public void deletePartner(String checkedIdForDel)  {
 		String [] delId = checkedIdForDel.split(",");
 		for (int i=0; i<delId.length ; i++){
 			String [] id = delId[i].split(":");
@@ -148,7 +148,7 @@ public class EgovPartnerManageServiceImpl extends EgovAbstractServiceImpl implem
 		        //업무사용자(직원)삭제
 			}else if(id[0].equals("USR01")){
 				//일반회원삭제
-				partnerManageDAO.deleteMber(id[1]);
+				partnerManageDAO.deletePartner(id[1]);
 			}else if(id[0].equals("USR02")){
 				//기업회원삭제
 			}

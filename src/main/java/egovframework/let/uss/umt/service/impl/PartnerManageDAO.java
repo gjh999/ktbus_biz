@@ -35,8 +35,8 @@ public class PartnerManageDAO extends EgovAbstractMapper{
      * @return List<PartnerManageVO> 기업회원 목록정보
      */
     @SuppressWarnings("unchecked")
-	public List<PartnerManageVO> selectMberList(UserDefaultVO userSearchVO){
-        return (List<PartnerManageVO>) list("partnerManageDAO.selectMberList", userSearchVO);
+	public List<PartnerManageVO> selectPartnerList(UserDefaultVO userSearchVO){
+        return (List<PartnerManageVO>) list("partnerManageDAO.selectPartnerList", userSearchVO);
     }
 
     /**
@@ -44,16 +44,16 @@ public class PartnerManageDAO extends EgovAbstractMapper{
      * @param userSearchVO 검색조건
      * @return int 일반회원총갯수
      */
-    public int selectMberListTotCnt(UserDefaultVO userSearchVO) {
-        return (Integer)selectOne("partnerManageDAO.selectMberListTotCnt", userSearchVO);
+    public int selectPartnerListTotCnt(UserDefaultVO userSearchVO) {
+        return (Integer)selectOne("partnerManageDAO.selectPartnerListTotCnt", userSearchVO);
     }
 
     /**
      * 화면에 조회된 일반회원의 정보를 데이터베이스에서 삭제
      * @param delId 삭제 대상 일반회원아이디
      */
-    public void deleteMber(String delId){
-        delete("partnerManageDAO.deleteMber_S", delId);
+    public void deletePartner(String delId){
+        delete("partnerManageDAO.deletePartner_S", delId);
     }
 
     /**
@@ -70,16 +70,16 @@ public class PartnerManageDAO extends EgovAbstractMapper{
      * @param mberId 상세조회대상 일반회원아이디
      * @return PartnerManageVO 일반회원 상세정보
      */
-    public PartnerManageVO selectMber(String mberId){
-        return (PartnerManageVO) selectOne("partnerManageDAO.selectMber_S", mberId);
+    public PartnerManageVO selectPartner(String mberId){
+        return (PartnerManageVO) selectOne("partnerManageDAO.selectPartner_S", mberId);
     }
 
     /**
      * 화면에 조회된일반회원의 기본정보를 수정하여 항목의 정합성을 체크하고 수정된 데이터를 데이터베이스에 반영
      * @param partnerManageVO 일반회원수정정보
      */
-    public void updateMber(PartnerManageVO partnerManageVO){
-        update("partnerManageDAO.updateMber_S",partnerManageVO);
+    public void updatePartner(PartnerManageVO partnerManageVO){
+        update("partnerManageDAO.updatePartner_S",partnerManageVO);
     }
 
     /**

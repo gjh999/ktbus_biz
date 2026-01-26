@@ -81,10 +81,10 @@ public class EgovPartnerManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/umt/mber/EgovPartnerManage.do")
-	public String selectMberList(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, ModelMap model, HttpServletRequest request) throws Exception {
+	public String selectPartnerList(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, ModelMap model, HttpServletRequest request) throws Exception {
 		
-			// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
-			request.getSession().setAttribute("menuNo", "6000000");
+		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
+		request.getSession().setAttribute("menuNo", "6000000");
 		
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -108,16 +108,16 @@ public class EgovPartnerManageController {
 		userSearchVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		userSearchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-		model.addAttribute("resultList", partnerManageService.selectMberList(userSearchVO));
+		model.addAttribute("resultList", partnerManageService.selectPartnerList(userSearchVO));
 
-		int totCnt = partnerManageService.selectMberListTotCnt(userSearchVO);
+		int totCnt = partnerManageService.selectPartnerListTotCnt(userSearchVO);
 		paginationInfo.setTotalRecordCount(totCnt);
 		model.addAttribute("paginationInfo", paginationInfo);
 
 		//일반회원 상태코드를 코드정보로부터 조회
 		ComDefaultCodeVO vo = new ComDefaultCodeVO();
 		vo.setCodeId("COM013");
-		model.addAttribute("entrprsMberSttus_result", cmmUseService.selectCmmCodeDetail(vo));
+		model.addAttribute("entrprsPartnerSttus_result", cmmUseService.selectCmmCodeDetail(vo));
 		
 		return "cmm/uss/umt/EgovPartnerManage";
 	}
@@ -131,7 +131,7 @@ public class EgovPartnerManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/uss/umt/mber/EgovPartnerInsertView.do")
-	public String insertMberView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO, Model model)
+	public String insertPartnerView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO, Model model)
 			throws Exception {
 
 		/*
@@ -174,7 +174,7 @@ public class EgovPartnerManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/uss/umt/mber/EgovPartnerInsert.do")
-	public String insertMber(@ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO, BindingResult bindingResult, Model model) throws Exception {
+	public String insertPartner(@ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO, BindingResult bindingResult, Model model) throws Exception {
 		
 		/*
 		// 미인증 사용자에 대한 보안처리
@@ -223,7 +223,7 @@ public class EgovPartnerManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/uss/umt/mber/EgovPartnerSelectUpdtView.do")
-	public String updateMberView(@RequestParam("selectedId") String mberId, @ModelAttribute("searchVO") UserDefaultVO userSearchVO, Model model) throws Exception {
+	public String updatePartnerView(@RequestParam("selectedId") String mberId, @ModelAttribute("searchVO") UserDefaultVO userSearchVO, Model model) throws Exception {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -251,7 +251,7 @@ public class EgovPartnerManageController {
 		vo.setTableNm("LETTNORGNZTINFO");
 		model.addAttribute("groupId_result", cmmUseService.selectGroupIdDetail(vo));
 
-		PartnerManageVO partnerManageVO = partnerManageService.selectMber(mberId);
+		PartnerManageVO partnerManageVO = partnerManageService.selectPartner(mberId);
 		model.addAttribute("partnerManageVO", partnerManageVO);
 		model.addAttribute("userSearchVO", userSearchVO);
 
@@ -267,7 +267,7 @@ public class EgovPartnerManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/uss/umt/mber/EgovPartnerSelectUpdt.do")
-	public String updateMber(@ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO, BindingResult bindingResult, Model model) throws Exception {
+	public String updatePartner(@ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO, BindingResult bindingResult, Model model) throws Exception {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -298,7 +298,7 @@ public class EgovPartnerManageController {
 			model.addAttribute("groupId_result", cmmUseService.selectGroupIdDetail(vo));
 			return "cmm/uss/umt/EgovPartnerSelectUpdt";
 		} else {
-			partnerManageService.updateMber(partnerManageVO);
+			partnerManageService.updatePartner(partnerManageVO);
 			//Exception 없이 진행시 수정성공메시지
 			model.addAttribute("resultMsg", "success.common.update");
 			return "forward:/uss/umt/mber/EgovPartnerManage.do";
@@ -314,7 +314,7 @@ public class EgovPartnerManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/uss/umt/mber/EgovPartnerDelete.do")
-	public String deleteMber(@RequestParam("checkedIdForDel") String checkedIdForDel, @ModelAttribute("searchVO") UserDefaultVO userSearchVO, Model model) throws Exception {
+	public String deletePartner(@RequestParam("checkedIdForDel") String checkedIdForDel, @ModelAttribute("searchVO") UserDefaultVO userSearchVO, Model model) throws Exception {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -324,7 +324,7 @@ public class EgovPartnerManageController {
         	return "uat/uia/EgovLoginUsr";
     	}
 
-		partnerManageService.deleteMber(checkedIdForDel);
+		partnerManageService.deletePartner(checkedIdForDel);
 		//Exception 없이 진행시 삭제성공메시지
 		model.addAttribute("resultMsg", "success.common.delete");
 		return "forward:/uss/umt/mber/EgovPartnerManage.do";
@@ -340,7 +340,7 @@ public class EgovPartnerManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/uss/umt/cmm/EgovPartnerSbscrbView.do")
-	public String sbscrbMberView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO,
+	public String sbscrbPartnerView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO,
 			@RequestParam Map<String, Object> commandMap, Model model) throws Exception {
 
 		// 미인증 사용자에 대한 보안처리
@@ -382,7 +382,7 @@ public class EgovPartnerManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/uss/umt/cmm/EgovPartnerSbscrb.do")
-	public String sbscrbMber(@ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO) throws Exception {
+	public String sbscrbPartner(@ModelAttribute("partnerManageVO") PartnerManageVO partnerManageVO) throws Exception {
 
 		//가입상태 초기화
 		partnerManageVO.setEmplyrSttusCode("A");

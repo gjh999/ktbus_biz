@@ -10,25 +10,25 @@
         <result property="infoProvdAgeCn" column="INFO_PROVD_AGRE_CN"/>
     </resultMap>
     
- <select id="selectMberList" parameterType="egovframework.let.uss.umt.service.UserDefaultVO" resultType="egovMap">
-SELECT 
-    uniq_Id, user_Ty, mber_Id , user_Nm, email_Adres, area_No, middle_Telno, end_Telno, moblphon_No, group_Id, sttus, sbscrb_De
-FROM(
-    SELECT 
-        ESNTL_ID               uniq_Id,
-        'USR01'               user_Ty,
-        MBER_ID               mber_Id,
-        MBER_NM               user_Nm,
-        MBER_EMAIL_ADRES      email_Adres,
-        AREA_NO               area_No,
-        MIDDLE_TELNO          middle_Telno,
-        END_TELNO             end_Telno,
-        MBTLNUM           moblphon_No,
-        GROUP_ID              group_Id,
-        MBER_STTUS            sttus,
-        VARCHAR_FORMAT(SBSCRB_DE,'YYYY-MM-DD') sbscrb_De
-    FROM    LETTNGNRLMBER
-    ) A
+ <select id="selectPartnerList" parameterType="egovframework.let.uss.umt.service.UserDefaultVO" resultType="egovMap">
+	SELECT 
+	    uniq_Id, user_Ty, mber_Id , user_Nm, email_Adres, area_No, middle_Telno, end_Telno, moblphon_No, group_Id, sttus, sbscrb_De
+	FROM(
+	    SELECT 
+	        ESNTL_ID               uniq_Id,
+	        'USR01'               user_Ty,
+	        ENTRPRS_MBER_ID               mber_Id,
+	        CMPNY_NM               user_Nm,
+	        PIC_EMAIL_ADRES      email_Adres,
+	        ''               area_No,
+	        ''          middle_Telno,
+	        ''             end_Telno,
+	        PIC_MOBLPHON_NO           moblphon_No,
+	        GROUP_ID              group_Id,
+	        ENTRPRS_MBER_STTUS            sttus,
+	        VARCHAR_FORMAT(SBSCRB_DE,'YYYY-MM-DD') sbscrb_De
+	    FROM    LETTNENTRPRSMBER
+	    ) A
         WHERE 1=1
         <if test='sbscrbSttus != "0"'>
             AND sttus LIKE  #{sbscrbSttus}
@@ -44,24 +44,24 @@ FROM(
     </select>
     
     
-        <select id="selectMberListTotCnt" parameterType="egovframework.let.uss.umt.service.UserDefaultVO" resultType="int">
-            SELECT COUNT(1) totcnt
-            FROM(
+        <select id="selectPartnerListTotCnt" parameterType="egovframework.let.uss.umt.service.UserDefaultVO" resultType="int">
+        SELECT COUNT(1) totcnt
+        FROM(
             SELECT 
-                ESNTL_ID               uniq_Id,
-                'USR01'               user_Ty,
-                MBER_ID               mber_Id,
-                MBER_NM               user_Nm,
-                MBER_EMAIL_ADRES      email_A1dres,
-                AREA_NO               area_No,
-                MIDDLE_TELNO          middle_Telno,
-                END_TELNO             end_Telno,
-                MBTLNUM           moblphon_No,
-                GROUP_ID              group_Id,
-                MBER_STTUS            sttus,
-                SBSCRB_DE             sbscrb_De
-            FROM    LETTNGNRLMBER
-            ) A
+	        ESNTL_ID               uniq_Id,
+	        'USR01'               user_Ty,
+	        ENTRPRS_MBER_ID               mber_Id,
+	        CMPNY_NM               user_Nm,
+	        PIC_EMAIL_ADRES      email_Adres,
+	        ''               area_No,
+	        ''          middle_Telno,
+	        ''             end_Telno,
+	        PIC_MOBLPHON_NO           moblphon_No,
+	        GROUP_ID              group_Id,
+	        ENTRPRS_MBER_STTUS            sttus,
+	        VARCHAR_FORMAT(SBSCRB_DE,'YYYY-MM-DD') sbscrb_De
+	    FROM    LETTNENTRPRSMBER
+	    ) A
         WHERE 1=1
             <if test='sbscrbSttus != "0"'>
                 AND sttus LIKE  #{sbscrbSttus}
@@ -102,7 +102,7 @@ FROM(
 			, APPLCNT_EMAIL_ADRES
 			, ESNTL_ID
 			) VALUES (
-			 #{entrprsMberId}
+			 #{entrprsPartnerId}
 			 , 'ENT'
 			 , #{bizNo} 
 			 , #{corpNo1}
@@ -131,43 +131,43 @@ FROM(
         
     </insert>
     
-    <delete id="deleteMber_S">
+    <delete id="deletePartner_S">
         
             DELETE FROM LETTNGNRLMBER 
             WHERE ESNTL_ID=#{delId}
         
     </delete>
     
-    <select id="selectMber_S" resultType="egovframework.let.uss.umt.service.MberManageVO">
+    <select id="selectPartner_S" resultType="egovframework.let.uss.umt.service.PartnerManageVO">
         
             SELECT
                 ESNTL_ID          uniq_Id,
                 'USR01'          user_Ty,
-                MBER_ID          mber_Id,
-                MBER_NM          mber_Nm,
+                ENTRPRS_MBER_ID          mber_Id,
+                CMPNY_NM          mber_Nm,
                 PASSWORD         password,
-                PASSWORD_HINT    password_Hint,
-                PASSWORD_CNSR    password_Cnsr,
-                IHIDNUM          ihidnum,
-                SEXDSTN_CODE     sexdstn_Code,
+                ENTRPRS_MBER_PASSWORD_HINT    password_Hint,
+                ENTRPRS_MBER_PASSWORD_CNSR    password_Cnsr,
+                ''          ihidnum,
+                ''     sexdstn_Code,
                 ZIP              zip,
                 ADRES            adres,
-                AREA_NO          area_No,
-                MBER_STTUS       mber_Sttus,
+                ''          area_No,
+                ENTRPRS_MBER_STTUS       mber_Sttus,
                 DETAIL_ADRES     detail_Adres,
-                END_TELNO        end_Telno,
-                MBTLNUM      moblphon_No,
+                ''        end_Telno,
+                CEO_MOBLPHON_NO      moblphon_No,
                 GROUP_ID         group_Id,
-                MBER_FXNUM       mber_Fxnum,
-                MBER_EMAIL_ADRES mber_Email_Adres,
-                MIDDLE_TELNO     middle_Telno,
+                FXNUM       mber_Fxnum,
+                PIC_EMAIL_ADRES mber_Email_Adres,
+                ''     middle_Telno,
                 VARCHAR_FORMAT(SBSCRB_DE,'YYYY-MM-DD') sbscrb_De
-            FROM LETTNGNRLMBER
+            FROM LETTNENTRPRSMBER
             WHERE ESNTL_ID=#{uniqId}
         
     </select>
     
-    <update id="updateMber_S">
+    <update id="updatePartner_S">
         
             UPDATE LETTNGNRLMBER 
             SET MBER_ID          = #{mberId},
@@ -211,7 +211,7 @@ FROM(
         
     </update>
     
-    <select id="selectPassword_S" resultType="egovframework.let.uss.umt.service.MberManageVO">
+    <select id="selectPassword_S" resultType="egovframework.let.uss.umt.service.PartnerManageVO">
         
             SELECT
                     PASSWORD          password 

@@ -35,7 +35,7 @@ public interface EgovPartnerManageService {
 	 * @return partnerManageVO 일반회원상세정보
 	 * @throws Exception
 	 */
-	public PartnerManageVO selectMber(String mberId) throws Exception;
+	public PartnerManageVO selectPartner(String mberId) throws Exception;
 
 	/**
 	 * 기 등록된 회원 중 검색조건에 맞는 회원들의 정보를 데이터베이스에서 읽어와 화면에 출력
@@ -43,7 +43,7 @@ public interface EgovPartnerManageService {
 	 * @return List<PartnerManageVO> 일반회원목록정보
 	 * @throws Exception
 	 */
-	public List<PartnerManageVO> selectMberList(UserDefaultVO userSearchVO) throws Exception;
+	public List<PartnerManageVO> selectPartnerList(UserDefaultVO userSearchVO) throws Exception;
 
     /**
      * 일반회원 총 갯수를 조회한다.
@@ -51,21 +51,21 @@ public interface EgovPartnerManageService {
      * @return 일반회원총갯수(int)
      * @throws Exception
      */
-    public int selectMberListTotCnt(UserDefaultVO userSearchVO) throws Exception;
+    public int selectPartnerListTotCnt(UserDefaultVO userSearchVO) throws Exception;
 
 	/**
 	 * 화면에 조회된 일반회원의 기본정보를 수정하여 항목의 정합성을 체크하고 수정된 데이터를 데이터베이스에 반영
 	 * @param partnerManageVO 일반회원수정정보
 	 * @throws Exception
 	 */
-	public void updateMber(PartnerManageVO partnerManageVO) throws Exception;
+	public void updatePartner(PartnerManageVO partnerManageVO) throws Exception;
 
 	/**
 	 * 화면에 조회된 사용자의 정보를 데이터베이스에서 삭제
 	 * @param checkedIdForDel 삭제대상 일반회원아이디
 	 * @throws Exception
 	 */
-	public void deleteMber(String checkedIdForDel) throws Exception;
+	public void deletePartner(String checkedIdForDel) throws Exception;
 
 	/**
 	 * 일반회원 약관확인

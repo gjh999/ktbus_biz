@@ -79,7 +79,7 @@ function fnDeleteUser() {
     	//alert(checkedIds);
         if(confirm('<spring:message code="common.delete.msg" />')) {
         	document.listForm.checkedIdForDel.value=checkedIds;
-            document.listForm.action = "<c:url value='/uss/umt/mber/EgovMberDelete.do'/>";
+            document.listForm.action = "<c:url value='/uss/umt/mber/EgovPartnerDelete.do'/>";
             document.listForm.submit();
         }
     }
@@ -93,21 +93,21 @@ function fnSelectUser(id) {
 	    userId = array[1];    
 	}
 	document.listForm.selectedId.value = userId;
-    document.listForm.action = "<c:url value='/uss/umt/mber/EgovMberSelectUpdtView.do'/>";
+    document.listForm.action = "<c:url value='/uss/umt/mber/EgovPartnerSelectUpdtView.do'/>";
     document.listForm.submit();
 }
 function fnAddUserView() {
-    document.listForm.action = "<c:url value='/uss/umt/mber/EgovMberInsertView.do'/>";
+    document.listForm.action = "<c:url value='/uss/umt/mber/EgovPartnerInsertView.do'/>";
     document.listForm.submit();
 }
 function fnLinkPage(pageNo){
     document.listForm.pageIndex.value = pageNo;
-    document.listForm.action = "<c:url value='/uss/umt/mber/EgovMberManage.do'/>";
+    document.listForm.action = "<c:url value='/uss/umt/mber/EgovPartnerManage.do'/>";
     document.listForm.submit();
 }
 function fnSearch(){
 	document.listForm.pageIndex.value = 1;
-	document.listForm.action = "<c:url value='/uss/umt/mber/EgovMberManage.do'/>";
+	document.listForm.action = "<c:url value='/uss/umt/mber/EgovPartnerManage.do'/>";
     document.listForm.submit();
 }
 <c:if test="${!empty resultMsg}">alert("<spring:message code="${resultMsg}" />");</c:if>
@@ -146,7 +146,7 @@ function fnSearch(){
                                 </div>
                                 <!--// Location -->
 
-								<form name="listForm" action="/uss/umt/mber/EgovMberManage.do" method="post">
+								<form name="listForm" action="/uss/umt/mber/EgovPartnerManage.do" method="post">
 								
 								<input name="selectedId" type="hidden" />
 								<input name="checkedIdForDel" type="hidden" />
@@ -201,9 +201,9 @@ function fnSearch(){
 
                                     <div class="right_col">
                                         <a href="#LINK" class="btn btn_blue_46 w_100" onclick="fnDeleteUser(); return false;"><spring:message code="button.delete" /></a><!-- 삭제 -->
-                                        <a href="<c:url value='/uss/umt/mber/EgovMberInsertView.do'/>" class="btn btn_blue_46 w_100" onclick="fnAddUserView(); return false;"><spring:message code="button.create" /></a><!-- 등록 -->
+                                        <a href="<c:url value='/uss/umt/mber/EgovPartnerInsertView.do'/>" class="btn btn_blue_46 w_100" onclick="fnAddUserView(); return false;"><spring:message code="button.create" /></a><!-- 등록 -->
                                         <!-- 
-                                        <a href="<c:url value='/uss/umt/mber/EgovMberManage.do'/>" class="btn btn_blue_46 w_100"><spring:message code="button.list" /></a>목록
+                                        <a href="<c:url value='/uss/umt/mber/EgovPartnerManage.do'/>" class="btn btn_blue_46 w_100"><spring:message code="button.list" /></a>목록
                                          -->
                                     </div>
                                 </div>
@@ -215,7 +215,7 @@ function fnSearch(){
                                             <col style="width: 60px;">
                                             <col style="width: 60px;">
                                             <col style="width: 100px;">
-                                            <col style="width: 105px;">
+                                            <col style="width: 200px;">
                                             <col style="width: auto;">
                                             <col style="width: 140px;">
                                             <col style="width: 180px;">
@@ -255,7 +255,7 @@ function fnSearch(){
                                                     </span>
                                                 </td>
                                                 <td>
-                                                	<a href="<c:url value='/uss/umt/mber/EgovMberSelectUpdtView.do'/>?selectedId=<c:out value="${result.uniqId}"/>" class="lnk" onclick="javascript:fnSelectUser('<c:out value="${result.userTy}"/>:<c:out value="${result.uniqId}"/>'); return false;">
+                                                	<a href="<c:url value='/uss/umt/mber/EgovPartnerSelectUpdtView.do'/>?selectedId=<c:out value="${result.uniqId}"/>" class="lnk" onclick="javascript:fnSelectUser('<c:out value="${result.userTy}"/>:<c:out value="${result.uniqId}"/>'); return false;">
                                                 		<c:out value="${result.mberId}"/>
                                                 	</a>
                                                 </td>
